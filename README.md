@@ -4,4 +4,4 @@ Frontend application for mini cinema project, written in ReactJS, with user's cr
 
 - user - Michał Skorzec,
 - homepage, contact, footer, pricelist - Klaudia Gora,
-- whole tickets logic (buying, displaying bought tickets), navbar, deploy - Kamil Żogło
+- whole tickets logic (buying, displaying bought tickets), navbar and react routing, deploy - Kamil Żogło
