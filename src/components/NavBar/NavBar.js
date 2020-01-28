@@ -16,16 +16,16 @@ class NavBar extends React.Component {
         <Link to="/CodersCamp_MiniKino_Frontend/" className="item">
           HomePage
         </Link>
-        <Link to="/pricelist" className="item">
+        <Link to="/CodersCamp_MiniKino_Frontend/pricelist" className="item">
           Cennik
         </Link>
-        <Link to="/mytickets" className="item">
+        <Link to="/CodersCamp_MiniKino_Frontend/mytickets" className="item">
           Moje bilety
         </Link>
-        <Link to="/register" className="item">
+        <Link to="/CodersCamp_MiniKino_Frontend/register" className="item">
           Rejestracja
         </Link>
-        <Link to="/login" className="item">
+        <Link to="/CodersCamp_MiniKino_Frontend/login" className="item">
           Login
         </Link>
       </div>

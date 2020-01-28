@@ -11,7 +11,7 @@ const Photo = props => {
   return (
     <div>
       <Link
-        to="/reservation"
+        to="/CodersCamp_MiniKino_Frontend/reservation"
         className="ui card"
         onClick={() => reservation(props)}
       >

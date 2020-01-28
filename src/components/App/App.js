@@ -26,12 +26,36 @@ class App extends React.Component {
               exact
               component={HomePage}
             />
-            <Route path="/contact" exact component={Contact} />
-            <Route path="/register" exact component={Register} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/mytickets" exact component={MyTickets} />
-            <Route path="/pricelist" exact component={PriceList} />
-            <Route path="/reservation" exact component={Reservation} />
+            <Route
+              path="/CodersCamp_MiniKino_Frontend/contact"
+              exact
+              component={Contact}
+            />
+            <Route
+              path="/CodersCamp_MiniKino_Frontend/register"
+              exact
+              component={Register}
+            />
+            <Route
+              path="/CodersCamp_MiniKino_Frontend/login"
+              exact
+              component={Login}
+            />
+            <Route
+              path="/CodersCamp_MiniKino_Frontend/mytickets"
+              exact
+              component={MyTickets}
+            />
+            <Route
+              path="/CodersCamp_MiniKino_Frontend/pricelist"
+              exact
+              component={PriceList}
+            />
+            <Route
+              path="/CodersCamp_MiniKino_Frontend/reservation"
+              exact
+              component={Reservation}
+            />
           </div>
           <Footer />
         </div>

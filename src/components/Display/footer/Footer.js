@@ -43,7 +43,10 @@ class Footer extends Component {
         <div className="item">
           <h2>KONTAKT</h2>
           <div className="ui list">
-            <Link to="/contact" className="item contact">
+            <Link
+              to="/CodersCamp_MiniKino_Frontend/contact"
+              className="item contact"
+            >
               Kontakt
             </Link>
           </div>
