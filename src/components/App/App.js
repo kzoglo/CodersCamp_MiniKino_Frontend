@@ -21,7 +21,6 @@ class App extends React.Component {
         <div>
           <div className="ui container">
             <Display />
-            <Route path="/" exact component={HomePage} />
             <Route
               path="/CodersCamp_MiniKino_Frontend"
               exact

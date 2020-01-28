@@ -13,7 +13,7 @@ class NavBar extends React.Component {
             <i className="fast forward icon"></i>
           </div>
         </div>
-        <Link to="/CodersCamp_MiniKino_Frontend" className="item">
+        <Link to="/CodersCamp_MiniKino_Frontend/" className="item">
           HomePage
         </Link>
         <Link to="/pricelist" className="item">
