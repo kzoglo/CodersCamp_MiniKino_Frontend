@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/CodersCamp_MiniKino_Frontend/precache-manifest.655fc9f24c41e9a66f615e2704e59728.js"
+  "/CodersCamp_MiniKino_Frontend/precache-manifest.ac9fe4caaa0bf8727650491c38568088.js"
 );
 
 self.addEventListener('message', (event) => {
