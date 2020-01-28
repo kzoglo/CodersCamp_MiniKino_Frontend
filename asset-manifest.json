@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/CodersCamp_MiniKino_Frontend/static/css/main.42b98a40.chunk.css",
-    "main.js": "/CodersCamp_MiniKino_Frontend/static/js/main.2d7d2a8f.chunk.js",
-    "main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/main.2d7d2a8f.chunk.js.map",
+    "main.js": "/CodersCamp_MiniKino_Frontend/static/js/main.b335ac7b.chunk.js",
+    "main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/main.b335ac7b.chunk.js.map",
     "runtime-main.js": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.73f6f7d3.js",
     "runtime-main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.73f6f7d3.js.map",
     "static/js/2.0fd04c55.chunk.js": "/CodersCamp_MiniKino_Frontend/static/js/2.0fd04c55.chunk.js",
     "static/js/2.0fd04c55.chunk.js.map": "/CodersCamp_MiniKino_Frontend/static/js/2.0fd04c55.chunk.js.map",
     "index.html": "/CodersCamp_MiniKino_Frontend/index.html",
-    "precache-manifest.ce94f77f0eac26deeca4fefc9b17418a.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.ce94f77f0eac26deeca4fefc9b17418a.js",
+    "precache-manifest.49dd4f6aa7381540eebdbaa64aea27f5.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.49dd4f6aa7381540eebdbaa64aea27f5.js",
     "service-worker.js": "/CodersCamp_MiniKino_Frontend/service-worker.js",
     "static/css/main.42b98a40.chunk.css.map": "/CodersCamp_MiniKino_Frontend/static/css/main.42b98a40.chunk.css.map",
     "static/js/2.0fd04c55.chunk.js.LICENSE": "/CodersCamp_MiniKino_Frontend/static/js/2.0fd04c55.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.73f6f7d3.js",
     "static/js/2.0fd04c55.chunk.js",
     "static/css/main.42b98a40.chunk.css",
-    "static/js/main.2d7d2a8f.chunk.js"
+    "static/js/main.b335ac7b.chunk.js"
   ]
 }
