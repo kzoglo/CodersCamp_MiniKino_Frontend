@@ -1,0 +1,140 @@
+/*** Generic Classes ***/
+.register-outerWrapper {
+  min-height: var(--min-height-size);
+  padding-bottom: 50px;
+  padding-top: 50px;
+  background-image: url('https://kzoglo.github.io/img/register5.jpg');
+  background-size: cover;
+}
+
+.register-wrapper {
+  width: 90%;
+  margin: auto;
+  color: white;
+  font-weight: 900;
+}
+
+.register-title {
+  margin-left: 4px;
+  margin-bottom: 20px;
+  font-family: 'Cinzel', serif;
+  color: white;
+  font-size: 29px;
+}
+
+.register-form {
+  display: grid;
+  padding: 3% 8% 3%;
+  background-color: rgba(0, 0, 0, 0.73);
+  border: 3px white solid;
+  border-radius: 2%;
+}
+
+/*** Conditional Classes ***/
+.register-wrapper .invalid {
+  color: red;
+}
+
+.register-wrapper .valid {
+  color: green;
+}
+
+.validate-register-info {
+  height: 20px;
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+/*** Restyling of imported components ***/
+/* SubmitBtn */
+.register-wrapper .registerBtn {
+  padding: 3% 2%;
+}
+
+/* Loading Spinner */
+.register-wrapper .registerSpinner {
+  border: 6px solid #3058dc;
+  border-top-color: transparent;
+}
+
+.register-wrapper .registerSpinner-outerWrapper {
+  display: inline;
+  position: relative;
+  top: -21px;
+  right: 0%;
+  margin-left: 0;
+  background: #808080;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 460px) {
+  .register-wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .register-wrapper {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .register-wrapper {
+    width: 90%;
+  }
+
+  .register-form {
+    grid-template-columns: repeat(2, 47.5%);
+    padding-bottom: 2%;
+    column-gap: 5%;
+  }
+
+  .register-email-wrapper,
+  .validate-register-info {
+    grid-column: 1 / span 2;
+  }
+
+  .register-wrapper .registerBtn {
+    width: 40%;
+    padding: 2% 2%;
+    grid-column: 1 / span 2;
+    justify-self: center;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .register-wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 860px) {
+  .register-wrapper {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .register-wrapper {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1060px) {
+  .register-wrapper {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1260px) {
+  .register-wrapper {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .register-wrapper {
+    width: 40%;
+  }
+}

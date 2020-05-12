@@ -1,0 +1,44 @@
+/*** Generic Classes ***/
+.contactUs-wrapper {
+  width: 100%;
+  min-height: var(--min-height-size);
+  display: grid;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.527);
+  background-image: url('https://kzoglo.github.io/img/contactUs4.jpg');
+  background-size: cover;
+  background-blend-mode: darken;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 660px) {
+  .contactUs-wrapper {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .contactUs-wrapper {
+    gap: 0%;
+    font-size: 20px;
+  }
+
+  .contactWay-title {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .contactUs-wrapper {
+    font-size: 20px;
+  }
+
+  .contactWay-title {
+    font-size: 32px;
+  }
+}

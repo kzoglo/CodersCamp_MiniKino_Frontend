@@ -1,0 +1,19 @@
+/*** Generic Classes ***/
+.serverError-outerWrapper {
+  min-height: var(--min-height-size);
+  padding-top: var(--layout-padding-top);
+  padding-bottom: var(--layout-padding-bottom);
+  min-height: var(--min-height-size);
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.699);
+  background-image: url('https://kzoglo.github.io/img/serverError1.jpg');
+  background-blend-mode: saturation;
+  background-size: cover;
+}
+
+.serverError-wrapper h1,
+.serverError-wrapper h2 {
+  color: white;
+  text-shadow: 2px 2px 1.42rem white;
+  font-size: 2.5rem;
+}

@@ -1,0 +1,36 @@
+/*** Generic Classes ***/
+.movieInfo-title {
+  margin-top: 0;
+  font-size: 1.8em;
+}
+
+.movieInfo-description {
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+/*** Tooltip ***/
+.movieInfo-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.movieInfo-tooltip .movieInfo-tooltipText {
+  width: 80px;
+  padding: 5px 0;
+  position: absolute;
+  bottom: 100%;
+  right: 0%;
+  visibility: hidden;
+  opacity: 0.35;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+  background-color: black;
+  border-radius: 6px;
+}
+
+.movieInfo-tooltip:hover .movieInfo-tooltipText {
+  visibility: visible;
+}

@@ -1,4 +1,37 @@
+/*** Variables ***/
+:root {
+  --min-height-size: 80vh;
+  --layout-padding-top: 20vh;
+  --layout-padding-bottom: 10vh;
+  --validation-p-font-size: 12px;
+  --validation-p-padding-top: 2px;
+  --validation-p-padding-bottom: 5px;
+  --validation-p-font-weight: bold;
+}
+
+/*** Elements ***/
 body {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.43em;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*** Generic Classes ***/
+.main-container {
+  min-height: var(--min-height-size);
+}
+
+/*** Conditional CLasses ***/
+.invisible {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
 }

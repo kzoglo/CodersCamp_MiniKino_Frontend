@@ -1,36 +1,184 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
+import {
+  isEqual,
+  isLowerEqual as isHigherEqual,
+} from '../../services/predicates';
+import {
+  addClasses,
+  removeClasses,
+  modifyClasses,
+} from '../../assistive functions';
+import linksList from './parts/linksList';
 import './NavBar.css';
 
-class NavBar extends React.Component {
-  render() {
+Link.defaultProps = {
+  className: 'navBar-item',
+};
+
+/*** Component ***/
+class NavBar extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      windowWidth: window.innerWidth,
+      currentPathName: this.props.location.pathname,
+      expanded: false,
+      dropdown: isHigherEqual(660, window.innerWidth) ? true : false,
+    };
+    this.inputRef = React.createRef();
+    this.wrapperRef = React.createRef();
+    this.outerWrapperRef = React.createRef();
+  }
+
+  /* Lifecycle Methods */
+  componentDidMount() {
+    if (this.state.dropdown) {
+      modifyClasses(
+        this.wrapperRef.current,
+        ['horizontalNav'],
+        ['dropdownNav']
+      );
+    } else {
+      modifyClasses(
+        this.wrapperRef.current,
+        ['dropdownNav'],
+        ['horizontalNav']
+      );
+    }
+
+    window.addEventListener('resize', this.handleWindowResize);
+    this.outerWrapperRef.current.addEventListener(
+      'blur',
+      this.hideNavLinksWrapperFunc
+    );
+
+    this.setActiveNavTab();
+  }
+
+  componentDidUpdate() {
+    this.setState(
+      {
+        currentPathName: this.props.location.pathname,
+      },
+      () => {
+        this.setActiveNavTab();
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowResize);
+    this.outerWrapperRef.current.removeEventListener(
+      'blur',
+      this.hideNavLinksWrapperFunc
+    );
+  }
+
+  /* Assistive Methods */
+  handleWindowResize = () => {
+    if (isHigherEqual(window.innerWidth, 660)) {
+      this.setState({ dropdown: false }, () => {
+        modifyClasses(
+          this.wrapperRef.current,
+          ['dropdownNav', 'invisible'],
+          ['horizontalNav']
+        );
+      });
+    } else {
+      this.setState({ dropdown: true, expanded: false }, () => {
+        modifyClasses(
+          this.wrapperRef.current,
+          ['horizontalNav'],
+          ['dropdownNav']
+        );
+      });
+    }
+  };
+
+  setActiveNavTab = () => {
+    const navChildren = Array.from(this.wrapperRef.current.children);
+    const activeChild = navChildren.find((aTag) => {
+      return isEqual(aTag.pathname, this.state.currentPathName);
+    });
+
+    navChildren.forEach((aTag) => removeClasses(aTag, 'navBar-activeItem'));
+    if (activeChild) addClasses(activeChild, 'navBar-activeItem');
+  };
+
+  handleIconClick = () => {
+    if (this.state.expanded) {
+      modifyClasses(this.wrapperRef.current, ['visible'], ['invisible']);
+      this.setState({ expanded: false });
+    } else {
+      modifyClasses(this.wrapperRef.current, ['invisible'], ['visible']);
+      this.setState({ expanded: true });
+    }
+  };
+
+  hideNavLinks = (isDropdown) => {
+    if (isDropdown) {
+      setTimeout(() => {
+        this.setState({ expanded: false }, () => {
+          modifyClasses(this.wrapperRef.current, ['visible'], ['invisible']);
+        });
+      }, 250);
+    }
+  };
+
+  hideNavLinksWrapperFunc = () => this.hideNavLinks(this.state.dropdown);
+
+  renderLinks = () => {
+    return linksList.map(({ to, content }, index) => {
+      return (
+        <Link key={index} to={to}>
+          {content}
+        </Link>
+      );
+    });
+  };
+
+  renderIcon = () => {
     return (
-      <div className="ui stackable inverted container menu">
-        <div className="item">
-          <div className="ui item" style={{ color: 'white' }}>
-            <i className="fast backward icon"></i>
-            <i className="video icon"></i>
-            <i className="fast forward icon"></i>
-          </div>
+      <FontAwesomeIcon
+        className="navBar-menuIcon"
+        icon={faBars}
+        onClick={this.handleIconClick}
+      />
+    );
+  };
+
+  renderDropdownNav = () => {
+    return this.renderHorizontalNav(this.renderIcon);
+  };
+
+  renderHorizontalNav = (renderAdditionalChildren = () => {}) => {
+    return (
+      <div
+        className="navBar-outerWrapper"
+        ref={this.outerWrapperRef}
+        tabIndex="0"
+      >
+        {renderAdditionalChildren()}
+        <div className="navBar-wrapper" ref={this.wrapperRef}>
+          {this.renderLinks()}
         </div>
-        <Link to="/CodersCamp_MiniKino_Frontend/" className="item">
-          HomePage
-        </Link>
-        <Link to="/CodersCamp_MiniKino_Frontend/pricelist" className="item">
-          Cennik
-        </Link>
-        <Link to="/CodersCamp_MiniKino_Frontend/mytickets" className="item">
-          Moje bilety
-        </Link>
-        <Link to="/CodersCamp_MiniKino_Frontend/register" className="item">
-          Rejestracja
-        </Link>
-        <Link to="/CodersCamp_MiniKino_Frontend/login" className="item">
-          Login
-        </Link>
       </div>
     );
+  };
+
+  /* Render */
+  render() {
+    if (this.state.dropdown) {
+      return this.renderDropdownNav();
+    } else {
+      return this.renderHorizontalNav();
+    }
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

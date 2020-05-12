@@ -1,0 +1,136 @@
+/*** Generic Classes ***/
+.reservation-outerWrapper {
+  min-height: var(--min-height-size);
+  padding-top: 50px;
+  padding-bottom: var(--layout-padding-bottom);
+  background-color: rgba(0, 0, 0, 0.863);
+  background-image: url('https://kzoglo.github.io/img/buyTicket1.jpg');
+  background-size: cover;
+  background-blend-mode: darken;
+}
+
+.reservation-wrapper {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  gap: 20px;
+  color: #232121;
+}
+
+.buyTicket-wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 20px;
+  justify-items: stretch;
+  padding: 30px;
+  padding-bottom: 10px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px white;
+  border: 2px solid gray;
+  border-radius: 2%;
+  background-color: rgba(0, 0, 0, 0.507);
+}
+
+.buyTicket-wrapper label {
+  display: block;
+}
+
+/*** Conditional Classes ***/
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-auto {
+  cursor: auto;
+}
+
+.afterSubmit {
+  justify-self: center;
+  text-shadow: 1px 1px 2px green;
+}
+
+.validSubmit {
+  color: green;
+}
+
+.invalidSubmit {
+  color: red;
+}
+
+/*** Restyling imported components ***/
+/* Loading Spinner */
+.reservSpinner {
+  border: 6px solid #3058dc;
+  border-top-color: transparent;
+}
+
+.reservSpinner-outerWrapper {
+  display: inline;
+  position: relative;
+  top: -21px;
+  left: 0;
+  margin-left: 0;
+  background: #808080;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 460px) {
+  .reservation-wrapper {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .reservation-wrapper {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .reservation-outerWrapper {
+    padding-top: calc(var(--layout-padding-top) / 1.5);
+  }
+  .reservation-wrapper {
+    width: 90%;
+    grid-template-columns: 50% 50%;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .reservation-wrapper {
+    width: 85%;
+  }
+}
+
+@media screen and (min-width: 860px) {
+  .reservation-wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .reservation-wrapper {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 1060px) {
+  .reservation-wrapper {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 1260px) {
+  .reservation-wrapper {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .reservation-wrapper {
+    width: 45%;
+  }
+}

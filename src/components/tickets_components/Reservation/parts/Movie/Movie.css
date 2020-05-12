@@ -1,0 +1,28 @@
+/*** Generic Classes ***/
+.movie-wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+  font-size: 17px;
+  background-color: ghostwhite;
+  border: 2px solid gray;
+  border-radius: 2%;
+}
+
+.movie-utils {
+  padding: 0 10px;
+}
+
+.movie-utils span {
+  font-weight: bold;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 900px) {
+  .movie-wrapper {
+    width: 95%;
+  }
+}

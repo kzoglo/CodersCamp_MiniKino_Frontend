@@ -1,0 +1,29 @@
+.footer-outerWrapper {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 20px;
+  gap: 20px;
+  height: 560px;
+  background-color: #bad2c633;
+  border-top: 1px solid rgb(68, 68, 68);
+  text-align: center;
+  padding: 2%;
+  padding-bottom: 1%;
+}
+
+.footer-wrapper {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 4%;
+}
+
+@media screen and (min-width: 660px) {
+  .footer-outerWrapper {
+    height: 390px;
+  }
+
+  .footer-wrapper {
+    gap: 10%;
+    grid-template-columns: auto auto auto;
+  }
+}

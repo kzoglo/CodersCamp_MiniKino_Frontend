@@ -1,0 +1,49 @@
+/*** Generic Classes ***/
+.prices-wrapper {
+  min-height: var(--min-height-size);
+  padding-top: 50px;
+  font-weight: 900;
+  color: rgba(243, 234, 234, 0.904);
+  background-color: rgba(0, 0, 0, 0.568);
+  background-image: url('https://kzoglo.github.io/img/priceList1.jpg');
+  background-blend-mode: saturation;
+  background-size: cover;
+}
+
+.prices-content {
+  width: 90%;
+  margin: auto;
+}
+
+.prices-title {
+  margin-left: 4px;
+  margin-bottom: 20px;
+  font-family: 'Cinzel', serif;
+  color: white;
+  font-size: 29px;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 800px) {
+  .prices-content {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .prices-content {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .prices-content {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .prices-content {
+    width: 50%;
+  }
+}

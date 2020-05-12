@@ -1,0 +1,120 @@
+/*** Generic Classes ***/
+.myTickets-wrapper {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-auto-rows: max-content;
+  justify-content: center;
+  color: #232121;
+}
+
+.myTickets-outerWrapper {
+  min-height: var(--min-height-size);
+  width: 100%;
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.753);
+  background-image: url('https://kzoglo.github.io/img/myTickets1.jpg');
+  background-size: cover;
+  background-blend-mode: darken;
+}
+
+.myTickets-innerWrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content;
+  justify-items: center;
+  margin-bottom: 5%;
+  text-align: center;
+  font-size: 17px;
+  background-color: ghostwhite;
+  border: 2px solid gray;
+  border-radius: 2%;
+}
+
+.myTickets-utils {
+  padding: 0 10px;
+}
+
+.myTickets-utils span {
+  font-weight: bold;
+}
+
+.myTickets-noTickets {
+  padding: 30px;
+  padding-top: var(--layout-padding-top);
+  padding-bottom: var(--layout-padding-bottom);
+  justify-self: center;
+  align-self: flex-start;
+  grid-column: 1 / span 4;
+  line-height: 1.7;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 350px) {
+  .myTickets-wrapper {
+    grid-template-columns: 85%;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .myTickets-wrapper {
+    grid-template-columns: 80%;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .myTickets-wrapper {
+    width: 100%;
+    grid-template-columns: repeat(2, 48%);
+    column-gap: 2%;
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .myTickets-wrapper {
+    grid-template-columns: repeat(2, 46%);
+    column-gap: 5%;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .myTickets-wrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .myTickets-wrapper {
+    width: 100%;
+    grid-template-columns: repeat(3, 30%);
+    column-gap: 2%;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .myTickets-wrapper {
+    width: 80%;
+    grid-template-columns: repeat(3, 32%);
+    column-gap: 1%;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .myTickets-wrapper {
+    width: 90%;
+    grid-template-columns: repeat(4, 24%);
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .myTickets-wrapper {
+    width: 80%;
+  }
+}

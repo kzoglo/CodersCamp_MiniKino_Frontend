@@ -1,0 +1,53 @@
+/*** Generic Classes ***/
+.contactWay-wrapper {
+  width: 90%;
+  margin: auto;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  border-bottom: 2px solid rgb(157, 157, 255);
+}
+
+.contactWay-wrapper:last-child {
+  border: none;
+  margin-top: 0;
+}
+
+.contactWay-texts {
+  padding: 0 5%;
+}
+
+.contactWay-title {
+  color: rgb(157, 157, 255);
+}
+
+i.contactWay-icon {
+  font-size: 5.7rem;
+  line-height: 5.7rem;
+  color: rgb(157, 157, 255);
+  margin: 0;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 800px) {
+  .contactWay-wrapper {
+    width: 100%;
+    border-right: 2px solid rgb(157, 157, 255);
+    border-bottom: none;
+  }
+
+  .contactWay-wrapper:last-child {
+    margin: auto;
+  }
+
+  i.contactWay-icon {
+    font-size: 7.85rem;
+    line-height: 7.85rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  i.contactWay-icon {
+    font-size: 9.28rem;
+    line-height: 9.28rem;
+  }
+}

@@ -1,0 +1,53 @@
+/*** Generic Classes ***/
+.movieLinkWithTitle-wrapper {
+  display: grid;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 5%;
+  background-color: white;
+  border: white 2px solid;
+  border-radius: 2%;
+}
+
+.movieLinkWithTitle-title {
+  padding: 10px;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+/*** Pseudo Classes ***/
+.movieLinkWithTitle-wrapper:hover {
+  transform: translateY(-5px);
+  filter: brightness(50%);
+  transition: all 0.2s ease;
+}
+
+@media screen and (min-width: 350px) {
+  .movieLinkWithTitle-wrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .movieLinkWithTitle-wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .movieLinkWithTitle-wrapper {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .movieLinkWithTitle-wrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .movieLinkWithTitle-wrapper {
+    width: 100%;
+  }
+}

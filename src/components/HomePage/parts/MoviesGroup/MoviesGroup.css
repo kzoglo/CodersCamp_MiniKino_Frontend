@@ -1,0 +1,89 @@
+/*** Generic Classes ***/
+.moviesGroup-list {
+  display: grid;
+  grid-template-columns: 90%;
+  column-gap: 1%;
+  justify-content: center;
+  margin: auto;
+}
+
+h1.moviesGroup-title {
+  margin-left: 3%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-family: 'Cinzel', serif;
+  color: white;
+  text-shadow: 2px 2px 5px white;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 350px) {
+  .moviesGroup-list {
+    grid-template-columns: 85%;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .moviesGroup-list {
+    grid-template-columns: 80%;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .moviesGroup-list {
+    grid-template-columns: repeat(2, 48%);
+    column-gap: 2%;
+  }
+}
+
+@media screen and (min-width: 660px) {
+  .moviesGroup-list {
+    grid-template-columns: repeat(2, 46%);
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .moviesGroup-wrapper {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .moviesGroup-wrapper {
+    width: 100%;
+    margin: auto;
+  }
+
+  .moviesGroup-list {
+    grid-template-columns: repeat(3, 30%);
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .moviesGroup-wrapper {
+    width: 85%;
+  }
+
+  .moviesGroup-list {
+    grid-template-columns: repeat(3, 32%);
+    column-gap: 1%;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .moviesGroup-wrapper {
+    width: 90%;
+  }
+
+  .moviesGroup-list {
+    grid-template-columns: repeat(4, 23%);
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .moviesGroup-wrapper {
+    width: 80%;
+  }
+}

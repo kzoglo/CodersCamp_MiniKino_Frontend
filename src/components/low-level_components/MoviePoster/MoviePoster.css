@@ -1,0 +1,40 @@
+/*** Generic Classes ***/
+.moviePoster-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.moviePoster-poster {
+  height: 180px;
+  width: 100%;
+  border: transparent;
+  border-bottom: 2px solid white;
+  border-radius: 2% 2% 0 0;
+}
+
+.moviePoster-availability {
+  position: absolute;
+  top: 14px;
+  left: 6px;
+  transform: skew(30deg, -20deg);
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: expanded;
+  background-color: aliceblue;
+  padding: 1px;
+}
+/*** Conditional Classes ***/
+.moviePoster-available {
+  color: green;
+}
+
+.moviePoster-unavailable {
+  color: red;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 700px) {
+  .moviePoster-poster {
+    height: 200px;
+  }
+}

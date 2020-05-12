@@ -1,0 +1,18 @@
+/*** Generic Classes ***/
+.logInNeeded {
+  min-height: var(--min-height-size);
+  grid-column: 1 / span 2;
+  justify-self: center;
+  padding-top: var(--layout-padding-top);
+  padding-bottom: var(--layout-padding-bottom);
+  line-height: 45px;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 1.42rem white;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.685);
+  background-blend-mode: darken;
+  background-image: url('https://kzoglo.github.io/img/loginNeeded4.jpg');
+  background-size: cover;
+}

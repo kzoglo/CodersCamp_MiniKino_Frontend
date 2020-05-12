@@ -1,0 +1,86 @@
+/*** Generic Classes  ***/
+.navBar-outerWrapper {
+  position: relative;
+  background-color: black;
+}
+
+.navBar-wrapper {
+  width: 100%;
+  z-index: 10;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(5, auto);
+  text-align: center;
+  border-bottom: 1px solid rgb(68, 68, 68);
+  font-weight: 400;
+}
+
+.navBar-item {
+  padding: 10px 0;
+  color: white;
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid rgb(68, 68, 68);
+}
+
+.navBar-item:nth-child(1) {
+  border-top: 1px solid rgb(68, 68, 68);
+}
+
+.fa-bars {
+  font-size: 2.5rem;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/*** Conditional Classes  ***/
+.navBar-outerWrapper .dropdownNav {
+  display: none;
+  position: absolute;
+  background-color: #111;
+}
+
+.navBar-outerWrapper .horizontalNav {
+  display: grid;
+  position: unset;
+  background-color: #bad2c633;
+}
+
+.navBar-outerWrapper .visible {
+  display: grid;
+}
+
+.navBar-outerWrapper .invisible {
+  display: none;
+}
+
+.navBar-activeItem {
+  font-size: 105%;
+  color: #1e70bf;
+  font-weight: 900;
+  background-color: #fbfbfb;
+}
+
+/*** Pseudo-classes ***/
+.navBar-item:hover {
+  background-color: #f2fdfa;
+  opacity: 0.9;
+  font-size: 105%;
+  color: #1e70bf;
+  font-weight: 900;
+  transition: all 0.3s linear;
+}
+
+/*** Media Queries ***/
+@media screen and (min-width: 660px) {
+  .navBar-wrapper {
+    grid-template-columns: repeat(5, 20%);
+    font-weight: bold;
+  }
+
+  .navBar-item {
+    border-bottom: none;
+  }
+
+  .navBar-item:nth-child(1) {
+    border-top: none;
+  }
+}

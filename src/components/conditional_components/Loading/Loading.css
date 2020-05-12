@@ -1,0 +1,116 @@
+/*** Generic Classes ***/
+.loading-wrapper {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  margin: auto;
+  padding-top: var(--layout-padding-top);
+  padding-bottom: var(--layout-padding-bottom);
+  line-height: 1.7;
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.loadingDots-outerWrapper {
+  width: 62px;
+  height: 62px;
+  display: inline-block;
+  overflow: hidden;
+  background: #000000;
+}
+
+.loadingDots-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(0.62);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+
+.loadingDots-wrapper div {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  box-sizing: content-box;
+  background: #ffffff;
+  border-radius: 50%;
+  transform: translate(40px, 40px) scale(1);
+  animation: loadingDots-wrapper 2.127659574468085s infinite
+    cubic-bezier(0, 0.5, 0.5, 1);
+}
+
+.loadingDots-wrapper div:nth-child(1) {
+  background: #ffffff;
+  transform: translate(74px, 40px) scale(1);
+  animation: loadingDots-wrapper-r 0.5319148936170213s infinite
+      cubic-bezier(0, 0.5, 0.5, 1),
+    loadingDots-wrapper-c 2.127659574468085s infinite step-start;
+}
+
+.loadingDots-wrapper div:nth-child(2) {
+  animation-delay: -0.5319148936170213s;
+  background: #ffffff;
+}
+
+.loadingDots-wrapper div:nth-child(3) {
+  animation-delay: -1.0638297872340425s;
+  background: #ffffff;
+}
+
+.loadingDots-wrapper div:nth-child(4) {
+  animation-delay: -1.595744680851064s;
+  background: #ffffff;
+}
+
+.loadingDots-wrapper div:nth-child(5) {
+  animation-delay: -2.127659574468085s;
+  background: #ffffff;
+}
+
+/*** Animations ***/
+@keyframes loadingDots-wrapper {
+  0% {
+    transform: translate(6px, 40px) scale(0);
+  }
+  25% {
+    transform: translate(6px, 40px) scale(0);
+  }
+  50% {
+    transform: translate(6px, 40px) scale(1);
+  }
+  75% {
+    transform: translate(40px, 40px) scale(1);
+  }
+  100% {
+    transform: translate(74px, 40px) scale(1);
+  }
+}
+
+@keyframes loadingDots-wrapper-r {
+  0% {
+    transform: translate(74px, 40px) scale(1);
+  }
+  100% {
+    transform: translate(74px, 40px) scale(0);
+  }
+}
+
+@keyframes loadingDots-wrapper-c {
+  0% {
+    background: #ffffff;
+  }
+  25% {
+    background: #ffffff;
+  }
+  50% {
+    background: #ffffff;
+  }
+  75% {
+    background: #ffffff;
+  }
+  100% {
+    background: #ffffff;
+  }
+}
