@@ -7,7 +7,12 @@ import { getAnyItem as getUserId } from '../../services/localStorage';
 import LoadingSpinner from '../low-level_components/LoadingSpinner/LoadingSpinner';
 import FormInput from '../low-level_components/FormInput/FormInput';
 import { SubmitBtn as RegisterBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
-import { startLoading, finishLoading } from '../../assistive functions';
+import {
+  startLoading,
+  finishLoading,
+  enableElement as enableRegisterBtn,
+  disableElement as disableRegisterBtn,
+} from '../../assistive functions';
 import { validateInput } from './parts/assistive functions';
 import './Register.css';
 
@@ -30,6 +35,7 @@ class Register extends Component {
     this.confirmPassRef = React.createRef();
     this.validateRegisterInfoRef = React.createRef();
     this.registerSpinnerRef = React.createRef();
+    this.registerBtnRef = React.createRef();
   }
 
   /* Lifecycle Methods */
@@ -151,6 +157,15 @@ class Register extends Component {
       this.props.history.push('./login');
   };
 
+  endRegister = () => {
+    finishLoading(this.registerSpinnerRef.current);
+    enableRegisterBtn(
+      this.registerBtnRef.current,
+      ['cursor-pointer'],
+      ['cursor-auto']
+    );
+  };
+
   /* Handlers */
   handleInputChange = (stateKey, value) => {
     this.setState({ [stateKey]: value });
@@ -158,13 +173,18 @@ class Register extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    disableRegisterBtn(
+      this.registerBtnRef.current,
+      ['cursor-auto'],
+      ['cursor-pointer']
+    );
     startLoading(this.registerSpinnerRef.current);
 
     // Checks password length
     try {
       this.validatePass();
     } catch (err) {
-      finishLoading(this.registerSpinnerRef.current);
+      this.endRegister();
       return;
     }
 
@@ -186,10 +206,10 @@ class Register extends Component {
 
       handleErrors(status);
 
-      finishLoading(this.registerSpinnerRef.current);
+      this.endRegister();
       this.validateRegisterInfo(status);
     } catch ({ statusCode, message }) {
-      finishLoading(this.registerSpinnerRef.current);
+      this.endRegister();
       this.validateRegisterInfo(statusCode, message);
     }
   };
@@ -206,7 +226,11 @@ class Register extends Component {
             ref={this.registerFormRef}
           >
             {this.renderInputs()}
-            <RegisterBtn classes="registerBtn" btnText="Zarejestruj">
+            <RegisterBtn
+              classes="registerBtn cursor-pointer"
+              btnText="Zarejestruj"
+              reference={this.registerBtnRef}
+            >
               <LoadingSpinner
                 reference={this.registerSpinnerRef}
                 classes={{

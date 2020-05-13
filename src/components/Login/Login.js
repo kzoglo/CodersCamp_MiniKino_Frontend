@@ -17,7 +17,12 @@ import { LogInNeeded as LogOutSuccessful } from '../conditional_components/LogIn
 import { SubmitBtn as LoginBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
 import FormInput from '../low-level_components/FormInput/FormInput';
 import { loginLink } from '../NavBar/parts/linksList';
-import { startLoading, finishLoading } from '../../assistive functions';
+import {
+  startLoading,
+  finishLoading,
+  disableElement as disableLoginBtn,
+  enableElement as enableLoginBtn,
+} from '../../assistive functions';
 import './Login.css';
 
 /*** Component ***/
@@ -35,6 +40,7 @@ class Login extends Component {
     this.passRef = React.createRef();
     this.validateLoginInfoRef = React.createRef();
     this.loginSpinnerRef = React.createRef();
+    this.loginBtnRef = React.createRef();
   }
 
   /* Lifecycle Methods */
@@ -85,6 +91,15 @@ class Login extends Component {
     );
   };
 
+  endLogin = () => {
+    finishLoading(this.loginSpinnerRef.current);
+    enableLoginBtn(
+      this.loginBtnRef.current,
+      ['cursor-pointer'],
+      ['cursor-auto']
+    );
+  };
+
   /* Handlers */
   handleAutoLogout = (expiresIn) => {
     setTimeout(() => {
@@ -98,6 +113,11 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    disableLoginBtn(
+      this.loginBtnRef.current,
+      ['cursor-auto'],
+      ['cursor-pointer']
+    );
     startLoading(this.loginSpinnerRef.current);
 
     const loginData = {
@@ -114,7 +134,7 @@ class Login extends Component {
 
       handleErrors(resp.status);
       const { token, userId, expiresIn } = await resp.json();
-      finishLoading(this.loginSpinnerRef.current);
+      this.endLogin();
 
       setUserId('userId', userId);
       setAuthToken('token', token);
@@ -124,7 +144,7 @@ class Login extends Component {
       this.props.history.push('./');
       document.querySelector(`a[href*='${loginLink}']`).innerText = 'Wyloguj';
     } catch ({ message }) {
-      finishLoading(this.loginSpinnerRef.current);
+      this.endLogin();
       this.setState({ afterSubmitInfo: message }, () => {
         setTimeout(() => {
           this.setState({ afterSubmitInfo: '' });
@@ -145,7 +165,11 @@ class Login extends Component {
           <h1 className="login-title">{this.props.title}</h1>
           <form className="login-form" onSubmit={this.handleSubmit}>
             {this.renderLoginInputs()}
-            <LoginBtn classes="loginBtn" btnText="Zaloguj">
+            <LoginBtn
+              classes="loginBtn cursor-pointer"
+              btnText="Zaloguj"
+              reference={this.loginBtnRef}
+            >
               <LoadingSpinner
                 reference={this.loginSpinnerRef}
                 classes={{
