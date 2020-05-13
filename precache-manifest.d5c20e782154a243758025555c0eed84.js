@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7be90731652a6d5d5a6ca5c4f9c978c8",
+    "revision": "e44afab076f3d0d015a30dc31fe50438",
     "url": "/CodersCamp_MiniKino_Frontend/index.html"
   },
   {
-    "revision": "8e07cdcbb6ee91e0f3fd",
-    "url": "/CodersCamp_MiniKino_Frontend/static/css/main.9a8332fb.chunk.css"
+    "revision": "f9edf87a5f8e5ddea3da",
+    "url": "/CodersCamp_MiniKino_Frontend/static/css/main.625284fc.chunk.css"
   },
   {
     "revision": "ae0b5a1c868743ad985e",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CodersCamp_MiniKino_Frontend/static/js/2.0e25fe50.chunk.js.LICENSE"
   },
   {
-    "revision": "8e07cdcbb6ee91e0f3fd",
+    "revision": "f9edf87a5f8e5ddea3da",
     "url": "/CodersCamp_MiniKino_Frontend/static/js/main.38ca9ebb.chunk.js"
   },
   {
