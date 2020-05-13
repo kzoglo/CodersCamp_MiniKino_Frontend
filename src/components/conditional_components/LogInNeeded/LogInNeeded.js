@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { scrollTop } from '../../../assistive functions';
 import './LogInNeeded.css';
 
 export const LogInNeeded = ({ logInText }) => {
-  // localStorage.clear();
+  scrollTop();
   return <div className="logInNeeded">{logInText}</div>;
 };
 

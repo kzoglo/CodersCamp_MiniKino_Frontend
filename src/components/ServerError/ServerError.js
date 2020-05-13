@@ -2,6 +2,7 @@ import React from 'react';
 
 import { isEqual } from '../../services/predicates';
 import './ServerError.css';
+import { scrollTop } from '../../assistive functions';
 
 /*** Component ***/
 class ServerError extends React.PureComponent {
@@ -15,6 +16,7 @@ class ServerError extends React.PureComponent {
 
   /* Lifecycle Methods */
   componentDidMount() {
+    scrollTop();
     if (this.props.history.location.state) {
       const { message, statusCode } = this.props.history.location.state.err;
 
