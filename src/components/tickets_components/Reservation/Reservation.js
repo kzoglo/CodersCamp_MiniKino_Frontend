@@ -32,26 +32,33 @@ class Reservation extends Component {
   async componentDidMount() {
     const movie_id = getId('movieId');
 
-    try {
-      const resp = await baseFetch({
-        path: `api/movie/${movie_id}`,
-        authToken: getToken('token'),
-      });
+    if (
+      !(
+        isUserLoggedIn(this.state.user_id, '') ||
+        isUserLoggedIn(this.state.user_id, null)
+      )
+    ) {
+      try {
+        const resp = await baseFetch({
+          path: `api/movie/${movie_id}`,
+          authToken: getToken('token'),
+        });
 
-      handleErrors(resp.status);
+        handleErrors(resp.status);
 
-      const movie = await resp.json();
-      this.setState({
-        movie_id,
-        movie,
-      });
-    } catch (err) {
-      this.props.history.push({
-        pathname: './servererror',
-        state: {
-          err,
-        },
-      });
+        const movie = await resp.json();
+        this.setState({
+          movie_id,
+          movie,
+        });
+      } catch (err) {
+        this.props.history.push({
+          pathname: './servererror',
+          state: {
+            err,
+          },
+        });
+      }
     }
   }
 
