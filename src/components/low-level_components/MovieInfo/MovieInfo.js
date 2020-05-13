@@ -14,7 +14,6 @@ const shortDescrWithDotsLength = (dots) => shortDescrLength + dots.length;
 /*** Assistive Functions ***/
 const fullDescrAndTooltipText = (refDescr, refTooltip, descr, fullDescr) => {
   if (isEqual(refDescr.innerText.length, shortDescrWithDotsLength(dots))) {
-    // dlaczego 33?
     refDescr.innerText = fullDescr;
     refTooltip.innerText = 'Zwiń opis';
   } else {
