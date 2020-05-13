@@ -4,7 +4,8 @@ import { handleErrors } from '../../../services/errors handling/handleErrors';
 import baseFetch from '../../../services/apis/baseFetch';
 import { getAnyItem as getUserId } from '../../../services/localStorage';
 import { getAnyItem as getToken } from '../../../services/localStorage';
-import { isEqual } from '../../../services/predicates';
+import { isEqual as areReservationsFetched } from '../../../services/predicates';
+import { isEqual as isUserLoggedIn } from '../../../services/predicates';
 import Loading from '../../conditional_components/Loading/Loading';
 import { LogInNeeded } from '../../conditional_components/LogInNeeded/LogInNeeded';
 import { Movies } from './parts/Movies';
@@ -12,9 +13,9 @@ import './MyTickets.css';
 
 /*** Assistive Functions ***/
 const renderTickets = ({ user_id, reservations }) => {
-  if (isEqual(user_id, '') || isEqual(user_id, null)) {
+  if (isUserLoggedIn(user_id, '') || isUserLoggedIn(user_id, null)) {
     return <LogInNeeded />;
-  } else if (isEqual(reservations, null)) {
+  } else if (areReservationsFetched(reservations, null)) {
     return <Loading />;
   } else {
     return (
@@ -38,7 +39,10 @@ export class MyTickets extends Component {
   /* Lifecycle Methods */
   async componentDidMount() {
     if (
-      !(isEqual(this.state.user_id, '') || isEqual(this.state.user_id, null))
+      !(
+        isUserLoggedIn(this.state.user_id, '') ||
+        isUserLoggedIn(this.state.user_id, null)
+      )
     ) {
       try {
         const resp = await baseFetch({
