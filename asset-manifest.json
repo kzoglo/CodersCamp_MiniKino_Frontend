@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/CodersCamp_MiniKino_Frontend/static/css/main.42b98a40.chunk.css",
-    "main.js": "/CodersCamp_MiniKino_Frontend/static/js/main.7e0417f4.chunk.js",
-    "main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/main.7e0417f4.chunk.js.map",
+    "main.css": "/CodersCamp_MiniKino_Frontend/static/css/main.9a8332fb.chunk.css",
+    "main.js": "/CodersCamp_MiniKino_Frontend/static/js/main.38ca9ebb.chunk.js",
+    "main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/main.38ca9ebb.chunk.js.map",
     "runtime-main.js": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.73f6f7d3.js",
     "runtime-main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.73f6f7d3.js.map",
-    "static/js/2.0fd04c55.chunk.js": "/CodersCamp_MiniKino_Frontend/static/js/2.0fd04c55.chunk.js",
-    "static/js/2.0fd04c55.chunk.js.map": "/CodersCamp_MiniKino_Frontend/static/js/2.0fd04c55.chunk.js.map",
+    "static/js/2.0e25fe50.chunk.js": "/CodersCamp_MiniKino_Frontend/static/js/2.0e25fe50.chunk.js",
+    "static/js/2.0e25fe50.chunk.js.map": "/CodersCamp_MiniKino_Frontend/static/js/2.0e25fe50.chunk.js.map",
     "index.html": "/CodersCamp_MiniKino_Frontend/index.html",
-    "precache-manifest.9a3c85b18f6d2c1e8f397d71176ba5ba.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.9a3c85b18f6d2c1e8f397d71176ba5ba.js",
+    "precache-manifest.b22a43f701d94310ea9e072f6f88ae17.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.b22a43f701d94310ea9e072f6f88ae17.js",
     "service-worker.js": "/CodersCamp_MiniKino_Frontend/service-worker.js",
-    "static/css/main.42b98a40.chunk.css.map": "/CodersCamp_MiniKino_Frontend/static/css/main.42b98a40.chunk.css.map",
-    "static/js/2.0fd04c55.chunk.js.LICENSE": "/CodersCamp_MiniKino_Frontend/static/js/2.0fd04c55.chunk.js.LICENSE"
+    "static/css/main.9a8332fb.chunk.css.map": "/CodersCamp_MiniKino_Frontend/static/css/main.9a8332fb.chunk.css.map",
+    "static/js/2.0e25fe50.chunk.js.LICENSE": "/CodersCamp_MiniKino_Frontend/static/js/2.0e25fe50.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.73f6f7d3.js",
-    "static/js/2.0fd04c55.chunk.js",
-    "static/css/main.42b98a40.chunk.css",
-    "static/js/main.7e0417f4.chunk.js"
+    "static/js/2.0e25fe50.chunk.js",
+    "static/css/main.9a8332fb.chunk.css",
+    "static/js/main.38ca9ebb.chunk.js"
   ]
 }
