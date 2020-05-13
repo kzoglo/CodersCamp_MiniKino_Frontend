@@ -4,7 +4,7 @@
   padding-top: 50px;
   padding-bottom: var(--layout-padding-bottom);
   background-color: rgba(0, 0, 0, 0.863);
-  background-image: url('https://kzoglo.github.io/img/buyTicket1.jpg');
+  background-image: url('https://kzoglo.github.io/CodersCamp_MiniKino_Frontend/img/buyTicket1.jpg');
   background-size: cover;
   background-blend-mode: darken;
 }

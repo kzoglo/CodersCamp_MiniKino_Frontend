@@ -6,7 +6,7 @@
   min-height: var(--min-height-size);
   text-align: center;
   background-color: rgba(0, 0, 0, 0.699);
-  background-image: url('https://kzoglo.github.io/img/serverError1.jpg');
+  background-image: url('https://kzoglo.github.io/CodersCamp_MiniKino_Frontend/img/serverError1.jpg');
   background-blend-mode: saturation;
   background-size: cover;
 }
