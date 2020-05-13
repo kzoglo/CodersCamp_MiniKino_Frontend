@@ -379,7 +379,7 @@ class BuyTicket extends Component {
         this.afterSubmitInfoRef.current,
         ['validSubmit'],
         ['invalidSubmit'],
-        3000
+        1500
       );
     } else {
       disableBtn(

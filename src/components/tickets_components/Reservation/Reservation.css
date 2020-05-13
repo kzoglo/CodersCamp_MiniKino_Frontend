@@ -3,7 +3,7 @@
   min-height: var(--min-height-size);
   padding-top: 50px;
   padding-bottom: var(--layout-padding-bottom);
-  background-color: rgba(0, 0, 0, 0.863);
+  background-color: rgba(0, 0, 0, 0.8);
   background-image: url('https://kzoglo.github.io/CodersCamp_MiniKino_Frontend/img/buyTicket1.jpg');
   background-size: cover;
   background-blend-mode: darken;
@@ -39,14 +39,6 @@
 }
 
 /*** Conditional Classes ***/
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.cursor-auto {
-  cursor: auto;
-}
-
 .afterSubmit {
   justify-self: center;
   text-shadow: 1px 1px 2px green;
