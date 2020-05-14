@@ -52,7 +52,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2020 [Kamil Żogło](https://github.com/kzoglo).<br />
-This project is [MIT](https://opensource.org/licenses/MIT) licensed.
+This project is [MIT](https://github.com/kzoglo/CodersCamp_MiniKino_Frontend/blob/master/LICENSE) licensed.
 
 ---
 
