@@ -452,7 +452,7 @@ class BuyTicket extends Component {
 
           <ReservationBtn
             btnText="Zarezerwuj"
-            classes="reservationBtn"
+            classes="reservationBtn cursor-pointer"
             reference={this.reservationBtnRef}
           >
             <LoadingSpinner
