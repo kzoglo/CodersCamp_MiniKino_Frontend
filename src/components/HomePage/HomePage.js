@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { scrollTop } from '../../assistive functions';
 import { handleErrors } from '../../services/errors handling/handleErrors';
 import {
   isInequal as moviesBeenFetched,
@@ -27,6 +28,7 @@ class HomePage extends Component {
 
   /* Lifecycle Methods */
   async componentDidMount() {
+    scrollTop();
     try {
       const respMovies = await baseFetch({ path: 'api/movie' });
       handleErrors(respMovies.status);
