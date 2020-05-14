@@ -10,7 +10,7 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://opensource.org/licenses/MIT" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/kzoglo/CodersCamp_MiniKino_Frontend" />
+    <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg" />
   </a>
 </p>
 
@@ -39,11 +39,11 @@ npm run start
 
 👤 **Kamil Żogło**
 
-* Github: [@kzoglo](https://github.com/kzoglo)
+- Github: [@kzoglo](https://github.com/kzoglo)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/kzoglo/CodersCamp_MiniKino_Frontend/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/kzoglo/CodersCamp_MiniKino_Frontend/issues).
 
 ## Show your support
 
@@ -54,5 +54,6 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Kamil Żogło](https://github.com/kzoglo).<br />
 This project is [MIT](https://opensource.org/licenses/MIT) licensed.
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
