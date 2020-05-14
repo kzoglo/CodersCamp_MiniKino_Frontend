@@ -1,7 +1,7 @@
 {
   "name": "coderscamp_minikino_frontend",
-  "version": "0.1.0",
-  "private": true,
+  "version": "2.0.0",
+  "author": "Kamil Żogło",
   "homepage": "https://kzoglo.github.io/CodersCamp_MiniKino_Frontend",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
@@ -40,5 +40,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kzoglo/CodersCamp_MiniKino_Frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kzoglo/CodersCamp_MiniKino_Frontend/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "npm": ">6.0.0",
+    "node": ">=8.1.0"
   }
 }
