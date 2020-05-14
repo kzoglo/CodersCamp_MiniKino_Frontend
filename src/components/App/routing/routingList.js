@@ -8,10 +8,10 @@ import Reservation from '../../tickets_components/Reservation/Reservation';
 import ServerError from '../../ServerError/ServerError';
 import AutoLogout from '../../AutoLogout/AutoLogout';
 
-export const appName = '/CodersCamp_MiniKino_Frontend';
+export const appName = '';
 
 const routingData = [
-  { path: ``, component: HomePage },
+  { path: `/`, component: HomePage },
   { path: `/contact`, component: ContactUs },
   { path: `/register`, component: Register },
   { path: `/login`, component: Login },
