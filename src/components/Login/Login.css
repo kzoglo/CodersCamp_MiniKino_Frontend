@@ -34,6 +34,7 @@
 
 .validate-login-info {
   margin: 10px 0 0 0;
+  min-height: 20px;
   text-align: center;
 }
 
