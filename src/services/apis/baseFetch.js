@@ -1,4 +1,5 @@
-export const baseUrl = 'https://mini-kino.herokuapp.com/';
+export const baseUrl = 'http://localhost:3001/';
+// https://mini-kino.herokuapp.com/
 
 const baseFetch = async ({
   path,
