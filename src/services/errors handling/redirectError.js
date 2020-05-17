@@ -1,6 +1,6 @@
 const redirectError = (history, err) => {
   history.push({
-    pathname: './servererror',
+    pathname: '/servererror',
     state: {
       err,
     },

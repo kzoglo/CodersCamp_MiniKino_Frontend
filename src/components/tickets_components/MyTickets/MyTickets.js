@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { handleErrors } from '../../../services/errors handling/handleErrors';
+import redirectError from '../../../services/errors handling/redirectError';
 import baseFetch from '../../../services/apis/baseFetch';
 import { getAnyItem as getUserId } from '../../../services/localStorage';
 import { getAnyItem as getToken } from '../../../services/localStorage';
@@ -56,7 +57,7 @@ export class MyTickets extends Component {
 
         this.setState({ reservations });
       } catch (err) {
-        this.props.history.push('./servererror');
+        redirectError(this.props.history, err);
       }
     }
   }

@@ -1,17 +1,15 @@
 import { appName } from '../../App/routing/routingList';
-import { getAnyItem as getUserId } from '../../../services/localStorage';
 
 const linksList = [
-  { to: `${appName}/`, content: 'Oferta' },
-  { to: `${appName}/prices`, content: 'Cennik' },
-  { to: `${appName}/mytickets`, content: 'Moje bilety' },
-  { to: `${appName}/register`, content: 'Rejestracja' },
+  { to: `${appName}/`, content: 'Oferta', name: 'Homepage' },
+  { to: `${appName}/prices`, content: 'Cennik', name: 'PriceList' },
+  { to: `${appName}/mytickets`, content: 'Moje bilety', name: 'MyTickets' },
+  { to: `${appName}/register`, content: 'Rejestracja', name: 'Register' },
   {
     to: `${appName}/login`,
-    content: getUserId('userId') ? 'Wyloguj' : 'Zaloguj',
+    content: 'Zaloguj',
+    name: 'Login',
   },
 ];
-
-export const loginLink = linksList[4].to;
 
 export default linksList;

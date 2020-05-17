@@ -16,7 +16,6 @@ import LoadingSpinner from '../low-level_components/LoadingSpinner/LoadingSpinne
 import { LogInNeeded as LogOutSuccessful } from '../conditional_components/LogInNeeded/LogInNeeded';
 import { SubmitBtn as LoginBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
 import FormInput from '../low-level_components/FormInput/FormInput';
-import { loginLink } from '../NavBar/parts/linksList';
 import {
   startLoading,
   finishLoading,
@@ -47,7 +46,6 @@ class Login extends Component {
   componentDidMount() {
     if (getUserId('userId')) {
       setTimeout(() => this.props.history.goBack(), 1000);
-      document.querySelector(`a[href*='${loginLink}']`).innerText = 'Zaloguj';
       clearLocalStorage();
     } else {
       this.emailRef.current.focus();
@@ -103,7 +101,9 @@ class Login extends Component {
   /* Handlers */
   handleAutoLogout = (expiresIn) => {
     setTimeout(() => {
-      if (getExpiresIn('expiresIn')) this.props.history.push('./autologout');
+      if (getExpiresIn('expiresIn')) {
+        this.props.history.push('/autologout');
+      }
     }, expiresIn - Date.now());
   };
 
@@ -141,8 +141,7 @@ class Login extends Component {
       setExpiresIn('expiresIn', Date.now() + expiresIn);
       this.handleAutoLogout(getExpiresIn('expiresIn'));
 
-      this.props.history.push('./');
-      document.querySelector(`a[href*='${loginLink}']`).innerText = 'Wyloguj';
+      this.props.history.push('/');
     } catch ({ message }) {
       this.endLogin();
       this.setState({ afterSubmitInfo: message }, () => {

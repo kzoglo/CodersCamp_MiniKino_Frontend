@@ -2,7 +2,6 @@ import React from 'react';
 
 import { scrollTop } from '../../assistive functions';
 import { clearLocalStorage } from '../../services/localStorage';
-import { loginLink } from '../NavBar/parts/linksList';
 import './AutoLogout.css';
 
 /*** Component ***/
@@ -11,17 +10,20 @@ class AutoLogout extends React.Component {
   componentDidMount() {
     scrollTop();
     clearLocalStorage();
-    document.querySelector(`a[href*='${loginLink}']`).innerText = 'Zaloguj';
   }
 
   /* Render */
   render() {
     return (
       <div className="autologout-wrapper">
-        <h1 className="autologout-info">Zostałeś automatycznie wylogowany.</h1>
+        <h1 className="autologout-info">{this.props.infoText}</h1>
       </div>
     );
   }
 }
+
+AutoLogout.defaultProps = {
+  infoText: 'Zostałeś automatycznie wylogowany.',
+};
 
 export default AutoLogout;
