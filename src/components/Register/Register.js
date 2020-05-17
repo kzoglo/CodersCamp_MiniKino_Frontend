@@ -154,7 +154,7 @@ class Register extends Component {
 
   dispatchToLogin = (isRegistrationSuccessful) => {
     if (isRegistrationSuccessful && !getUserId('userId'))
-      this.props.history.push('./login');
+      this.props.history.push('/login');
   };
 
   endRegister = () => {

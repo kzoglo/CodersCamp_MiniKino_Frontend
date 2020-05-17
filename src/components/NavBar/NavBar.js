@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+import { getAnyItem as getUserId } from '../../services/localStorage';
 import {
   isEqual,
   isLowerEqual as isHigherEqual,
@@ -25,6 +26,7 @@ class NavBar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      loginBtn: '',
       windowWidth: window.innerWidth,
       currentPathName: this.props.location.pathname,
       expanded: false,
@@ -37,6 +39,7 @@ class NavBar extends React.PureComponent {
 
   /* Lifecycle Methods */
   componentDidMount() {
+    this.setState({ loginBtn: this.setLoginBtnText() });
     if (this.state.dropdown) {
       modifyClasses(
         this.wrapperRef.current,
@@ -63,6 +66,7 @@ class NavBar extends React.PureComponent {
   componentDidUpdate() {
     this.setState(
       {
+        loginBtn: this.setLoginBtnText(),
         currentPathName: this.props.location.pathname,
       },
       () => {
@@ -80,6 +84,10 @@ class NavBar extends React.PureComponent {
   }
 
   /* Assistive Methods */
+  setLoginBtnText = () => {
+    return getUserId('userId') ? 'Wyloguj' : 'Zaloguj';
+  };
+
   handleWindowResize = () => {
     if (isHigherEqual(window.innerWidth, 660)) {
       this.setState({ dropdown: false }, () => {
@@ -133,7 +141,8 @@ class NavBar extends React.PureComponent {
   hideNavLinksWrapperFunc = () => this.hideNavLinks(this.state.dropdown);
 
   renderLinks = () => {
-    return linksList.map(({ to, content }, index) => {
+    return linksList.map(({ to, content, name }, index) => {
+      if (isEqual(name, 'Login')) content = this.state.loginBtn;
       return (
         <Link key={index} to={to}>
           {content}

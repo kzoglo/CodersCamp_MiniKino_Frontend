@@ -1,7 +1,6 @@
 import React from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
-import { loginLink } from '../NavBar/parts/linksList';
 import {
   getAnyItem as getExpiresIn,
   clearLocalStorage,
@@ -29,10 +28,9 @@ class App extends React.Component {
   handleAutoLogout = (expiresIn) => {
     if (Date.now() > expiresIn) {
       clearLocalStorage();
-      document.querySelector(`a[href*='${loginLink}']`).innerText = 'Zaloguj';
     } else {
       setTimeout(() => {
-        window.location.assign('./autologout');
+        this.props.history.push('/autologout');
       }, expiresIn - Date.now());
     }
   };
@@ -48,15 +46,15 @@ class App extends React.Component {
   /* Render */
   render() {
     return (
-      <Router>
+      <>
         <NavBar />
         <div className="main-container" ref={this.mainContainerRef}>
           {this.renderRouting()}
         </div>
         <Footer />
-      </Router>
+      </>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { scrollTop } from '../../assistive functions';
+import redirectError from '../../services/errors handling/redirectError';
 import { handleErrors } from '../../services/errors handling/handleErrors';
 import {
   isInequal as moviesBeenFetched,
@@ -51,7 +52,7 @@ class HomePage extends Component {
         newMovies,
       });
     } catch (err) {
-      this.props.history.push('./servererror');
+      redirectError(this.props.history, err);
     }
   }
 

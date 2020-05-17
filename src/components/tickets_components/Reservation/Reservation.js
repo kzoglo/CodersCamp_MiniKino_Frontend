@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { scrollTop } from '../../../assistive functions';
+import redirectError from '../../../services/errors handling/redirectError';
 import { handleErrors } from '../../../services/errors handling/handleErrors';
 import baseFetch from '../../../services/apis/baseFetch';
 import {
@@ -52,12 +53,7 @@ class Reservation extends Component {
           movie,
         });
       } catch (err) {
-        this.props.history.push({
-          pathname: './servererror',
-          state: {
-            err,
-          },
-        });
+        redirectError(this.props.history, err);
       }
     }
   }
