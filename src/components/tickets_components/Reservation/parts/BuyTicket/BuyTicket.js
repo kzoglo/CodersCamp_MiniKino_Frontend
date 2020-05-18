@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import timeout from '../../../../../services/timeout';
 import redirectError from '../../../../../services/errors handling/redirectError';
 import {
   handleErrors,
@@ -177,7 +178,7 @@ class BuyTicket extends Component {
   afterReservationUserInfo = (element, classToDel, classToAdd, time) => {
     startLoading(element, classToDel, classToAdd);
 
-    setTimeout(() => {
+    timeout(() => {
       this.setAnyState({ afterSubmitInfo: '' }, () => {
         finishLoading(element);
         this.enableReservation();

@@ -25,10 +25,38 @@
   border-top: 1px solid rgb(68, 68, 68);
 }
 
-.fa-bars {
+.fa-bars,
+.fa-times {
   font-size: 2.5rem;
   cursor: pointer;
   margin-left: 20px;
+}
+
+.navBar-menuIcon-animation {
+  animation: showUpFromOneTenth 2s linear;
+}
+
+.navBar-wrapper-animation {
+  animation: showUpFromNothing 0.3s linear;
+}
+
+/*** Animations ***/
+@keyframes showUpFromOneTenth {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showUpFromNothing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*** Conditional Classes  ***/

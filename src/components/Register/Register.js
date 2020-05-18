@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import timeout from '../../services/timeout';
 import { handleErrors } from '../../services/errors handling/handleErrors';
 import baseFetch from '../../services/apis/baseFetch';
 import { isEqual, isInequal } from '../../services/predicates';
@@ -125,7 +126,7 @@ class Register extends Component {
   validatePass = () => {
     if (isInequal(this.state.pass, this.state.confirmPass)) {
       this.setState({ afterSubmitInfo: 'Hasła muszą być jednakowe!' }, () => {
-        setTimeout(() => {
+        timeout(() => {
           this.setState({ afterSubmitInfo: '' });
         }, 1000);
       });
@@ -145,7 +146,7 @@ class Register extends Component {
       isRegistrationSuccessful = false;
     }
 
-    setTimeout(() => {
+    timeout(() => {
       this.setState({ afterSubmitInfo: '' });
       validateRegisterInfoParagraph.classList.replace('valid', 'invalid');
       this.dispatchToLogin(isRegistrationSuccessful);

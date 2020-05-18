@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
+import timeout from '../../services/timeout';
 import {
   getAnyItem as getExpiresIn,
   clearLocalStorage,
@@ -29,7 +30,7 @@ class App extends React.Component {
     if (Date.now() > expiresIn) {
       clearLocalStorage();
     } else {
-      setTimeout(() => {
+      timeout(() => {
         this.props.history.push('/autologout');
       }, expiresIn - Date.now());
     }
