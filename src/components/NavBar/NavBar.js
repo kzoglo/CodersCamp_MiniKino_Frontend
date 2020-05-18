@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { getAnyItem as getUserId } from '../../services/localStorage';
 import {
@@ -33,6 +32,7 @@ class NavBar extends React.PureComponent {
       dropdown: isHigherEqual(660, window.innerWidth) ? true : false,
     };
     this.inputRef = React.createRef();
+    this.iconWrapperRef = React.createRef();
     this.wrapperRef = React.createRef();
     this.outerWrapperRef = React.createRef();
   }
@@ -123,6 +123,14 @@ class NavBar extends React.PureComponent {
       modifyClasses(this.wrapperRef.current, ['visible'], ['invisible']);
       this.setState({ expanded: false });
     } else {
+      addClasses(this.wrapperRef.current, ['navBar-wrapper-animation']);
+      addClasses(this.iconWrapperRef.current, ['navBar-menuIcon-animation']);
+      setTimeout(() => {
+        removeClasses(this.wrapperRef.current, ['navBar-wrapper-animation']);
+        removeClasses(this.iconWrapperRef.current, [
+          'navBar-menuIcon-animation',
+        ]);
+      }, 2000);
       modifyClasses(this.wrapperRef.current, ['invisible'], ['visible']);
       this.setState({ expanded: true });
     }
@@ -151,18 +159,16 @@ class NavBar extends React.PureComponent {
     });
   };
 
-  renderIcon = () => {
-    return (
-      <FontAwesomeIcon
-        className="navBar-menuIcon"
-        icon={faBars}
-        onClick={this.handleIconClick}
-      />
-    );
+  renderDropdownIcon = (isExpanded) => {
+    if (isExpanded) {
+      return <FontAwesomeIcon icon={faTimes} onClick={this.handleIconClick} />;
+    } else {
+      return <FontAwesomeIcon icon={faBars} onClick={this.handleIconClick} />;
+    }
   };
 
-  renderDropdownNav = () => {
-    return this.renderHorizontalNav(this.renderIcon);
+  renderDropdownNav = (isExpanded) => {
+    return this.renderHorizontalNav(() => this.renderDropdownIcon(isExpanded));
   };
 
   renderHorizontalNav = (renderAdditionalChildren = () => {}) => {
@@ -172,7 +178,9 @@ class NavBar extends React.PureComponent {
         ref={this.outerWrapperRef}
         tabIndex="0"
       >
-        {renderAdditionalChildren()}
+        <div className="iconWrapperRef" ref={this.iconWrapperRef}>
+          {renderAdditionalChildren()}
+        </div>
         <div className="navBar-wrapper" ref={this.wrapperRef}>
           {this.renderLinks()}
         </div>
@@ -183,7 +191,7 @@ class NavBar extends React.PureComponent {
   /* Render */
   render() {
     if (this.state.dropdown) {
-      return this.renderDropdownNav();
+      return this.renderDropdownNav(this.state.expanded);
     } else {
       return this.renderHorizontalNav();
     }
