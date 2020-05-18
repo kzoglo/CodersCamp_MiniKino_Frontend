@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import timeout from '../../services/timeout';
 import { handleErrors } from '../../services/errors handling/handleErrors';
 import baseFetch from '../../services/apis/baseFetch';
 import {
@@ -45,7 +46,7 @@ class Login extends Component {
   /* Lifecycle Methods */
   componentDidMount() {
     if (getUserId('userId')) {
-      setTimeout(() => this.props.history.goBack(), 1000);
+      timeout(() => this.props.history.goBack(), 1000);
       clearLocalStorage();
     } else {
       this.emailRef.current.focus();
@@ -100,7 +101,7 @@ class Login extends Component {
 
   /* Handlers */
   handleAutoLogout = (expiresIn) => {
-    setTimeout(() => {
+    timeout(() => {
       if (getExpiresIn('expiresIn')) {
         this.props.history.push('/autologout');
       }
@@ -145,7 +146,7 @@ class Login extends Component {
     } catch ({ message }) {
       this.endLogin();
       this.setState({ afterSubmitInfo: message }, () => {
-        setTimeout(() => {
+        timeout(() => {
           this.setState({ afterSubmitInfo: '' });
         }, 1000);
       });

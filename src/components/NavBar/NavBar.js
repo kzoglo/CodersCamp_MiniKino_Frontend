@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import timeout from '../../services/timeout';
 import { getAnyItem as getUserId } from '../../services/localStorage';
 import {
   isEqual,
@@ -125,7 +126,7 @@ class NavBar extends React.PureComponent {
     } else {
       addClasses(this.wrapperRef.current, ['navBar-wrapper-animation']);
       addClasses(this.iconWrapperRef.current, ['navBar-menuIcon-animation']);
-      setTimeout(() => {
+      timeout(() => {
         removeClasses(this.wrapperRef.current, ['navBar-wrapper-animation']);
         removeClasses(this.iconWrapperRef.current, [
           'navBar-menuIcon-animation',
@@ -138,7 +139,7 @@ class NavBar extends React.PureComponent {
 
   hideNavLinks = (isDropdown) => {
     if (isDropdown) {
-      setTimeout(() => {
+      timeout(() => {
         this.setState({ expanded: false }, () => {
           modifyClasses(this.wrapperRef.current, ['visible'], ['invisible']);
         });
