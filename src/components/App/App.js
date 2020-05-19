@@ -6,6 +6,7 @@ import {
   getAnyItem as getExpiresIn,
   clearLocalStorage,
 } from '../../services/localStorage';
+import { setAnyItem as setAutoLogoutTimerId } from '../../services/localStorage';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import routingList from '../App/routing/routingList';
@@ -21,8 +22,8 @@ class App extends React.Component {
 
   /* Lifecycle Methods */
   componentDidMount() {
-    if (getExpiresIn('expiresIn'))
-      this.handleAutoLogout(getExpiresIn('expiresIn'));
+    const expiresIn = getExpiresIn('expiresIn');
+    if (expiresIn) this.handleAutoLogout(getExpiresIn('expiresIn'));
   }
 
   /* Assistive Methods */
@@ -30,9 +31,11 @@ class App extends React.Component {
     if (Date.now() > expiresIn) {
       clearLocalStorage();
     } else {
-      timeout(() => {
+      const timeoutCb = () => {
         this.props.history.push('/autologout');
-      }, expiresIn - Date.now());
+      };
+      const autoLogoutTimerId = timeout(timeoutCb, expiresIn - Date.now());
+      setAutoLogoutTimerId('autoLogoutTimerId', autoLogoutTimerId);
     }
   };
 

@@ -13,6 +13,10 @@ import {
   setAnyItem as setExpiresIn,
   getAnyItem as getExpiresIn,
 } from '../../services/localStorage';
+import {
+  setAnyItem as setAutoLogoutTimerId,
+  getAnyItem as getAutoLogoutTimerId,
+} from '../../services/localStorage';
 import LoadingSpinner from '../low-level_components/LoadingSpinner/LoadingSpinner';
 import { LogInNeeded as LogOutSuccessful } from '../conditional_components/LogInNeeded/LogInNeeded';
 import { SubmitBtn as LoginBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
@@ -35,6 +39,7 @@ class Login extends Component {
       email: '',
       pass: '',
       afterSubmitInfo: '',
+      autoLogoutTimerId: '',
     };
     this.emailRef = React.createRef();
     this.passRef = React.createRef();
@@ -47,6 +52,7 @@ class Login extends Component {
   componentDidMount() {
     if (getUserId('userId')) {
       timeout(() => this.props.history.goBack(), 1000);
+      clearTimeout(getAutoLogoutTimerId('autoLogoutTimerId'));
       clearLocalStorage();
     } else {
       this.emailRef.current.focus();
@@ -101,11 +107,14 @@ class Login extends Component {
 
   /* Handlers */
   handleAutoLogout = (expiresIn) => {
-    timeout(() => {
-      if (getExpiresIn('expiresIn')) {
-        this.props.history.push('/autologout');
-      }
-    }, expiresIn - Date.now());
+    const handleAutoLogoutCb = () => {
+      if (expiresIn) this.props.history.push('/autologout');
+    };
+    const autoLogoutTimerId = timeout(
+      handleAutoLogoutCb,
+      expiresIn - Date.now()
+    );
+    setAutoLogoutTimerId('autoLogoutTimerId', autoLogoutTimerId);
   };
 
   handleInputChange = (stateKey, value) => {
