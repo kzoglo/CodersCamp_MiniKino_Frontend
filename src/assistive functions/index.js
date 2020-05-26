@@ -26,8 +26,8 @@ export const modifyClasses = (
   classesToDel = [],
   classesToAdd = []
 ) => {
-  removeClasses(element, [...classesToDel]);
-  addClasses(element, [...classesToAdd]);
+  removeClasses(element, classesToDel);
+  addClasses(element, classesToAdd);
 };
 
 export const startLoading = (element, classesToDel = [], classesToAdd = []) => {
