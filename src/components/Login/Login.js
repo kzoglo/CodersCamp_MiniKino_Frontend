@@ -17,6 +17,7 @@ import {
   setAnyItem as setAutoLogoutTimerId,
   getAnyItem as getAutoLogoutTimerId,
 } from '../../services/localStorage';
+import { getAnyItem as getAutoLogoutReminderTimerId } from '../../services/localStorage';
 import LoadingSpinner from '../low-level_components/LoadingSpinner/LoadingSpinner';
 import { LogInNeeded as LogOutSuccessful } from '../conditional_components/LogInNeeded/LogInNeeded';
 import { SubmitBtn as LoginBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
@@ -40,6 +41,7 @@ class Login extends Component {
       pass: '',
       afterSubmitInfo: '',
       autoLogoutTimerId: '',
+      isLoggedIn: false,
     };
     this.emailRef = React.createRef();
     this.passRef = React.createRef();
@@ -51,8 +53,12 @@ class Login extends Component {
   /* Lifecycle Methods */
   componentDidMount() {
     if (getUserId('userId')) {
-      timeout(() => this.props.history.goBack(), 1000);
+      this.setState({ isLoggedIn: true });
+      timeout(() => {
+        this.props.history.goBack();
+      }, 1000);
       clearTimeout(getAutoLogoutTimerId('autoLogoutTimerId'));
+      clearTimeout(getAutoLogoutReminderTimerId('autoLogoutReminderTimerId'));
       clearLocalStorage();
     } else {
       this.emailRef.current.focus();
@@ -107,11 +113,11 @@ class Login extends Component {
 
   /* Handlers */
   handleAutoLogout = (expiresIn) => {
-    const handleAutoLogoutCb = () => {
+    const autoLogoutRedirect = () => {
       if (expiresIn) this.props.history.push('/autologout');
     };
     const autoLogoutTimerId = timeout(
-      handleAutoLogoutCb,
+      autoLogoutRedirect,
       expiresIn - Date.now()
     );
     setAutoLogoutTimerId('autoLogoutTimerId', autoLogoutTimerId);
@@ -164,7 +170,7 @@ class Login extends Component {
 
   /* Render */
   render() {
-    if (getUserId('userId')) {
+    if (this.state.isLoggedIn) {
       return <LogOutSuccessful logInText="Wylogowano prawidłowo." />;
     }
 
