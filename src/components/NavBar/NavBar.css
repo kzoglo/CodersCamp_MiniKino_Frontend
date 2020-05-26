@@ -25,8 +25,8 @@
   border-top: 1px solid rgb(68, 68, 68);
 }
 
-.fa-bars,
-.fa-times {
+.navBar-outerWrapper .fa-bars,
+.navBar-outerWrapper .fa-times {
   font-size: 2.5rem;
   cursor: pointer;
   margin-left: 20px;
