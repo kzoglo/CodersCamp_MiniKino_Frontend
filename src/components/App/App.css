@@ -35,3 +35,15 @@ a {
 .visible {
   visibility: visible;
 }
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.grid {
+  display: grid;
+}
