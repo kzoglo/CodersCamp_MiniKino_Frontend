@@ -42,7 +42,11 @@ export const finishLoading = (element) => {
   modifyClasses(element, ['visible'], ['invisible']);
 };
 
-export const disableElement = (element, classesToAdd, classesToDel) => {
+export const disableElement = (
+  element,
+  classesToAdd = [],
+  classesToDel = []
+) => {
   element.setAttribute('disabled', true);
   modifyClasses(element, classesToDel, classesToAdd);
 };

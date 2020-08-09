@@ -4,64 +4,63 @@ import { isEqual } from '../../../services/predicates';
 import './Select.css';
 
 /*** Assistive Functions ***/
-const doesDataExist = (data) => {
-  return !data.every((elem) => isEqual(elem, undefined));
+const doesDataExist = (dataArr) => {
+  return !dataArr.every((elem) => isEqual(elem, undefined));
 };
 
 const renderOptionTags = (
-  optionTitle,
-  data,
-  optionContent,
-  optionValue,
-  fallbackValue
+  optionTitleProp,
+  dataArr,
+  optionContentFunc,
+  optionValueFunc,
+  fallbackValueProp
 ) => {
-  if (doesDataExist(data)) {
+  if (doesDataExist(dataArr)) {
     return (
       <>
-        <option>{optionTitle}</option>
-        {data.map((item, index) => {
+        <option>{optionTitleProp}</option>
+        {dataArr.map((item, index) => {
           return (
-            <option key={index} value={optionValue(item)}>
-              {optionContent(item)}
+            <option key={index} value={optionValueFunc(item)}>
+              {optionContentFunc(item)}
             </option>
           );
         })}
       </>
     );
-  }
-  return <option>{fallbackValue}</option>;
+  } else return <option>{fallbackValueProp}</option>;
 };
 
 /*** Component ***/
 const Select = ({
-  selectName,
+  selectNameProp,
   classes,
-  labelText,
-  spinner,
-  optionTitle,
-  data,
-  optionContent,
-  optionValue,
-  fallbackValue,
-  handler,
+  labelTextProp,
+  spinnerComp,
+  optionTitleProp,
+  dataArr,
+  optionContentFunc,
+  optionValueFunc,
+  fallbackValueProp,
+  handlerFunc,
   reference,
 }) => {
   return (
     <label>
-      <div style={{ display: 'inline' }}>{labelText}</div>
-      {spinner}
+      <div style={{ display: 'inline' }}>{labelTextProp}</div>
+      {spinnerComp}
       <select
-        name={selectName}
+        name={selectNameProp}
         className={classes}
         ref={reference}
-        onChange={handler}
+        onChange={handlerFunc}
       >
         {renderOptionTags(
-          optionTitle,
-          data,
-          optionContent,
-          optionValue,
-          fallbackValue
+          optionTitleProp,
+          dataArr,
+          optionContentFunc,
+          optionValueFunc,
+          fallbackValueProp
         )}
       </select>
     </label>
@@ -70,7 +69,7 @@ const Select = ({
 
 Select.defaultProps = {
   classes: '',
-  fallbackValue: 'Brak dostępnych terminów',
+  fallbackValueProp: 'Brak dostępnych terminów',
 };
 
 export default Select;

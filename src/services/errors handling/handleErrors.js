@@ -8,9 +8,9 @@ export const errorTexts = {
   validationErrMsg: 'Wprowadzono dane w niedozwolonym formacie.',
   authErrMsg: 'Nieprawidłowy email lub hasło.',
   conflictErrMsg: 'Taki użytkownik już istnieje.',
-  badReqErrMsg: 'Niepoprawne żądanie. Spróbuj ponownie później',
+  badReqErrMsg: 'Niepoprawne żądanie. Spróbuj ponownie później.',
   forbiddenErrMsg: 'Nie masz dostępu do żądanego zasobu.',
-  notFoundErrMsg: 'Nie znaleziono żądanego zasobu',
+  notFoundErrMsg: 'Nie znaleziono żądanego zasobu.',
 };
 
 /*** Functions ***/
