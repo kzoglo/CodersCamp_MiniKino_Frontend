@@ -4,15 +4,15 @@ import { isEqual } from '../../../services/predicates';
 import './MoviePoster.css';
 
 const MoviePoster = ({ src, alt, available, classes }) => {
+  const image = (
+    <img className={`${classes} moviePoster-poster`} src={src} alt={alt} />
+  );
+
   const renderMoviePoster = () => {
     if (isEqual(available, true) || isEqual(available, false)) {
       return (
-        <div className="moviePoster-wrapper">
-          <img
-            className={`${classes} moviePoster-poster`}
-            src={src}
-            alt={alt}
-          />
+        <div className='moviePoster-wrapper'>
+          {image}
           <span
             className={`${
               isEqual(available, true)
@@ -23,15 +23,7 @@ const MoviePoster = ({ src, alt, available, classes }) => {
         </div>
       );
     } else if (isEqual(available, undefined)) {
-      return (
-        <div className="moviePoster-wrapper">
-          <img
-            className={`${classes} moviePoster-poster`}
-            src={src}
-            alt={alt}
-          />
-        </div>
-      );
+      return <div className='moviePoster-wrapper'>{image}</div>;
     }
   };
 

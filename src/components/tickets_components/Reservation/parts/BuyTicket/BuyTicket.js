@@ -412,48 +412,48 @@ class BuyTicket extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="buyTicket-wrapper">
+        <div className='buyTicket-wrapper'>
           <Select
-            classes="data-select"
-            labelText="Wybierz datę seansu:"
-            optionTitle={dateTitleProp()}
-            spinner={<LoadingSpinner reference={this.loadingSpinnerRef} />}
-            data={this.state.screenings}
-            optionContent={(screening) => dateFormat(screening.time)}
-            optionValue={(screening) => screening._id}
-            handler={this.handleDateOptionChange}
+            classes='data-select'
+            labelTextProp='Wybierz datę seansu:'
+            optionTitleProp={dateTitleProp()}
+            spinnerComp={<LoadingSpinner reference={this.loadingSpinnerRef} />}
+            dataArr={this.state.screenings}
+            optionContentFunc={(screening) => dateFormat(screening.time)}
+            optionValueFunc={(screening) => screening._id}
+            handlerFunc={this.handleDateOptionChange}
             reference={this.selectDateRef}
           />
 
           <label>Sala: {this.state.room}</label>
 
           <Select
-            selectName="row"
-            classes="row-select"
-            labelText="Rząd:"
-            optionTitle="Wybierz rząd"
-            data={this.state.rowsList}
-            optionContent={(rowNum) => rowNum}
-            optionValue={(rowNum) => rowNum}
-            handler={this.handleRowOptionChange}
+            selectNameProp='row'
+            classes='row-select'
+            labelTextProp='Rząd:'
+            optionTitleProp='Wybierz rząd'
+            dataArr={this.state.rowsList}
+            optionContentFunc={(rowNum) => rowNum}
+            optionValueFunc={(rowNum) => rowNum}
+            handlerFunc={this.handleRowOptionChange}
             reference={this.selectRowRef}
           />
 
           <Select
-            selectName="seat"
-            classes="seat-select"
-            labelText="Miejsce:"
-            optionTitle="Wybierz miejsce"
-            data={this.state.freeSeats}
-            optionContent={(free) => free}
-            optionValue={(free) => free}
-            handler={this.handleSeatOptionChange}
+            selectNameProp='seat'
+            classes='seat-select'
+            labelTextProp='Miejsce:'
+            optionTitleProp='Wybierz miejsce'
+            dataArr={this.state.freeSeats}
+            optionContentFunc={(free) => free}
+            optionValueFunc={(free) => free}
+            handlerFunc={this.handleSeatOptionChange}
             reference={this.selectSeatRef}
           />
 
           <ReservationBtn
-            btnText="Zarezerwuj"
-            classes="reservationBtn cursor-pointer"
+            btnText='Zarezerwuj'
+            classes='reservationBtn cursor-pointer'
             reference={this.reservationBtnRef}
           >
             <LoadingSpinner
@@ -465,7 +465,7 @@ class BuyTicket extends Component {
             />
           </ReservationBtn>
 
-          <p className="afterSubmit invisible" ref={this.afterSubmitInfoRef}>
+          <p className='afterSubmit invisible' ref={this.afterSubmitInfoRef}>
             {this.state.afterSubmitInfo}
           </p>
         </div>

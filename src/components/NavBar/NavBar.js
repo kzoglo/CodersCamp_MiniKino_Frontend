@@ -112,7 +112,7 @@ class NavBar extends React.PureComponent {
   setActiveNavTab = () => {
     const navChildren = Array.from(this.wrapperRef.current.children);
     const activeChild = navChildren.find((aTag) => {
-      return isEqual(aTag.pathname, this.state.currentPathName);
+      return isEqual(aTag.hash, `#${this.state.currentPathName}`);
     });
 
     navChildren.forEach((aTag) => removeClasses(aTag, 'navBar-activeItem'));
@@ -175,14 +175,14 @@ class NavBar extends React.PureComponent {
   renderHorizontalNav = (renderAdditionalChildren = () => {}) => {
     return (
       <div
-        className="navBar-outerWrapper"
+        className='navBar-outerWrapper'
         ref={this.outerWrapperRef}
-        tabIndex="0"
+        tabIndex='0'
       >
-        <div className="iconWrapperRef" ref={this.iconWrapperRef}>
+        <div className='iconWrapperRef' ref={this.iconWrapperRef}>
           {renderAdditionalChildren()}
         </div>
-        <div className="navBar-wrapper" ref={this.wrapperRef}>
+        <div className='navBar-wrapper' ref={this.wrapperRef}>
           {this.renderLinks()}
         </div>
       </div>
