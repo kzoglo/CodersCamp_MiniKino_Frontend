@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/CodersCamp_MiniKino_Frontend/static/css/main.54a6e54d.chunk.css",
-    "main.js": "/CodersCamp_MiniKino_Frontend/static/js/main.cb657f05.chunk.js",
-    "main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/main.cb657f05.chunk.js.map",
-    "runtime-main.js": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.73f6f7d3.js",
-    "runtime-main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.73f6f7d3.js.map",
-    "static/js/2.3ebfd55d.chunk.js": "/CodersCamp_MiniKino_Frontend/static/js/2.3ebfd55d.chunk.js",
-    "static/js/2.3ebfd55d.chunk.js.map": "/CodersCamp_MiniKino_Frontend/static/js/2.3ebfd55d.chunk.js.map",
+    "main.css": "/CodersCamp_MiniKino_Frontend/static/css/main.cdef0c95.chunk.css",
+    "main.js": "/CodersCamp_MiniKino_Frontend/static/js/main.93612b78.chunk.js",
+    "main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/main.93612b78.chunk.js.map",
+    "runtime-main.js": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.280b84fa.js",
+    "runtime-main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.280b84fa.js.map",
+    "static/js/2.f621f5db.chunk.js": "/CodersCamp_MiniKino_Frontend/static/js/2.f621f5db.chunk.js",
+    "static/js/2.f621f5db.chunk.js.map": "/CodersCamp_MiniKino_Frontend/static/js/2.f621f5db.chunk.js.map",
     "index.html": "/CodersCamp_MiniKino_Frontend/index.html",
-    "precache-manifest.b9e2c265b422e979a1af32bf649e6ce2.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.b9e2c265b422e979a1af32bf649e6ce2.js",
+    "precache-manifest.8edbbf9285f7e78a5396b9767aa5b6f3.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.8edbbf9285f7e78a5396b9767aa5b6f3.js",
     "service-worker.js": "/CodersCamp_MiniKino_Frontend/service-worker.js",
-    "static/css/main.54a6e54d.chunk.css.map": "/CodersCamp_MiniKino_Frontend/static/css/main.54a6e54d.chunk.css.map",
-    "static/js/2.3ebfd55d.chunk.js.LICENSE": "/CodersCamp_MiniKino_Frontend/static/js/2.3ebfd55d.chunk.js.LICENSE"
+    "static/css/main.cdef0c95.chunk.css.map": "/CodersCamp_MiniKino_Frontend/static/css/main.cdef0c95.chunk.css.map",
+    "static/js/2.f621f5db.chunk.js.LICENSE.txt": "/CodersCamp_MiniKino_Frontend/static/js/2.f621f5db.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.73f6f7d3.js",
-    "static/js/2.3ebfd55d.chunk.js",
-    "static/css/main.54a6e54d.chunk.css",
-    "static/js/main.cb657f05.chunk.js"
+    "static/js/runtime-main.280b84fa.js",
+    "static/js/2.f621f5db.chunk.js",
+    "static/css/main.cdef0c95.chunk.css",
+    "static/js/main.93612b78.chunk.js"
   ]
 }
