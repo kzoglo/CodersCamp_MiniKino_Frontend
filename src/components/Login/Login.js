@@ -5,19 +5,19 @@ import { handleErrors } from '../../services/errors handling/handleErrors';
 import baseFetch from '../../services/apis/baseFetch';
 import {
   clearLocalStorage,
-  setAnyItem as setUserId,
-  getAnyItem as getUserId,
+  setItem as setUserId,
+  getItem as getUserId,
 } from '../../services/localStorage';
-import { setAnyItem as setAuthToken } from '../../services/localStorage';
+import { setItem as setAuthToken } from '../../services/localStorage';
 import {
-  setAnyItem as setExpiresIn,
-  getAnyItem as getExpiresIn,
+  setItem as setExpiresIn,
+  getItem as getExpiresIn,
 } from '../../services/localStorage';
 import {
-  setAnyItem as setAutoLogoutTimerId,
-  getAnyItem as getAutoLogoutTimerId,
+  setItem as setAutoLogoutTimerId,
+  getItem as getAutoLogoutTimerId,
 } from '../../services/localStorage';
-import { getAnyItem as getAutoLogoutReminderTimerId } from '../../services/localStorage';
+import { getItem as getAutoLogoutReminderTimerId } from '../../services/localStorage';
 import LoadingSpinner from '../low-level_components/LoadingSpinner/LoadingSpinner';
 import { LogInNeeded as LogOutSuccessful } from '../conditional_components/LogInNeeded/LogInNeeded';
 import { SubmitBtn as LoginBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
@@ -29,6 +29,12 @@ import {
   enableElement as enableLoginBtn,
 } from '../../assistive functions';
 import './Login.css';
+
+/*** Variables ***/
+const classes = {
+  cursorPointer: 'cursor-pointer',
+  cursorAuto: 'cursor-auto',
+};
 
 /*** Component ***/
 class Login extends Component {
@@ -88,13 +94,13 @@ class Login extends Component {
       ({ title, name, formValue, type, reference }, index) => {
         return (
           <FormInput
-            moduleName="login"
+            moduleName='login'
             key={index}
             title={title}
             type={type}
             name={name}
             formValue={formValue}
-            reference={reference}
+            inputRef={reference}
             onChange={(e) => this.handleInputChange(name, e.target.value)}
           />
         );
@@ -103,12 +109,9 @@ class Login extends Component {
   };
 
   endLogin = () => {
+    const { cursorAuto, cusorPointer } = classes;
     finishLoading(this.loginSpinnerRef.current);
-    enableLoginBtn(
-      this.loginBtnRef.current,
-      ['cursor-pointer'],
-      ['cursor-auto']
-    );
+    enableLoginBtn(this.loginBtnRef.current, [cusorPointer], [cursorAuto]);
   };
 
   /* Handlers */
@@ -129,11 +132,8 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    disableLoginBtn(
-      this.loginBtnRef.current,
-      ['cursor-auto'],
-      ['cursor-pointer']
-    );
+    const { cursorAuto, cusorPointer } = classes;
+    disableLoginBtn(this.loginBtnRef.current, [cursorAuto], [cusorPointer]);
     startLoading(this.loginSpinnerRef.current);
 
     const loginData = {
@@ -171,18 +171,19 @@ class Login extends Component {
   /* Render */
   render() {
     if (this.state.isLoggedIn) {
-      return <LogOutSuccessful logInText="Wylogowano prawidłowo." />;
+      return <LogOutSuccessful logInText='Wylogowano prawidłowo.' />;
     }
+    const { cursorPointer } = classes;
 
     return (
-      <div className="login-outerWrapper">
-        <div className="login-wrapper">
-          <h1 className="login-title">{this.props.title}</h1>
-          <form className="login-form" onSubmit={this.handleSubmit}>
+      <div className='login-outerWrapper'>
+        <div className='login-wrapper'>
+          <h1 className='login-title'>{this.props.title}</h1>
+          <form className='login-form' onSubmit={this.handleSubmit}>
             {this.renderLoginInputs()}
             <LoginBtn
-              classes="loginBtn cursor-pointer"
-              btnText="Zaloguj"
+              classes={`loginBtn ${cursorPointer}`}
+              btnText='Zaloguj'
               reference={this.loginBtnRef}
             >
               <LoadingSpinner
@@ -195,7 +196,7 @@ class Login extends Component {
             </LoginBtn>
             <p
               ref={this.validateLoginInfoRef}
-              className="validate-login-info invalid"
+              className='validate-login-info invalid'
             >
               {this.state.afterSubmitInfo}
             </p>

@@ -1,8 +1,8 @@
-import { isEqual, isInequal } from '../../../../../../services/predicates';
+import { isEqual } from '../../../../../../services/predicates';
 import { handleErrors } from '../../../../../../services/errors handling/handleErrors';
 import redirectError from '../../../../../../services/errors handling/redirectError';
 import baseFetch from '../../../../../../services/apis/baseFetch';
-import { getAnyItem as getToken } from '../../../../../../services/localStorage';
+import { getItem as getToken } from '../../../../../../services/localStorage';
 
 /*** Assistive Functions ***/
 export const dateTitleProp = () => {
@@ -36,7 +36,7 @@ export const getAllSeats = async (room_id, history) => {
 
     // Segregates seats in an organized structure
     seats.forEach(({ row, seatNumber }) => {
-      if (isInequal(rowNum, row) && !occuredRows.includes(row)) {
+      if (!isEqual(rowNum, row) && !occuredRows.includes(row)) {
         rowNum = row;
         occuredRows.push(row);
         filtered.push({ row, seats: [seatNumber] });

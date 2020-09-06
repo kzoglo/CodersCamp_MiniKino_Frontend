@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import timeout from '../../services/timeout';
-import { getAnyItem as getUserId } from '../../services/localStorage';
+import { getItem as getUserId } from '../../services/localStorage';
 import {
   isEqual,
   isLowerEqual as isHigherEqual,
@@ -19,6 +19,17 @@ import './NavBar.css';
 
 Link.defaultProps = {
   className: 'navBar-item',
+};
+
+/*** Variable ***/
+const classes = {
+  visible: 'visible',
+  invisible: 'invisible',
+  horizontalNav: 'horizontalNav',
+  dropdownNav: 'dropdownNav',
+  navBarActiveItem: 'navBar-activeItem',
+  navBarWrapperAnimation: 'navBar-wrapper-animation',
+  navBarMenuIconAnimation: 'navBar-menuIcon-animation',
 };
 
 /*** Component ***/
@@ -40,19 +51,12 @@ class NavBar extends React.PureComponent {
 
   /* Lifecycle Methods */
   componentDidMount() {
+    const { horizontalNav, dropdownNav } = classes;
     this.setState({ loginBtn: this.setLoginBtnText() });
     if (this.state.dropdown) {
-      modifyClasses(
-        this.wrapperRef.current,
-        ['horizontalNav'],
-        ['dropdownNav']
-      );
+      modifyClasses(this.wrapperRef.current, [horizontalNav], [dropdownNav]);
     } else {
-      modifyClasses(
-        this.wrapperRef.current,
-        ['dropdownNav'],
-        ['horizontalNav']
-      );
+      modifyClasses(this.wrapperRef.current, [dropdownNav], [horizontalNav]);
     }
 
     window.addEventListener('resize', this.handleWindowResize);
@@ -90,58 +94,61 @@ class NavBar extends React.PureComponent {
   };
 
   handleWindowResize = () => {
+    const { dropdownNav, invisible, horizontalNav } = classes;
     if (isHigherEqual(window.innerWidth, 660)) {
       this.setState({ dropdown: false }, () => {
         modifyClasses(
           this.wrapperRef.current,
-          ['dropdownNav', 'invisible'],
-          ['horizontalNav']
+          [dropdownNav, invisible],
+          [horizontalNav]
         );
       });
     } else {
       this.setState({ dropdown: true, expanded: false }, () => {
-        modifyClasses(
-          this.wrapperRef.current,
-          ['horizontalNav'],
-          ['dropdownNav']
-        );
+        modifyClasses(this.wrapperRef.current, [horizontalNav], [dropdownNav]);
       });
     }
   };
 
   setActiveNavTab = () => {
+    const { navBarActiveItem } = classes;
     const navChildren = Array.from(this.wrapperRef.current.children);
     const activeChild = navChildren.find((aTag) => {
       return isEqual(aTag.hash, `#${this.state.currentPathName}`);
     });
 
-    navChildren.forEach((aTag) => removeClasses(aTag, 'navBar-activeItem'));
-    if (activeChild) addClasses(activeChild, 'navBar-activeItem');
+    navChildren.forEach((aTag) => removeClasses(aTag, navBarActiveItem));
+    if (activeChild) addClasses(activeChild, navBarActiveItem);
   };
 
   handleIconClick = () => {
+    const {
+      visible,
+      invisible,
+      navBarWrapperAnimation,
+      navBarMenuIconAnimation,
+    } = classes;
     if (this.state.expanded) {
-      modifyClasses(this.wrapperRef.current, ['visible'], ['invisible']);
+      modifyClasses(this.wrapperRef.current, [visible], [invisible]);
       this.setState({ expanded: false });
     } else {
-      addClasses(this.wrapperRef.current, ['navBar-wrapper-animation']);
-      addClasses(this.iconWrapperRef.current, ['navBar-menuIcon-animation']);
+      addClasses(this.wrapperRef.current, [navBarWrapperAnimation]);
+      addClasses(this.iconWrapperRef.current, [navBarMenuIconAnimation]);
       timeout(() => {
-        removeClasses(this.wrapperRef.current, ['navBar-wrapper-animation']);
-        removeClasses(this.iconWrapperRef.current, [
-          'navBar-menuIcon-animation',
-        ]);
+        removeClasses(this.wrapperRef.current, [navBarWrapperAnimation]);
+        removeClasses(this.iconWrapperRef.current, [navBarMenuIconAnimation]);
       }, 2000);
-      modifyClasses(this.wrapperRef.current, ['invisible'], ['visible']);
+      modifyClasses(this.wrapperRef.current, [invisible], [visible]);
       this.setState({ expanded: true });
     }
   };
 
   hideNavLinks = (isDropdown) => {
+    const { visible, invisible } = classes;
     if (isDropdown) {
       timeout(() => {
         this.setState({ expanded: false }, () => {
-          modifyClasses(this.wrapperRef.current, ['visible'], ['invisible']);
+          modifyClasses(this.wrapperRef.current, [visible], [invisible]);
         });
       }, 250);
     }

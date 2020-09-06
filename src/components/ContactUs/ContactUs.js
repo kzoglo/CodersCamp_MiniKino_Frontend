@@ -2,10 +2,10 @@ import React from 'react';
 
 import { scrollTop } from '../../assistive functions';
 import {
-  check,
+  combinePredicates as hasWindowWithCrossedThreshold,
   isLower,
   isLowerEqual,
-  isInequal as hadStateChanged,
+  isEqual as didStateNotChange,
 } from '../../services/predicates';
 import ContactWay from './parts/ContactWay/ContactWay';
 import './ContactUs.css';
@@ -37,18 +37,16 @@ class ContactUs extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     const { finalWidthOfWindow } = this.getVariables();
 
-    if (hadStateChanged(this.state.windowWidth, nextState.windowWidth)) {
+    if (!didStateNotChange(this.state.windowWidth, nextState.windowWidth)) {
       if (
-        check(isLower, isLowerEqual)(
+        hasWindowWithCrossedThreshold(isLower, isLowerEqual)(
           finalWidthOfWindow,
           this.state.windowWidth,
           nextState.windowWidth
         )
-      ) {
+      )
         return true;
-      } else {
-        return false;
-      }
+      else return false;
     } else {
       return true;
     }
@@ -94,11 +92,11 @@ class ContactUs extends React.Component {
   /* Render */
   render() {
     return (
-      <div className="contactUs-wrapper" ref={this.wrapperRef}>
+      <div className='contactUs-wrapper' ref={this.wrapperRef}>
         <ContactWay />
         <ContactWay
-          iconSemanticUI="phone volume icon"
-          header="Zadzwoń do nas na infolinię"
+          iconSemanticUI='phone volume icon'
+          header='Zadzwoń do nas na infolinię'
           content={{
             main: 'Masz pytanie?',
             secondary:

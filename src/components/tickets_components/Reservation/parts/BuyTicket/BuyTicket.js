@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 
 import timeout from '../../../../../services/timeout';
 import redirectError from '../../../../../services/errors handling/redirectError';
-import {
-  handleErrors,
-  errorTexts,
-} from '../../../../../services/errors handling/handleErrors';
-import { getAnyItem as getToken } from '../../../../../services/localStorage';
+import { handleErrors } from '../../../../../services/errors handling/handleErrors';
+import { getItem as getToken } from '../../../../../services/localStorage';
 import baseFetch from '../../../../../services/apis/baseFetch';
-import { isEqual, isInequal } from '../../../../../services/predicates';
+import { isEqual } from '../../../../../services/predicates';
 import LoadingSpinner from '../../../../low-level_components/LoadingSpinner/LoadingSpinner';
 import {
   startLoading,
@@ -25,6 +22,14 @@ import {
   restartRowAndSeatUI,
   setTakenSeats,
 } from './parts/assistiveFunctions';
+
+/*** Variables ***/
+const classes = {
+  invalidSubmit: 'invalidSubmit',
+  validSubmit: 'validSubmit',
+  cursorAuto: 'cursor-auto',
+  cursorPointer: 'cursor-pointer',
+};
 
 /*** Component ***/
 class BuyTicket extends Component {
@@ -96,6 +101,14 @@ class BuyTicket extends Component {
     this.setState(newState, cb);
   };
 
+  setRowsList = () => {
+    return this.state.rowsWithSeats
+      .map(({ row, seats }) => {
+        if (!seats.every((seat) => isEqual(seat, null))) return row;
+      })
+      .filter((row) => row);
+  };
+
   checkAvailableSeats = async (cb) => {
     let existingReservations;
     try {
@@ -121,7 +134,7 @@ class BuyTicket extends Component {
   };
 
   getScreeningData = async () => {
-    if (isInequal(this.state.screening_id, null)) {
+    if (!isEqual(this.state.screening_id, null)) {
       startLoading(this.loadingSpinnerRef.current);
 
       let screening;
@@ -147,7 +160,7 @@ class BuyTicket extends Component {
             this.setAnyState(
               {
                 room: screening.room_id.name,
-                rowsList: this.state.rowsWithSeats.map(({ row }) => row),
+                rowsList: this.setRowsList(),
               },
               () => {
                 finishLoading(this.loadingSpinnerRef.current);
@@ -224,7 +237,11 @@ class BuyTicket extends Component {
       });
     });
 
-    this.setAnyState({ rowsWithSeats });
+    this.setAnyState({ rowsWithSeats }, () => {
+      this.setState({
+        rowsList: this.setRowsList(),
+      });
+    });
   };
 
   checkConcurrentReservation = async () => {
@@ -256,11 +273,12 @@ class BuyTicket extends Component {
   };
 
   reservationServerError = (err) => {
+    const { validSubmit, invalidSubmit } = classes;
     this.checkReservationAttempt(
       err.message,
       this.afterSubmitInfoRef.current,
-      ['validSubmit'],
-      ['invalidSubmit'],
+      [validSubmit],
+      [invalidSubmit],
       3000
     );
   };
@@ -268,9 +286,9 @@ class BuyTicket extends Component {
   makeNewReservation = async () => {
     try {
       // Checks if meanwhile another user haven't made the same reservation
-      if (await this.checkConcurrentReservation())
-        throw new Error(errorTexts.concurrentReserv);
-
+      if (await this.checkConcurrentReservation()) {
+        handleErrors(404, { concurrentReserv: true });
+      }
       const reservationParams = {
         user_id: this.state.user_id,
         seat_id: this.state.seat_id,
@@ -286,11 +304,12 @@ class BuyTicket extends Component {
 
       handleErrors(reservStatus);
 
+      const { validSubmit, invalidSubmit } = classes;
       this.checkReservationAttempt(
         'Zarezerwowano',
         this.afterSubmitInfoRef.current,
-        ['invalidSubmit'],
-        ['validSubmit'],
+        [invalidSubmit],
+        [validSubmit],
         3000
       );
 
@@ -304,6 +323,8 @@ class BuyTicket extends Component {
             choosenSeat: null,
           },
           () => {
+            if (this.state.freeSeats.every((seat) => isEqual(seat, null)))
+              this.handleRowOptionChange();
             this.enableReservation();
           }
         );
@@ -316,12 +337,9 @@ class BuyTicket extends Component {
   };
 
   enableReservation = () => {
+    const { cursorAuto, cursorPointer } = classes;
     finishLoading(this.reservationSpinnerRef.current);
-    enableBtn(
-      this.reservationBtnRef.current,
-      ['cursor-pointer'],
-      ['cursor-auto']
-    );
+    enableBtn(this.reservationBtnRef.current, [cursorPointer], [cursorAuto]);
   };
 
   /* Handlers */
@@ -335,7 +353,7 @@ class BuyTicket extends Component {
       ? null
       : this.selectDateRef.current.value;
 
-    this.setAnyState({ screening_id }, async () => {
+    this.setAnyState({ screening_id, afterSubmitInfo: '' }, async () => {
       this.getScreeningData();
     });
   };
@@ -345,7 +363,7 @@ class BuyTicket extends Component {
     let freeSeats;
 
     // Validation of a choosen row
-    if (isInequal(choosenRow.toString(), 'NaN')) {
+    if (!isEqual(choosenRow.toString(), 'NaN')) {
       freeSeats = this.state.rowsWithSeats[choosenRow - 1].seats;
     } else {
       choosenRow = null;
@@ -357,13 +375,14 @@ class BuyTicket extends Component {
         freeSeats,
         choosenRow,
         choosenSeat: null,
+        afterSubmitInfo: '',
       });
     });
   };
 
   handleSeatOptionChange = (e) => {
     const choosenSeat = Number(this.selectSeatRef.current.value);
-    this.setAnyState({ choosenSeat });
+    this.setAnyState({ choosenSeat, afterSubmitInfo: '' });
   };
 
   handleSubmit = async (e) => {
@@ -375,19 +394,17 @@ class BuyTicket extends Component {
       isEqual(this.state.choosenSeat, null) ||
       isEqual(this.state.screening_id, null)
     ) {
+      const { validSubmit, invalidSubmit } = classes;
       this.checkReservationAttempt(
         'Musisz dokonać wyboru',
         this.afterSubmitInfoRef.current,
-        ['validSubmit'],
-        ['invalidSubmit'],
+        [validSubmit],
+        [invalidSubmit],
         1500
       );
     } else {
-      disableBtn(
-        this.reservationBtnRef.current,
-        ['cursor-auto'],
-        ['cursor-pointer']
-      );
+      const { cursorAuto, cursorPointer } = classes;
+      disableBtn(this.reservationBtnRef.current, [cursorAuto], [cursorPointer]);
       startLoading(this.reservationSpinnerRef.current);
 
       try {
@@ -453,7 +470,7 @@ class BuyTicket extends Component {
 
           <ReservationBtn
             btnText='Zarezerwuj'
-            classes='reservationBtn cursor-pointer'
+            classes={`reservationBtn ${classes.cursorPointer}`}
             reference={this.reservationBtnRef}
           >
             <LoadingSpinner

@@ -1,3 +1,9 @@
+/*** Variables ***/
+const classes = {
+  invisible: 'invisible',
+  visible: 'visible',
+};
+
 /*** Assistive Functions ***/
 /* Generic */
 export const scrollTop = () => {
@@ -31,15 +37,17 @@ export const modifyClasses = (
 };
 
 export const startLoading = (element, classesToDel = [], classesToAdd = []) => {
+  const { visible, invisible } = classes;
   modifyClasses(
     element,
-    ['invisible', ...classesToDel],
-    ['visible', ...classesToAdd]
+    [invisible, ...classesToDel],
+    [visible, ...classesToAdd]
   );
 };
 
 export const finishLoading = (element) => {
-  modifyClasses(element, ['visible'], ['invisible']);
+  const { visible, invisible } = classes;
+  modifyClasses(element, [visible], [invisible]);
 };
 
 export const disableElement = (
@@ -62,3 +70,11 @@ export const validateEmail = (emailValue) => {
     return false;
   return true;
 };
+
+export const validateCommonTextInput = (value) => {
+  if (/^[A-Ż]?[a-ż]*$/.test(value)) return false;
+  return true;
+};
+
+export const validateSurname = (value) =>
+  !/(^[A-Za-ż][']?[A-Z]?[a-ż]+[-|\s]?[A-Za-ż]+$)/.test(value);

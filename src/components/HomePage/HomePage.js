@@ -4,10 +4,10 @@ import { scrollTop } from '../../assistive functions';
 import redirectError from '../../services/errors handling/redirectError';
 import { handleErrors } from '../../services/errors handling/handleErrors';
 import {
-  isInequal as moviesBeenFetched,
   isEqual,
   isLowerEqual as isHigherEqual,
 } from '../../services/predicates';
+import { isEqual as wereNotMoviesFetched } from '../../services/predicates';
 import baseFetch from '../../services/apis/baseFetch';
 import Loading from '../conditional_components/Loading/Loading';
 import MoviesGroup from './parts/MoviesGroup/MoviesGroup';
@@ -131,20 +131,20 @@ class HomePage extends Component {
 
   /* Render */
   render() {
-    if (!moviesBeenFetched(this.state.recommendedMovies.length, 0)) {
+    if (wereNotMoviesFetched(this.state.recommendedMovies.length, 0)) {
       return <Loading />;
     }
 
     return (
-      <div className="homepage-wrapper">
-        <img className="homepage-img" src="img/jumanji4.png" alt="Home" />
+      <div className='homepage-wrapper'>
+        <img className='homepage-img' src='img/jumanji4.png' alt='Home' />
 
         <MoviesGroup
-          title="POLECANE FILMY"
+          title='POLECANE FILMY'
           movies={this.state.recommendedMovies}
         />
 
-        <MoviesGroup title="NOWE FILMY" movies={this.state.newMovies} />
+        <MoviesGroup title='NOWE FILMY' movies={this.state.newMovies} />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isInequal as isSeatDefined } from '../../../services/predicates';
+import { isEqual as isSeatDefined } from '../../../services/predicates';
 import { dateFormat } from '../../tickets_components/Reservation/parts/BuyTicket/parts/assistiveFunctions';
 import './ScreeningInfo.css';
 
@@ -10,7 +10,7 @@ const ScreeningInfo = ({
   screening,
   classes: { timeClass, seatClass, wrapperClass },
 }) => {
-  if (isSeatDefined(seat, undefined)) {
+  if (!isSeatDefined(seat, undefined)) {
     return (
       <div className={`${wrapperClass} screeningInfo-wrapper`}>
         <p className={`${timeClass} screeningInfo-time`}>

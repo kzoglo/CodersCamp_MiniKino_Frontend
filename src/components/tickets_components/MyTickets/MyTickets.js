@@ -3,29 +3,14 @@ import React, { Component } from 'react';
 import { handleErrors } from '../../../services/errors handling/handleErrors';
 import redirectError from '../../../services/errors handling/redirectError';
 import baseFetch from '../../../services/apis/baseFetch';
-import { getAnyItem as getUserId } from '../../../services/localStorage';
-import { getAnyItem as getToken } from '../../../services/localStorage';
+import { getItem as getUserId } from '../../../services/localStorage';
+import { getItem as getToken } from '../../../services/localStorage';
 import { isEqual as areReservationsFetched } from '../../../services/predicates';
 import { isEqual as isUserLoggedIn } from '../../../services/predicates';
 import Loading from '../../conditional_components/Loading/Loading';
 import { LogInNeeded } from '../../conditional_components/LogInNeeded/LogInNeeded';
 import { Movies } from './parts/Movies';
 import './MyTickets.css';
-
-/*** Assistive Functions ***/
-const renderTickets = ({ user_id, reservations }) => {
-  if (isUserLoggedIn(user_id, '') || isUserLoggedIn(user_id, null)) {
-    return <LogInNeeded />;
-  } else if (areReservationsFetched(reservations, null)) {
-    return <Loading />;
-  } else {
-    return (
-      <div className="myTickets-outerWrapper">
-        <Movies reservations={reservations} />
-      </div>
-    );
-  }
-};
 
 /*** Component ***/
 export class MyTickets extends Component {
@@ -62,8 +47,26 @@ export class MyTickets extends Component {
     }
   }
 
+  /* Assistive Methods */
+  renderTickets = ({ user_id, reservations }) => {
+    if (isUserLoggedIn(user_id, '') || isUserLoggedIn(user_id, null)) {
+      setTimeout(() => {
+        this.props.history.push('/login');
+      }, 1000);
+      return <LogInNeeded />;
+    } else if (areReservationsFetched(reservations, null)) {
+      return <Loading />;
+    } else {
+      return (
+        <div className='myTickets-outerWrapper'>
+          <Movies reservations={reservations} />
+        </div>
+      );
+    }
+  };
+
   /* Render */
   render() {
-    return renderTickets(this.state, this.props);
+    return this.renderTickets(this.state, this.props);
   }
 }

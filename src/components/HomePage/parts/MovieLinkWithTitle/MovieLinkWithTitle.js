@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { baseUrl } from '../../../../services/apis/baseFetch';
-import { setAnyItem as setMovieId } from '../../../../services/localStorage';
+import { setItem as setMovieId } from '../../../../services/localStorage';
 import { appName } from '../../../App/routing/routingList';
 import MoviePoster from '../../../low-level_components/MoviePoster/MoviePoster';
 import './MovieLinkWithTitle.css';
@@ -13,7 +13,7 @@ const MovieLinkWithTitle = ({ imageUrl, _id, title, available }) => {
     <>
       <Link
         to={`${appName}/reservation`}
-        className="movieLinkWithTitle-wrapper"
+        className='movieLinkWithTitle-wrapper'
         onClick={() => setMovieId('movieId', _id)}
       >
         <MoviePoster
@@ -21,7 +21,7 @@ const MovieLinkWithTitle = ({ imageUrl, _id, title, available }) => {
           alt={title}
           available={available}
         />
-        <p className="movieLinkWithTitle-title" data-movie-id={_id}>
+        <p className='movieLinkWithTitle-title' data-movie-id={_id}>
           {title}
         </p>
       </Link>

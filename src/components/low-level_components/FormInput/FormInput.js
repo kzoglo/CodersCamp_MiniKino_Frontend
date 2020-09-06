@@ -2,19 +2,16 @@ import React from 'react';
 
 import './FormInput.css';
 
-/*** Variables ***/
-export const labelPosition = 0;
-export const pTagPosition = 2;
-
 /*** Component ***/
 const FormInput = ({
   moduleName,
   title,
   formValue,
+  validationVal,
   type,
   name,
   placeholder,
-  reference,
+  inputRef,
   minlength = 3,
   maxlength = 20,
   required = true,
@@ -24,16 +21,16 @@ const FormInput = ({
 }) => {
   return (
     <div className={`field ${moduleName}-${name}-wrapper`}>
-      <label className="formInput-label" htmlFor={name}>
+      <label className='formInput-label' htmlFor={name}>
         {title}
       </label>
       <input
         id={name}
-        className="formInput-input neutral-input"
+        className='formInput-input neutral-input'
         placeholder={placeholder}
         name={name}
         type={type}
-        ref={reference}
+        ref={inputRef}
         value={formValue}
         minLength={minlength}
         maxLength={maxlength}
@@ -42,7 +39,7 @@ const FormInput = ({
         onClick={onClick}
         onBlur={onBlur}
       />
-      <p className="validation-p"></p>
+      <p className='validation-p'>{validationVal}</p>
     </div>
   );
 };

@@ -5,14 +5,23 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import {
   clearLocalStorage,
-  getAnyItem as getTokenExpiration,
-  setAnyItem,
+  getItem as getTokenExpiration,
+  setItem,
 } from '../../services/localStorage';
-import { getAnyItem } from '../../services/localStorage';
-import { getAnyItem as getAutoLogoutTimerId } from '../../services/localStorage';
-import { getAnyItem as getAutoLogoutReminderTimerId } from '../../services/localStorage';
+import { getItem } from '../../services/localStorage';
+import { getItem as getAutoLogoutTimerId } from '../../services/localStorage';
+import { getItem as getAutoLogoutReminderTimerId } from '../../services/localStorage';
 import { addClasses, modifyClasses } from '../../assistive functions';
 import './AutoLogoutReminder.css';
+
+/*** Variables ***/
+const classes = {
+  hide: 'hide',
+  show: 'show',
+  grid: 'grid',
+  cursorPointer: 'cursor-pointer',
+  submitBtn: 'submitBtn',
+};
 
 /*** Component ***/
 class AutoLogoutReminder extends Component {
@@ -46,22 +55,24 @@ class AutoLogoutReminder extends Component {
         return { time: prevState.time - 1000 };
       });
     }, 1000);
-    setAnyItem('intervalId', intervalId);
+    setItem('intervalId', intervalId);
   };
 
   cancelInterval = () => {
-    clearInterval(getAnyItem('intervalId'));
+    clearInterval(getItem('intervalId'));
   };
 
   closeWindow = () => {
+    const { hide, grid } = classes;
     this.cancelInterval();
-    modifyClasses(this.wrapperRef.current, 'grid', 'hide');
+    modifyClasses(this.wrapperRef.current, grid, hide);
   };
 
   renewSession = () => {
+    const { hide, show } = classes;
     this.cancelInterval();
-    modifyClasses(this.redirectWrapperRef.current, 'hide', 'show');
-    addClasses(this.renewWrapperRef.current, 'hide');
+    modifyClasses(this.redirectWrapperRef.current, hide, show);
+    addClasses(this.renewWrapperRef.current, hide);
   };
 
   agreeToRenew = () => {
@@ -74,19 +85,23 @@ class AutoLogoutReminder extends Component {
 
   /* Render */
   render() {
+    const { grid, hide, submitBtn, cursorPointer } = classes;
     return (
-      <div className="autoLogoutReminder-wrapper grid" ref={this.wrapperRef}>
+      <div
+        className={`autoLogoutReminder-wrapper ${grid}`}
+        ref={this.wrapperRef}
+      >
         <div
-          className="autoLogoutReminder-reminder-wrapper"
+          className='autoLogoutReminder-reminder-wrapper'
           ref={this.renewWrapperRef}
         >
-          <div className="autoLogoutReminder-reminder-innerWrapper">
-            <div className="autoLogoutReminder-reminder-content">
-              <p className="autoLogoutReminder-reminder-text">{`Za ${this.formatCountdown()} min. ${
+          <div className='autoLogoutReminder-reminder-innerWrapper'>
+            <div className='autoLogoutReminder-reminder-content'>
+              <p className='autoLogoutReminder-reminder-text'>{`Za ${this.formatCountdown()} min. ${
                 this.props.renewSessionText
               }`}</p>
               <button
-                className="submitBtn cursor-pointer"
+                className={`${submitBtn} ${cursorPointer}`}
                 onClick={this.renewSession}
               >
                 {this.props.renewSessionBtn}
@@ -97,20 +112,20 @@ class AutoLogoutReminder extends Component {
         </div>
 
         <div
-          className="autoLogoutReminder-redirect-wrapper hide"
+          className={`autoLogoutReminder-redirect-wrapper ${hide}`}
           ref={this.redirectWrapperRef}
         >
-          <div className="autoLogoutReminder-redirect-innerWrapper">
+          <div className='autoLogoutReminder-redirect-innerWrapper'>
             <p>{this.props.redirectToLoginText}</p>
-            <div className="autoLogoutReminder-btns-wrapper">
+            <div className='autoLogoutReminder-btns-wrapper'>
               <button
-                className="submitBtn cursor-pointer"
+                className={`${submitBtn} ${cursorPointer}`}
                 onClick={this.agreeToRenew}
               >
                 {this.props.agreeToRenewBtn}
               </button>
               <button
-                className="submitBtn cursor-pointer"
+                className={`${submitBtn} ${cursorPointer}`}
                 onClick={this.closeWindow}
               >
                 {this.props.cancelRenewBtn}

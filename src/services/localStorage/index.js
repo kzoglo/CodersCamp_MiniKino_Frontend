@@ -1,8 +1,8 @@
-export const getAnyItem = item => {
+export const getItem = (item) => {
   return window.localStorage.getItem(item);
 };
 
-export const setAnyItem = (item, value) => {
+export const setItem = (item, value) => {
   window.localStorage.setItem(item, value);
 };
 

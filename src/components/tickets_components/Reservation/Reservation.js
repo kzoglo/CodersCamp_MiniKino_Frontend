@@ -8,8 +8,8 @@ import {
   isEqual as isUserLoggedIn,
   isEqual as isMovieFetched,
 } from '../../../services/predicates';
-import { getAnyItem as getId } from '../../../services/localStorage';
-import { getAnyItem as getToken } from '../../../services/localStorage';
+import { getItem as getId } from '../../../services/localStorage';
+import { getItem as getToken } from '../../../services/localStorage';
 import { LogInNeeded } from '../../conditional_components/LogInNeeded/LogInNeeded';
 import Loading from '../../conditional_components/Loading/Loading';
 import Movie from './parts/Movie/Movie';
@@ -68,18 +68,22 @@ class Reservation extends Component {
       isUserLoggedIn(this.state.user_id, '') ||
       isUserLoggedIn(this.state.user_id, null)
     ) {
+      setTimeout(() => {
+        this.props.history.push('/login');
+      }, 1000);
+
       return <LogInNeeded />;
     } else if (isMovieFetched(this.state.movie, null)) {
       return <Loading />;
     } else {
       return (
-        <div className="reservation-outerWrapper">
-          <div className="reservation-wrapper" ref={this.wrapperRef}>
-            <div className="reservation-itemWrapper">
+        <div className='reservation-outerWrapper'>
+          <div className='reservation-wrapper' ref={this.wrapperRef}>
+            <div className='reservation-itemWrapper'>
               <Movie movie={this.state.movie} />
             </div>
 
-            <div className="reservation-itemWrapper">
+            <div className='reservation-itemWrapper'>
               <BuyTicket
                 history={this.props.history}
                 movie_id={this.state.movie_id}

@@ -3,11 +3,11 @@ import { Route, withRouter } from 'react-router-dom';
 
 import timeout from '../../services/timeout';
 import {
-  getAnyItem as getExpiresIn,
+  getItem as getExpiresIn,
   clearLocalStorage,
 } from '../../services/localStorage';
-import { setAnyItem as setAutoLogoutTimerId } from '../../services/localStorage';
-import { setAnyItem as setAutoLogoutReminderTimerId } from '../../services/localStorage';
+import { setItem as setAutoLogoutTimerId } from '../../services/localStorage';
+import { setItem as setAutoLogoutReminderTimerId } from '../../services/localStorage';
 import AutoLogoutReminder from '../AutoLogoutReminder/AutoLogoutReminder';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
@@ -29,7 +29,7 @@ class App extends React.PureComponent {
   componentDidMount() {
     const expiresIn = getExpiresIn('expiresIn');
     if (expiresIn) {
-      this.handleAutoLogout(getExpiresIn('expiresIn'));
+      this.handleAutoLogout(expiresIn);
       this.handleAutoLogoutReminder(expiresIn);
     }
   }
@@ -91,7 +91,7 @@ class App extends React.PureComponent {
     return (
       <>
         <NavBar />
-        <div className="main-container" ref={this.mainContainerRef}>
+        <div className='main-container' ref={this.mainContainerRef}>
           {this.renderRouting()}
           {this.renderAutoLogoutReminder()}
         </div>
