@@ -35,8 +35,8 @@ class ServerError extends React.PureComponent {
   /* Render */
   render() {
     return (
-      <div className="serverError-outerWrapper">
-        <div className="serverError-wrapper">
+      <div className='serverError-outerWrapper'>
+        <div className='serverError-wrapper'>
           <h1>{`Error ${this.state.errCode}`}</h1>
           <h2>{`${this.state.errMsg}`}</h2>
         </div>

@@ -8,10 +8,10 @@ import './Movie.css';
 /*** Assistive Functions ***/
 const renderMovie = ({ _id, imageUrl, title, description }) => {
   return (
-    <div className="movie-wrapper" key={_id}>
+    <div className='movie-wrapper' key={_id}>
       <MoviePoster src={`${baseUrl}${imageUrl}`} alt={title} />
 
-      <div className="movie-utils">
+      <div className='movie-utils'>
         <MovieInfo movie={{ description, title }} />
       </div>
     </div>

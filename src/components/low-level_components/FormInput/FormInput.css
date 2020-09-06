@@ -44,12 +44,6 @@
 }
 
 .validation-p {
-  height: calc(
-    (
-      var(--validation-p-padding-top) + var(--validation-p-padding-bottom) +
-        var(--validation-p-font-size)
-    )
-  );
   padding: var(--validation-p-padding-top) 0 0
     var(--validation-p-padding-bottom);
   margin: 0;
