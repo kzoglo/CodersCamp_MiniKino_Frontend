@@ -1,8 +1,7 @@
 import {
-  check,
+  combinePredicates,
   isLower,
   isLowerEqual,
-  isInequal,
   isEqual,
 } from '../../../services/predicates';
 
@@ -13,24 +12,24 @@ describe('Predicates', () => {
   };
   let arr = [1, 2, 3];
 
-  describe('check', () => {
+  describe('combinePredicates', () => {
     let f1, f2;
     test('should return true, if every argument of the first function returns "true".', () => {
       f1 = (x, y) => true;
       f2 = (x, z) => true;
-      expect(check(f1, f2)(1, 2, 3)).toBe(true);
+      expect(combinePredicates(f1, f2)(1, 2, 3)).toBe(true);
     });
 
     test('should return false, if every argument of the first function returns "false".', () => {
       f1 = (x, y) => true;
       f2 = (x, z) => false;
-      expect(check(f1, f2)(1, 2, 3)).toBe(false);
+      expect(combinePredicates(f1, f2)(1, 2, 3)).toBe(false);
     });
 
     test('should return true, if every argument of the first function returns "true".', () => {
       f1 = (x, y) => false;
       f2 = (x, z) => false;
-      expect(check(f1, f2)(1, 2, 3)).toBe(false);
+      expect(combinePredicates(f1, f2)(1, 2, 3)).toBe(false);
     });
   });
 
@@ -53,21 +52,6 @@ describe('Predicates', () => {
 
     test('should return "false", if second argument is higher than first.', () => {
       expect(isLowerEqual(2, 3)).toBe(false);
-    });
-  });
-
-  describe('isInequal', () => {
-    test('should return "false", if arguments are strictly the same.', () => {
-      expect(isInequal(arr[2], arr[2])).toBe(false);
-      expect(isInequal('3', '3')).toBe(false);
-      expect(isInequal('b', obj.b)).toBe(false);
-    });
-
-    test('should return "true", if arguments are strictly different.', () => {
-      expect(isInequal(arr[1], 3)).toBe(true);
-      expect(isInequal('2', '3')).toBe(true);
-      expect(isInequal(2, '3')).toBe(true);
-      expect(isInequal('b', obj.a)).toBe(true);
     });
   });
 

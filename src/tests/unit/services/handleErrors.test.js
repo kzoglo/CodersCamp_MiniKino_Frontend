@@ -1,4 +1,7 @@
-import { handleErrors } from '../../../services/errors handling/handleErrors';
+import {
+  handleErrors,
+  errorTexts,
+} from '../../../services/errors handling/handleErrors';
 
 describe('handleErrors', () => {
   test('should return undefined, if argument "status" is equal to 200 or 201.', () => {
@@ -10,9 +13,7 @@ describe('handleErrors', () => {
     try {
       handleErrors(400);
     } catch (err) {
-      expect(err.message).toBe(
-        'Niepoprawne żądanie. Spróbuj ponownie później.'
-      );
+      expect(err.message).toBe(errorTexts.badReqErrMsg);
       expect(err.statusCode).toBe(400);
     }
   });
@@ -21,7 +22,7 @@ describe('handleErrors', () => {
     try {
       handleErrors(401);
     } catch (err) {
-      expect(err.message).toBe('Nieprawidłowy email lub hasło.');
+      expect(err.message).toBe(errorTexts.authErrMsg);
       expect(err.statusCode).toBe(401);
     }
   });
@@ -30,7 +31,7 @@ describe('handleErrors', () => {
     try {
       handleErrors(403);
     } catch (err) {
-      expect(err.message).toBe('Nie masz dostępu do żądanego zasobu.');
+      expect(err.message).toBe(errorTexts.forbiddenErrMsg);
       expect(err.statusCode).toBe(403);
     }
   });
@@ -39,7 +40,7 @@ describe('handleErrors', () => {
     try {
       handleErrors(404);
     } catch (err) {
-      expect(err.message).toBe('Nie znaleziono żądanego zasobu.');
+      expect(err.message).toBe(errorTexts.notFoundErrMsg);
       expect(err.statusCode).toBe(404);
     }
   });
@@ -48,7 +49,7 @@ describe('handleErrors', () => {
     try {
       handleErrors(409);
     } catch (err) {
-      expect(err.message).toBe('Taki użytkownik już istnieje.');
+      expect(err.message).toBe(errorTexts.conflictErrMsg);
       expect(err.statusCode).toBe(409);
     }
   });
@@ -57,7 +58,7 @@ describe('handleErrors', () => {
     try {
       handleErrors(500);
     } catch (err) {
-      expect(err.message).toBe('Błąd serwera. Spróbuj ponownie później.');
+      expect(err.message).toBe(errorTexts.serverErrMsg);
       expect(err.statusCode).toBe(500);
     }
   });
@@ -66,7 +67,7 @@ describe('handleErrors', () => {
     try {
       handleErrors(500);
     } catch (err) {
-      expect(err.message).toBe('Błąd serwera. Spróbuj ponownie później.');
+      expect(err.message).toBe(errorTexts.serverErrMsg);
       expect(err.statusCode).toBe(500);
     }
   });
