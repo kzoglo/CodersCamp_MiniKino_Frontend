@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to CodersCamp_MiniKino_Frontend 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.1.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.2.3-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E6.0.0-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D8.1.0-blue.svg" />
   <a href="https://github.com/kzoglo/CodersCamp_MiniKino_Frontend#readme" target="_blank">
