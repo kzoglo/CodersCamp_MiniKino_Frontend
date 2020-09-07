@@ -26,7 +26,7 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --verbose --env=jest-environment-jsdom-sixteen",
+    "test": "react-scripts test --verbose --env=jest-environment-jsdom-sixteen --watchAll",
     "test-unit": "npm test unit",
     "test-with-coverage": "react-scripts test --coverage --watchAll=false --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject"
