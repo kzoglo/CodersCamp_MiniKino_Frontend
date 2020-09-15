@@ -86,7 +86,6 @@ class App extends React.PureComponent {
     if (this.state.reminder) return <AutoLogoutReminder />;
   };
 
-  /* Render */
   render() {
     return (
       <>

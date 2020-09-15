@@ -1,7 +1,7 @@
 import { isEqual } from '../../../../../../services/predicates';
 import { handleErrors } from '../../../../../../services/errors handling/handleErrors';
 import redirectError from '../../../../../../services/errors handling/redirectError';
-import baseFetch from '../../../../../../services/apis/baseFetch';
+import baseFetch from '../../../../../../services/API/v1/baseFetch';
 import { getItem as getToken } from '../../../../../../services/localStorage';
 
 /*** Assistive Functions ***/

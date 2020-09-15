@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { baseUrl } from '../../../../../services/apis/baseFetch';
-import MoviePoster from '../../../../low-level_components/MoviePoster/MoviePoster';
-import MovieInfo from '../../../../low-level_components/MovieInfo/MovieInfo';
+import { baseUrl } from '../../../../../services/API/v1/baseFetch';
+import MoviePoster from '../../../../low-level components/MoviePoster/MoviePoster';
+import MovieInfo from '../../../../low-level components/MovieInfo/MovieInfo';
 import './Movie.css';
 
 /*** Assistive Functions ***/

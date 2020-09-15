@@ -4,17 +4,17 @@ import timeout from '../../../../../services/timeout';
 import redirectError from '../../../../../services/errors handling/redirectError';
 import { handleErrors } from '../../../../../services/errors handling/handleErrors';
 import { getItem as getToken } from '../../../../../services/localStorage';
-import baseFetch from '../../../../../services/apis/baseFetch';
+import baseFetch from '../../../../../services/API/v1/baseFetch';
 import { isEqual } from '../../../../../services/predicates';
-import LoadingSpinner from '../../../../low-level_components/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../../../../low-level components/LoadingSpinner/LoadingSpinner';
 import {
   startLoading,
   finishLoading,
   enableElement as enableBtn,
   disableElement as disableBtn,
 } from '../../../../../assistive functions';
-import Select from '../../../../low-level_components/Select/Select';
-import { SubmitBtn as ReservationBtn } from '../../../../low-level_components/SubmitBtn/SubmitBtn';
+import Select from '../../../../low-level components/Select/Select';
+import { SubmitBtn as ReservationBtn } from '../../../../low-level components/SubmitBtn/SubmitBtn';
 import {
   getAllSeats,
   dateTitleProp,
@@ -104,7 +104,8 @@ class BuyTicket extends Component {
   setRowsList = () => {
     return this.state.rowsWithSeats
       .map(({ row, seats }) => {
-        if (!seats.every((seat) => isEqual(seat, null))) return row;
+        const isRowNotEmpty = !seats.every((seat) => isEqual(seat, null));
+        if (isRowNotEmpty) return row;
       })
       .filter((row) => row);
   };
@@ -425,7 +426,6 @@ class BuyTicket extends Component {
     }
   };
 
-  /* Render */
   render() {
     return (
       <form onSubmit={this.handleSubmit}>

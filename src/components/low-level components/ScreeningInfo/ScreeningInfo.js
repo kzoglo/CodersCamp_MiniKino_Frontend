@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { isEqual as isSeatDefined } from '../../../services/predicates';
-import { dateFormat } from '../../tickets_components/Reservation/parts/BuyTicket/parts/assistiveFunctions';
+import { dateFormat } from '../../tickets components/Reservation/parts/BuyTicket/parts/assistiveFunctions';
 import './ScreeningInfo.css';
 
 /*** Component ***/

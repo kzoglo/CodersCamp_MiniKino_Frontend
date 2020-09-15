@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { baseUrl } from '../../../../services/apis/baseFetch';
+import { baseUrl } from '../../../../services/API/v1/baseFetch';
 import { setItem as setMovieId } from '../../../../services/localStorage';
 import { appName } from '../../../App/routing/routingList';
-import MoviePoster from '../../../low-level_components/MoviePoster/MoviePoster';
+import MoviePoster from '../../../low-level components/MoviePoster/MoviePoster';
 import './MovieLinkWithTitle.css';
 
 /*** Component ***/

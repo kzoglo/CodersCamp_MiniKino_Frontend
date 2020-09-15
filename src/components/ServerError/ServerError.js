@@ -32,7 +32,6 @@ class ServerError extends React.PureComponent {
     }
   }
 
-  /* Render */
   render() {
     return (
       <div className='serverError-outerWrapper'>

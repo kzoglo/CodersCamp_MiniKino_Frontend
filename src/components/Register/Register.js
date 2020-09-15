@@ -8,11 +8,11 @@ import {
 } from '../../assistive functions';
 import timeout from '../../services/timeout';
 import { handleErrors } from '../../services/errors handling/handleErrors';
-import baseFetch from '../../services/apis/baseFetch';
+import baseFetch from '../../services/API/v1/baseFetch';
 import { getItem as getUserId } from '../../services/localStorage';
-import LoadingSpinner from '../low-level_components/LoadingSpinner/LoadingSpinner';
-import FormInput from '../low-level_components/FormInput/FormInput';
-import { SubmitBtn as RegisterBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
+import LoadingSpinner from '../low-level components/LoadingSpinner/LoadingSpinner';
+import FormInput from '../low-level components/FormInput/FormInput';
+import { SubmitBtn as RegisterBtn } from '../low-level components/SubmitBtn/SubmitBtn';
 import {
   startLoading,
   finishLoading,
@@ -330,7 +330,6 @@ class Register extends Component {
     }
   };
 
-  /* Render */
   render() {
     return (
       <div className='register-outerWrapper'>

@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import sanitizeHtml from 'sanitize-html';
 
-import MovieInfo from '../../../../components/low-level_components/MovieInfo/MovieInfo';
+import MovieInfo from '../../../../components/low-level components/MovieInfo/MovieInfo';
 
 // innerText getter and setter implementation in JSDOM: https://github.com/jsdom/jsdom/issues/1245
 Object.defineProperty(global.Element.prototype, 'innerText', {

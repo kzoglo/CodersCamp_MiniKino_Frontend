@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import MoviePoster from '../../../../components/low-level_components/MoviePoster/MoviePoster';
+import MoviePoster from '../../../../components/low-level components/MoviePoster/MoviePoster';
 
 describe('Movie Poster', () => {
   let props = {

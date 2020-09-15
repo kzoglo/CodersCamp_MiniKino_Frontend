@@ -8,8 +8,8 @@ import {
   isLowerEqual as isHigherEqual,
 } from '../../services/predicates';
 import { isEqual as wereNotMoviesFetched } from '../../services/predicates';
-import baseFetch from '../../services/apis/baseFetch';
-import Loading from '../conditional_components/Loading/Loading';
+import baseFetch from '../../services/API/v1/baseFetch';
+import Loading from '../conditional components/Loading/Loading';
 import MoviesGroup from './parts/MoviesGroup/MoviesGroup';
 import './HomePage.css';
 
@@ -129,7 +129,6 @@ class HomePage extends Component {
     return moviesWithAvailability;
   }
 
-  /* Render */
   render() {
     if (wereNotMoviesFetched(this.state.recommendedMovies.length, 0)) {
       return <Loading />;
@@ -137,7 +136,7 @@ class HomePage extends Component {
 
     return (
       <div className='homepage-wrapper'>
-        <img className='homepage-img' src='img/jumanji4.png' alt='Home' />
+        <img className='homepage-img' src='img/jumanji.png' alt='Home' />
 
         <MoviesGroup
           title='POLECANE FILMY'
@@ -149,5 +148,7 @@ class HomePage extends Component {
     );
   }
 }
+
+console.log();
 
 export default HomePage;

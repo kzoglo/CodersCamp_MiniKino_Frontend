@@ -196,7 +196,6 @@ class NavBar extends React.PureComponent {
     );
   };
 
-  /* Render */
   render() {
     if (this.state.dropdown) {
       return this.renderDropdownNav(this.state.expanded);

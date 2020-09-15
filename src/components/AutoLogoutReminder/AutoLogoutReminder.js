@@ -83,7 +83,6 @@ class AutoLogoutReminder extends Component {
     this.props.history.push('/Login');
   };
 
-  /* Render */
   render() {
     const { grid, hide, submitBtn, cursorPointer } = classes;
     return (

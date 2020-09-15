@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 import { handleErrors } from '../../../services/errors handling/handleErrors';
 import redirectError from '../../../services/errors handling/redirectError';
-import baseFetch from '../../../services/apis/baseFetch';
+import baseFetch from '../../../services/API/v1/baseFetch';
 import { getItem as getUserId } from '../../../services/localStorage';
 import { getItem as getToken } from '../../../services/localStorage';
 import { isEqual as areReservationsFetched } from '../../../services/predicates';
 import { isEqual as isUserLoggedIn } from '../../../services/predicates';
-import Loading from '../../conditional_components/Loading/Loading';
-import { LogInNeeded } from '../../conditional_components/LogInNeeded/LogInNeeded';
+import Loading from '../../conditional components/Loading/Loading';
+import { LogInNeeded } from '../../conditional components/LogInNeeded/LogInNeeded';
 import { Movies } from './parts/Movies';
 import './MyTickets.css';
 
@@ -65,7 +65,6 @@ export class MyTickets extends Component {
     }
   };
 
-  /* Render */
   render() {
     return this.renderTickets(this.state, this.props);
   }

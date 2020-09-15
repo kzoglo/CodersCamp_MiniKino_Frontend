@@ -89,7 +89,6 @@ class ContactUs extends React.Component {
     });
   };
 
-  /* Render */
   render() {
     return (
       <div className='contactUs-wrapper' ref={this.wrapperRef}>

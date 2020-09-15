@@ -3,7 +3,7 @@
   min-height: var(--min-height-size);
   background-color: rgba(0, 0, 0, 0.685);
   background-blend-mode: darken;
-  background-image: url('https://kzoglo.github.io/CodersCamp_MiniKino_Frontend/img/loginNeeded4.jpg');
+  background-image: url('https://kzoglo.github.io/CodersCamp_MiniKino_Frontend/img/loginNeeded.jpg');
   background-size: cover;
 }
 

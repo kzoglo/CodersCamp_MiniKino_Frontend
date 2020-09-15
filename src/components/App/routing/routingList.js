@@ -2,9 +2,9 @@ import HomePage from '../../HomePage/HomePage';
 import ContactUs from '../../ContactUs/ContactUs';
 import Register from '../../Register/Register';
 import Login from '../../Login/Login';
-import { MyTickets } from '../../tickets_components/MyTickets/MyTickets';
+import { MyTickets } from '../../tickets components/MyTickets/MyTickets';
 import Prices from '../../Prices/Prices';
-import Reservation from '../../tickets_components/Reservation/Reservation';
+import Reservation from '../../tickets components/Reservation/Reservation';
 import ServerError from '../../ServerError/ServerError';
 import AutoLogout from '../../AutoLogout/AutoLogout';
 

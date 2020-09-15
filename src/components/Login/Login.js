@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import timeout from '../../services/timeout';
 import { handleErrors } from '../../services/errors handling/handleErrors';
-import baseFetch from '../../services/apis/baseFetch';
+import baseFetch from '../../services/API/v1/baseFetch';
 import {
   clearLocalStorage,
   setItem as setUserId,
@@ -18,10 +18,10 @@ import {
   getItem as getAutoLogoutTimerId,
 } from '../../services/localStorage';
 import { getItem as getAutoLogoutReminderTimerId } from '../../services/localStorage';
-import LoadingSpinner from '../low-level_components/LoadingSpinner/LoadingSpinner';
-import { LogInNeeded as LogOutSuccessful } from '../conditional_components/LogInNeeded/LogInNeeded';
-import { SubmitBtn as LoginBtn } from '../low-level_components/SubmitBtn/SubmitBtn';
-import FormInput from '../low-level_components/FormInput/FormInput';
+import LoadingSpinner from '../low-level components/LoadingSpinner/LoadingSpinner';
+import { LogInNeeded as LogOutSuccessful } from '../conditional components/LogInNeeded/LogInNeeded';
+import { SubmitBtn as LoginBtn } from '../low-level components/SubmitBtn/SubmitBtn';
+import FormInput from '../low-level components/FormInput/FormInput';
 import {
   startLoading,
   finishLoading,
@@ -168,7 +168,6 @@ class Login extends Component {
     }
   };
 
-  /* Render */
   render() {
     if (this.state.isLoggedIn) {
       return <LogOutSuccessful logInText='Wylogowano prawidłowo.' />;

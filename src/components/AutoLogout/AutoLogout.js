@@ -13,7 +13,6 @@ class AutoLogout extends React.Component {
     clearLocalStorage();
   }
 
-  /* Render */
   render() {
     return (
       <div className='autologout-wrapper'>

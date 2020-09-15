@@ -2,13 +2,13 @@
 export const errorCodes = {
   ok: 200,
   created: 201,
-  bad_request: 400,
+  badRequest: 400,
   unauthorized: 401,
   forbidden: 403,
-  not_found: 404,
+  notFound: 404,
   conflict: 409,
-  unprocessable_entity: 422,
-  internal_server_error: 500,
+  unprocessableEntity: 422,
+  internalServerError: 500,
 };
 
 export const errorTexts = {
@@ -37,13 +37,13 @@ export const handleErrors = (
   const {
     ok,
     created,
-    bad_request,
+    badRequest,
     unauthorized,
     forbidden,
-    not_found,
+    notFound,
     conflict,
-    unprocessable_entity,
-    internal_server_error,
+    unprocessableEntity,
+    internalServerError,
   } = errorCodes;
   const {
     badReqErrMsg,
@@ -60,8 +60,8 @@ export const handleErrors = (
     case ok:
     case created:
       break;
-    case bad_request:
-      handler(badReqErrMsg, bad_request);
+    case badRequest:
+      handler(badReqErrMsg, badRequest);
       break;
     case unauthorized:
       handler(authErrMsg, unauthorized);
@@ -69,22 +69,22 @@ export const handleErrors = (
     case forbidden:
       handler(forbiddenErrMsg, forbidden);
       break;
-    case not_found:
+    case notFound:
       if (optionsObj.concurrentReserv)
-        handler(concurrentReservErrMsg, not_found);
-      else handler(notFoundErrMsg, not_found);
+        handler(concurrentReservErrMsg, notFound);
+      else handler(notFoundErrMsg, notFound);
       break;
     case conflict:
       handler(conflictErrMsg, conflict);
       break;
-    case unprocessable_entity:
-      handler(validationErrMsg, unprocessable_entity);
+    case unprocessableEntity:
+      handler(validationErrMsg, unprocessableEntity);
       break;
-    case internal_server_error:
-      handler(serverErrMsg, internal_server_error);
+    case internalServerError:
+      handler(serverErrMsg, internalServerError);
       break;
     default:
-      handler(serverErrMsg, internal_server_error);
+      handler(serverErrMsg, internalServerError);
   }
 
   return;

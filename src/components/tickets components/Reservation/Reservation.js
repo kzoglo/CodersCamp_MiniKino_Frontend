@@ -3,18 +3,18 @@ import React, { Component } from 'react';
 import { scrollTop } from '../../../assistive functions';
 import redirectError from '../../../services/errors handling/redirectError';
 import { handleErrors } from '../../../services/errors handling/handleErrors';
-import baseFetch from '../../../services/apis/baseFetch';
+import baseFetch from '../../../services/API/v1/baseFetch';
 import {
   isEqual as isUserLoggedIn,
   isEqual as isMovieFetched,
 } from '../../../services/predicates';
 import { getItem as getId } from '../../../services/localStorage';
 import { getItem as getToken } from '../../../services/localStorage';
-import { LogInNeeded } from '../../conditional_components/LogInNeeded/LogInNeeded';
-import Loading from '../../conditional_components/Loading/Loading';
+import { LogInNeeded } from '../../conditional components/LogInNeeded/LogInNeeded';
+import Loading from '../../conditional components/Loading/Loading';
 import Movie from './parts/Movie/Movie';
 import BuyTicket from './parts/BuyTicket/BuyTicket';
-import '../../tickets_components/MyTickets/MyTickets.css';
+import '../../tickets components/MyTickets/MyTickets.css';
 import './Reservation.css';
 
 /*** Component ***/
@@ -96,7 +96,6 @@ class Reservation extends Component {
     }
   };
 
-  /* Render */
   render() {
     return this.renderReservation();
   }
