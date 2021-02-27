@@ -8,10 +8,12 @@ const LoadingSpinner = ({
 }) => {
   return (
     <div
-      ref={reference}
-      className={`loadingSpinner-outerWrapper invisible ${outerWrapper}`}
+      className={`loadingSpinner-outerWrapper ${outerWrapper}`}
     >
-      <div className={`loadingSpinner-wrapper ${spinnerWrapper}`}>
+      <div 
+        ref={reference}
+        className={`loadingSpinner-wrapper hide ${spinnerWrapper} `}
+      >
         <div className={`loadingSpinner-spinner ${spinner}`}></div>
       </div>
     </div>
