@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/CodersCamp_MiniKino_Frontend/static/css/main.f5d21b3b.chunk.css",
+    "main.css": "/CodersCamp_MiniKino_Frontend/static/css/main.be64d7f6.chunk.css",
     "main.js": "/CodersCamp_MiniKino_Frontend/static/js/main.d0b2038c.chunk.js",
     "main.js.map": "/CodersCamp_MiniKino_Frontend/static/js/main.d0b2038c.chunk.js.map",
     "runtime-main.js": "/CodersCamp_MiniKino_Frontend/static/js/runtime-main.280b84fa.js",
@@ -8,15 +8,15 @@
     "static/js/2.3ae13fcb.chunk.js": "/CodersCamp_MiniKino_Frontend/static/js/2.3ae13fcb.chunk.js",
     "static/js/2.3ae13fcb.chunk.js.map": "/CodersCamp_MiniKino_Frontend/static/js/2.3ae13fcb.chunk.js.map",
     "index.html": "/CodersCamp_MiniKino_Frontend/index.html",
-    "precache-manifest.31df2298aaef4b95eff98e1f4053fef7.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.31df2298aaef4b95eff98e1f4053fef7.js",
+    "precache-manifest.825afc847d3ff30574823b4b32856ca5.js": "/CodersCamp_MiniKino_Frontend/precache-manifest.825afc847d3ff30574823b4b32856ca5.js",
     "service-worker.js": "/CodersCamp_MiniKino_Frontend/service-worker.js",
-    "static/css/main.f5d21b3b.chunk.css.map": "/CodersCamp_MiniKino_Frontend/static/css/main.f5d21b3b.chunk.css.map",
+    "static/css/main.be64d7f6.chunk.css.map": "/CodersCamp_MiniKino_Frontend/static/css/main.be64d7f6.chunk.css.map",
     "static/js/2.3ae13fcb.chunk.js.LICENSE.txt": "/CodersCamp_MiniKino_Frontend/static/js/2.3ae13fcb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.280b84fa.js",
     "static/js/2.3ae13fcb.chunk.js",
-    "static/css/main.f5d21b3b.chunk.css",
+    "static/css/main.be64d7f6.chunk.css",
     "static/js/main.d0b2038c.chunk.js"
   ]
 }
