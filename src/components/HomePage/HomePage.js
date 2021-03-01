@@ -15,6 +15,8 @@ import './HomePage.css';
 
 /*** Component ***/
 class HomePage extends Component {
+  ageOfNewFMovie = 2;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +64,8 @@ class HomePage extends Component {
     const recommendedMovies = [];
 
     movies.forEach((movie) => {
-      isHigherEqual(movie.year, new Date().getFullYear() - 1)
+      const movieProductionDate = new Date().getFullYear() - this.ageOfNewFMovie;
+      isHigherEqual(movie.year, movieProductionDate)
         ? newMovies.push(movie)
         : recommendedMovies.push(movie);
     });

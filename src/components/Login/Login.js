@@ -187,10 +187,8 @@ class Login extends Component {
             >
               <LoadingSpinner
                 reference={this.loginSpinnerRef}
-                classes={{
-                  outerWrapper: 'login-spinner-outerWrapper',
-                  spinner: 'login-spinner',
-                }}
+                outerWrapper='login-spinner-outerWrapper'
+                spinner='login-spinner'
               />
             </LoginBtn>
             <p

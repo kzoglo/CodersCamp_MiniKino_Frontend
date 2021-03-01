@@ -475,10 +475,8 @@ class BuyTicket extends Component {
           >
             <LoadingSpinner
               reference={this.reservationSpinnerRef}
-              classes={{
-                outerWrapper: 'reservSpinner-outerWrapper',
-                spinner: 'reservSpinner',
-              }}
+              outerWrapper='reservSpinner-outerWrapper'
+              spinner='reservSpinner'
             />
           </ReservationBtn>
 

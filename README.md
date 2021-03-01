@@ -42,6 +42,10 @@ npm test
 ```
 
 ```sh
+npm test-watch
+```
+
+```sh
 npm run test-unit
 ```
 
