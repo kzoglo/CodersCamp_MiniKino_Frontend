@@ -2,6 +2,8 @@
 const classes = {
   invisible: 'invisible',
   visible: 'visible',
+  show: 'show',
+  hide: 'hide',
 };
 
 /*** Assistive Functions ***/
@@ -37,17 +39,17 @@ export const modifyClasses = (
 };
 
 export const startLoading = (element, classesToDel = [], classesToAdd = []) => {
-  const { visible, invisible } = classes;
+  const { show, hide, visible, invisible } = classes;
   modifyClasses(
     element,
-    [invisible, ...classesToDel],
-    [visible, ...classesToAdd]
+    [hide, invisible, ...classesToDel],
+    [show, visible, ...classesToAdd]
   );
 };
 
 export const finishLoading = (element) => {
-  const { visible, invisible } = classes;
-  modifyClasses(element, [visible], [invisible]);
+  const { show, hide, visible, invisible } = classes;
+  modifyClasses(element, [show, visible], [hide, invisible]);
 };
 
 export const disableElement = (
