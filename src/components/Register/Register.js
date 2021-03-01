@@ -348,10 +348,8 @@ class Register extends Component {
             >
               <LoadingSpinner
                 reference={this.registerSpinnerRef}
-                classes={{
-                  outerWrapper: 'registerSpinner-outerWrapper',
-                  spinner: 'registerSpinner',
-                }}
+                outerWrapper='registerSpinner-outerWrapper'
+                spinner='registerSpinner'
               />
             </RegisterBtn>
             <p

@@ -8,9 +8,11 @@ import './ScreeningInfo.css';
 const ScreeningInfo = ({
   seat,
   screening,
-  classes: { timeClass, seatClass, wrapperClass },
+  timeClass,
+  seatClass,
+  wrapperClass,
 }) => {
-  if (!isSeatDefined(seat, undefined)) {
+  if (!isSeatDefined(seat, null)) {
     return (
       <div className={`${wrapperClass} screeningInfo-wrapper`}>
         <p className={`${timeClass} screeningInfo-time`}>
@@ -26,17 +28,14 @@ const ScreeningInfo = ({
         </p>
       </div>
     );
-  }
-
-  return null;
+  } 
+  else return null;
 };
 
 ScreeningInfo.defaultProps = {
-  classes: {
-    timeClass: '',
-    seatClass: '',
-    wrapperClass: '',
-  },
+  timeClass: '',
+  seatClass: '',
+  wrapperClass: '',
 };
 
 export default ScreeningInfo;

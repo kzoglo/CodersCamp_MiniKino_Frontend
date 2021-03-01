@@ -8,7 +8,10 @@ const ContactWay = ({
   header,
   content: { main, secondary },
   communication: { way, resource },
-  classes: { wrapperClass, iconClass, titleClass, textsClass },
+  wrapperClass,
+  iconClass,
+  titleClass,
+  textsClass 
 }) => {
   return (
     <div className={`contactWay-wrapper ${wrapperClass}`}>
@@ -36,12 +39,10 @@ ContactWay.defaultProps = {
     way: 'e-mail:',
     resource: 'minikino@gmail.com',
   },
-  classes: {
-    wrapperClass: '',
-    iconClass: '',
-    titleClass: '',
-    textsClass: '',
-  },
+  wrapperClass: '',
+  iconClass: '',
+  titleClass: '',
+  textsClass: '',
 };
 
 export default ContactWay;
