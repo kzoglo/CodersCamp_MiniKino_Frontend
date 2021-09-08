@@ -1,29 +1,27 @@
-import React from 'react';
+import { Component } from 'react';
 
-import { scrollTop } from '../../assistive functions';
-import { clearLocalStorage, getItem } from '../../services/localStorage';
+import { scrollTop } from '../../../tools/utils';
+import localStorage from '../../services/localStorage';
 import './AutoLogout.css';
+import { DefProps } from './enums';
+import { IAutoLogoutProps } from './types';
 
-/*** Component ***/
-class AutoLogout extends React.Component {
+class AutoLogout extends Component<IAutoLogoutProps> {
   /* Lifecycle Methods */
   componentDidMount() {
     scrollTop();
-    clearInterval(getItem('intervalId'));
-    clearLocalStorage();
+    clearInterval(localStorage.getItem('intervalId'));
+    localStorage.clearLocalStorage();
   }
 
   render() {
+    const { infoText = DefProps.INFO_TEXT } = this.props;
     return (
       <div className='autologout-wrapper'>
-        <h1 className='autologout-info'>{this.props.infoText}</h1>
+        <h1 className='autologout-info'>{infoText}</h1>
       </div>
     );
   }
 }
-
-AutoLogout.defaultProps = {
-  infoText: 'Zostałeś automatycznie wylogowany.',
-};
 
 export default AutoLogout;
