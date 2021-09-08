@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { scrollTop } from '../../../assistive functions';
+import { scrollTop } from '../../../../tools/utils';
 import redirectError from '../../../services/errors handling/redirectError';
 import { handleErrors } from '../../../services/errors handling/handleErrors';
 import baseFetch from '../../../services/API/v1/baseFetch';

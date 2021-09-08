@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { scrollTop } from '../../../assistive functions';
+import { scrollTop } from '../../../../tools/utils';
 import './LogInNeeded.css';
 
 export const LogInNeeded = ({ logInText }) => {

@@ -27,7 +27,7 @@ import {
   finishLoading,
   disableElement as disableLoginBtn,
   enableElement as enableLoginBtn,
-} from '../../assistive functions';
+} from '../../../tools/utils';
 import './Login.css';
 
 /*** Variables ***/

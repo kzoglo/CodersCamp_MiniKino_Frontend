@@ -12,7 +12,7 @@ import {
   finishLoading,
   enableElement as enableBtn,
   disableElement as disableBtn,
-} from '../../../../../assistive functions';
+} from '../../../../../../tools/utils';
 import Select from '../../../../low-level components/Select/Select';
 import { SubmitBtn as ReservationBtn } from '../../../../low-level components/SubmitBtn/SubmitBtn';
 import {

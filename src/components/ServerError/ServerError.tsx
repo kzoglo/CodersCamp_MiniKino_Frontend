@@ -2,7 +2,7 @@ import React from 'react';
 
 import { isEqual } from '../../services/predicates';
 import './ServerError.css';
-import { scrollTop } from '../../assistive functions';
+import { scrollTop } from '../../../tools/utils';
 
 /*** Component ***/
 class ServerError extends React.PureComponent {

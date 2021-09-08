@@ -5,7 +5,7 @@ import {
   validateEmail,
   validateCommonTextInput,
   validateSurname,
-} from '../../assistive functions';
+} from '../../../tools/utils';
 import timeout from '../../services/timeout';
 import { handleErrors } from '../../services/errors handling/handleErrors';
 import baseFetch from '../../services/API/v1/baseFetch';
@@ -18,7 +18,7 @@ import {
   finishLoading,
   enableElement as enableRegisterBtn,
   disableElement as disableRegisterBtn,
-} from '../../assistive functions';
+} from '../../../tools/utils';
 
 import './Register.css';
 

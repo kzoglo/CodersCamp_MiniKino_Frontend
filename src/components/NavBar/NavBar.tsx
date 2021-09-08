@@ -13,7 +13,7 @@ import {
   addClasses,
   removeClasses,
   modifyClasses,
-} from '../../assistive functions';
+} from '../../../tools/utils';
 import linksList from './parts/linksList';
 import './NavBar.css';
 

@@ -5,7 +5,7 @@ import pricesData from './parts/pricesData';
 import './Prices.css';
 
 /*** Component ***/
-const Prices = (props) => {
+const Prices = (): JSX.Element => {
   return (
     <div className="prices-wrapper">
       <div className="prices-content">
