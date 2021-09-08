@@ -1,33 +1,29 @@
-import React from 'react';
+import { PureComponent, createRef } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
 import timeout from '../../services/timeout';
-import {
-  getItem as getExpiresIn,
-  clearLocalStorage,
-} from '../../services/localStorage';
-import { setItem as setAutoLogoutTimerId } from '../../services/localStorage';
-import { setItem as setAutoLogoutReminderTimerId } from '../../services/localStorage';
+import localStorage from '../../services/localStorage'; 
 import AutoLogoutReminder from '../AutoLogoutReminder/AutoLogoutReminder';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 import routingList from '../App/routing/routingList';
 import './App.css';
+import { IProps, IState } from './types';
+import {TimerValues} from '../../../enums';
 
-/*** Component ***/
-class App extends React.PureComponent {
-  constructor(props) {
+class App extends PureComponent<IProps, IState> {
+  private mainContainerRef = createRef<HTMLDivElement>();
+
+  constructor(props: IProps) {
     super(props);
     this.state = {
       reminder: false,
     };
-    this.appWrapperRef = React.createRef();
-    this.mainContainerRef = React.createRef();
   }
 
   /* Lifecycle Methods */
   componentDidMount() {
-    const expiresIn = getExpiresIn('expiresIn');
+    const expiresIn = localStorage.getItem('expiresIn');
     if (expiresIn) {
       this.handleAutoLogout(expiresIn);
       this.handleAutoLogoutReminder(expiresIn);
@@ -35,42 +31,38 @@ class App extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    const expiresIn = getExpiresIn('expiresIn');
+    const expiresIn = localStorage.getItem('expiresIn');
     this.handleAutoLogoutReminder(expiresIn);
   }
 
   /* Assistive Methods */
-  handleAutoLogout = (expiresIn) => {
+  handleAutoLogout = (expiresIn: number) => {
     if (Date.now() > expiresIn) {
-      clearLocalStorage();
+      localStorage.clearLocalStorage();
     } else {
       const autoLogoutRedirect = () => {
         this.props.history.push('/autologout');
       };
-      const autoLogoutTimerId = timeout(
-        autoLogoutRedirect,
-        expiresIn - Date.now()
-      );
-      setAutoLogoutTimerId('autoLogoutTimerId', autoLogoutTimerId);
+      const autoLogoutTimerId = timeout(autoLogoutRedirect, expiresIn - Date.now());
+      localStorage.setItem('autoLogoutTimerId', autoLogoutTimerId);
     }
   };
 
-  handleAutoLogoutReminder = (expiresIn) => {
-    const timeToShowReminder = 300000;
-    if (expiresIn && Date.now() - timeToShowReminder < expiresIn) {
-      const autoLogoutReminderCb = () => {
+  handleAutoLogoutReminder = (expiresIn: number) => {
+    const timeToShowReminder = TimerValues.TIME_TO_SHOW_REMINDER;
+    if (!expiresIn) {
+      this.setState({ reminder: false });
+      return;
+    }
+    if (Date.now() - timeToShowReminder < expiresIn) {
+      const autoLogoutReminderCb = (): void => {
         this.setState({ reminder: true });
       };
       const autoLogoutReminderTimerId = timeout(
         autoLogoutReminderCb,
         expiresIn - Date.now() - timeToShowReminder
       );
-      setAutoLogoutReminderTimerId(
-        'autoLogoutReminderTimerId',
-        autoLogoutReminderTimerId
-      );
-    } else if (!expiresIn) {
-      this.setState({ reminder: false });
+      localStorage.setItem('autoLogoutReminderTimerId', autoLogoutReminderTimerId);
     }
   };
 
