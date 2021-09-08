@@ -7,10 +7,11 @@ import Prices from '../../Prices/Prices';
 import Reservation from '../../tickets components/Reservation/Reservation';
 import ServerError from '../../ServerError/ServerError';
 import AutoLogout from '../../AutoLogout/AutoLogout';
+import { IRoutingData, IRoutingList } from './types';
 
 export const appName = '';
 
-const routingData = [
+const routingData: IRoutingData[] = [
   { path: `/`, component: HomePage },
   { path: `/contact`, component: ContactUs },
   { path: `/register`, component: Register },
@@ -22,7 +23,7 @@ const routingData = [
   { path: `/autologout`, component: AutoLogout },
 ];
 
-const routingList = routingData.map(({ path, component }) => {
+const routingList: IRoutingList[] = routingData.map(({ path, component }) => {
   return { path: `${appName}${path}`, exact: true, component };
 });
 
