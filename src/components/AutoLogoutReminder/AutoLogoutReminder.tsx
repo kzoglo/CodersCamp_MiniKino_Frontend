@@ -1,38 +1,24 @@
-import React, { Component } from 'react';
+import { Component, createRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
-import {
-  clearLocalStorage,
-  getItem as getTokenExpiration,
-  setItem,
-} from '../../services/localStorage';
-import { getItem } from '../../services/localStorage';
-import { getItem as getAutoLogoutTimerId } from '../../services/localStorage';
-import { getItem as getAutoLogoutReminderTimerId } from '../../services/localStorage';
-import { addClasses, modifyClasses } from '../../assistive functions';
+import localStorage from '../../services/localStorage';
+import { addClasses, modifyClasses } from '../../../tools/utils';
 import './AutoLogoutReminder.css';
+import { IProps, IState } from './types';
+import {DefProps} from './enums';
+import { ClassesToManipulate } from '../../../enums';
 
-/*** Variables ***/
-const classes = {
-  hide: 'hide',
-  show: 'show',
-  grid: 'grid',
-  cursorPointer: 'cursor-pointer',
-  submitBtn: 'submitBtn',
-};
+class AutoLogoutReminder extends Component<IProps, IState> {
+  private wrapperRef = createRef<HTMLDivElement>();
+  private redirectWrapperRef = createRef<HTMLDivElement>();
+  private renewWrapperRef = createRef<HTMLDivElement>();
 
-/*** Component ***/
-class AutoLogoutReminder extends Component {
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
-      time: getTokenExpiration('expiresIn') - Date.now(),
+      time: localStorage.getItem('expiresIn') - Date.now(),
     };
-    this.wrapperRef = React.createRef();
-    this.redirectWrapperRef = React.createRef();
-    this.renewWrapperRef = React.createRef();
   }
 
   /* Lifecycle Methods */
@@ -55,39 +41,46 @@ class AutoLogoutReminder extends Component {
         return { time: prevState.time - 1000 };
       });
     }, 1000);
-    setItem('intervalId', intervalId);
+    localStorage.setItem('intervalId', intervalId);
   };
 
   cancelInterval = () => {
-    clearInterval(getItem('intervalId'));
+    clearInterval(localStorage.getItem('intervalId'));
   };
 
   closeWindow = () => {
-    const { hide, grid } = classes;
+    const { HIDE, GRID } = ClassesToManipulate;
     this.cancelInterval();
-    modifyClasses(this.wrapperRef.current, grid, hide);
+    modifyClasses(this.wrapperRef.current, GRID, HIDE);
   };
 
   renewSession = () => {
-    const { hide, show } = classes;
+    const { HIDE, SHOW } = ClassesToManipulate;
     this.cancelInterval();
-    modifyClasses(this.redirectWrapperRef.current, hide, show);
-    addClasses(this.renewWrapperRef.current, hide);
+    modifyClasses(this.redirectWrapperRef.current, HIDE, SHOW);
+    addClasses(this.renewWrapperRef.current, HIDE);
   };
 
   agreeToRenew = () => {
     this.closeWindow();
-    clearTimeout(getAutoLogoutTimerId('autoLogoutTimerId'));
-    clearTimeout(getAutoLogoutReminderTimerId('autoLogoutReminderTimerId'));
-    clearLocalStorage();
+    clearTimeout(localStorage.getItem('autoLogoutTimerId'));
+    clearTimeout(localStorage.getItem('autoLogoutReminderTimerId'));
+    localStorage.clearLocalStorage();
     this.props.history.push('/Login');
   };
 
   render() {
-    const { grid, hide, submitBtn, cursorPointer } = classes;
+    const {
+      agreeToRenewBtn = DefProps.AGREE_TO_RENEW_BTN,
+      renewSessionText = DefProps.RENEW_SESSION_TEXT,
+      renewSessionBtn = DefProps.RENEW_SESSION_BTN,
+      redirectToLoginText = DefProps.REDIRECT_TO_LOGIN_TEXT,
+      cancelRenewBtn = DefProps.CANCEL_RENEW_BTN,
+    } = this.props;
+    const { HIDE, GRID, SUBMIT_BTN, CURSOR_POINTER } = ClassesToManipulate;
     return (
       <div
-        className={`autoLogoutReminder-wrapper ${grid}`}
+        className={`autoLogoutReminder-wrapper ${GRID}`}
         ref={this.wrapperRef}
       >
         <div
@@ -97,13 +90,13 @@ class AutoLogoutReminder extends Component {
           <div className='autoLogoutReminder-reminder-innerWrapper'>
             <div className='autoLogoutReminder-reminder-content'>
               <p className='autoLogoutReminder-reminder-text'>{`Za ${this.formatCountdown()} min. ${
-                this.props.renewSessionText
+                renewSessionText
               }`}</p>
               <button
-                className={`${submitBtn} ${cursorPointer}`}
+                className={`${SUBMIT_BTN} ${CURSOR_POINTER}`}
                 onClick={this.renewSession}
               >
-                {this.props.renewSessionBtn}
+                {renewSessionBtn}
               </button>
             </div>
             <FontAwesomeIcon icon={faTimes} onClick={this.closeWindow} />
@@ -111,23 +104,23 @@ class AutoLogoutReminder extends Component {
         </div>
 
         <div
-          className={`autoLogoutReminder-redirect-wrapper ${hide}`}
+          className={`autoLogoutReminder-redirect-wrapper ${HIDE}`}
           ref={this.redirectWrapperRef}
         >
           <div className='autoLogoutReminder-redirect-innerWrapper'>
-            <p>{this.props.redirectToLoginText}</p>
+            <p>{redirectToLoginText}</p>
             <div className='autoLogoutReminder-btns-wrapper'>
               <button
-                className={`${submitBtn} ${cursorPointer}`}
+                className={`${SUBMIT_BTN} ${CURSOR_POINTER}`}
                 onClick={this.agreeToRenew}
               >
-                {this.props.agreeToRenewBtn}
+                {agreeToRenewBtn}
               </button>
               <button
-                className={`${submitBtn} ${cursorPointer}`}
+                className={`${SUBMIT_BTN} ${CURSOR_POINTER}`}
                 onClick={this.closeWindow}
               >
-                {this.props.cancelRenewBtn}
+                {cancelRenewBtn}
               </button>
             </div>
           </div>
@@ -136,14 +129,5 @@ class AutoLogoutReminder extends Component {
     );
   }
 }
-
-AutoLogoutReminder.defaultProps = {
-  renewSessionText: 'zostaniesz wylogowany.',
-  redirectToLoginText:
-    'Teraz zostaniesz wylogowany i przeniesiony do strony logowania.',
-  renewSessionBtn: 'Odnów sesję',
-  agreeToRenewBtn: 'Kontynuuj',
-  cancelRenewBtn: 'Przerwij',
-};
 
 export default withRouter(AutoLogoutReminder);
