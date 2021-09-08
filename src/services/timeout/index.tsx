@@ -1,5 +1,5 @@
-const timeout = (func, time) => {
-  const id = setTimeout(func, time);
+const timeout = (handler: Function, time: number) => {
+  const id = setTimeout(handler, time);
   return id;
 };
 
