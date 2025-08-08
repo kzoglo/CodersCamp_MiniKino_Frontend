@@ -8,10 +8,10 @@
     "deploy": "gh-pages -d build",
     "start": "NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --verbose --watchAll=false --env=jest-environment-jsdom-sixteen",
-    "test-watch": "react-scripts test --verbose --env=jest-environment-jsdom-sixteen --watchAll",
+    "test": "react-scripts test --verbose --watchAll=false",
+    "test-watch": "react-scripts test --verbose --watchAll",
     "test-unit": "npm test unit",
-    "test-with-coverage": "react-scripts test --coverage --watchAll=false --env=jest-environment-jsdom-sixteen",
+    "test-with-coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -60,7 +60,6 @@
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",
-    "gh-pages": "^6.1.1",
-    "jest-environment-jsdom-sixteen": "^2.0.0"
+    "gh-pages": "^6.1.1"
   }
 }

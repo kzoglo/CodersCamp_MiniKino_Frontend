@@ -20,7 +20,7 @@ Object.defineProperty(global.Element.prototype, 'innerText', {
 });
 
 describe('MovieInfo', () => {
-  test('should on click change text of a span with a class of "movieInfo-descrSpan" from a short description of a movie to a long description and reversely, also should simultaneously change text of a span with a class of "movieInfo-tooltipText" from "Rozwiń opis" to "Zwiń opis".', () => {
+  test('should on click change text of a span with a class of "movieInfo-descrSpan" from a short description of a movie to a long description and reversely, also should simultaneously change text of a span with a class of "movieInfo-tooltipText" from "Rozwiń opis" to "Zwiń opis".', async () => {
     const props = {
       movie: {
         description:
@@ -38,12 +38,12 @@ describe('MovieInfo', () => {
     expect(descrSpan.innerHTML).toBe('Gdy Czkawka zmaga się zadaniam...');
     expect(tooltipSpan.innerHTML).toBe('Rozwiń opis');
 
-    userEvent.click(paraContainer);
+    await userEvent.click(paraContainer);
 
     expect(descrSpan.innerHTML).toBe(props.movie.description);
     expect(tooltipSpan.innerHTML).toBe('Zwiń opis');
 
-    userEvent.click(paraContainer);
+    await userEvent.click(paraContainer);
 
     expect(descrSpan.innerHTML).toBe('Gdy Czkawka zmaga się zadaniam...');
     expect(tooltipSpan.innerHTML).toBe('Rozwiń opis');
