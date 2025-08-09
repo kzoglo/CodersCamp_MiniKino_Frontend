@@ -31,6 +31,9 @@ const classes = {
   cursorPointer: 'cursor-pointer',
 };
 
+const rowDefaultOptionText = 'Wybierz rząd'
+const seatDefaultOptionText = 'Wybierz miejsce'
+
 /*** Component ***/
 class BuyTicket extends Component {
   constructor(props) {
@@ -67,6 +70,7 @@ class BuyTicket extends Component {
   async componentDidMount() {
     startLoading(this.loadingSpinnerRef.current);
     let screenings;
+
     try {
       const resp = await baseFetch({
         path: `api/screening/${this.props.movie_id}/${this.props.screening_id}`,
@@ -101,13 +105,12 @@ class BuyTicket extends Component {
     this.setState(newState, cb);
   };
 
-  setRowsList = () => {
-    return this.state.rowsWithSeats
-      .map(({ row, seats }) => {
-        const isRowNotEmpty = !seats.every((seat) => isEqual(seat, null));
-        if (isRowNotEmpty) return row;
-      })
-      .filter((row) => row);
+  setRowsList = (rowsWithSeats) => {
+    const result = rowsWithSeats
+      .filter(({ seats }) => seats.length)
+      .map(({ row }) => row)
+
+    return result;
   };
 
   checkAvailableSeats = async (cb) => {
@@ -128,8 +131,8 @@ class BuyTicket extends Component {
     this.setAnyState(
       { takenSeats: setTakenSeats(existingReservations) },
       async () => {
-        await this.calculateFreeSeats();
-        cb();
+        const rowsWithSeats = await this.calculateFreeSeats();
+        await cb(rowsWithSeats);
       }
     );
   };
@@ -139,6 +142,7 @@ class BuyTicket extends Component {
       startLoading(this.loadingSpinnerRef.current);
 
       let screening;
+
       try {
         const resp = await baseFetch({
           path: `api/screening/${this.state.movie_id}/${this.state.screening_id}`,
@@ -148,11 +152,12 @@ class BuyTicket extends Component {
         handleErrors(resp.status);
 
         screening = await resp.json();
+
       } catch (err) {
         redirectError(this.props.history, err);
       }
 
-      const setNewState = () => {
+      const setNewState = (calculatedRowsWithSeats) => {
         this.setAnyState(
           {
             ...restartRowAndSeatUI(),
@@ -161,7 +166,8 @@ class BuyTicket extends Component {
             this.setAnyState(
               {
                 room: screening.room_id.name,
-                rowsList: this.setRowsList(),
+                rowsWithSeats: calculatedRowsWithSeats,
+                rowsList: this.setRowsList(calculatedRowsWithSeats),
               },
               () => {
                 finishLoading(this.loadingSpinnerRef.current);
@@ -234,15 +240,15 @@ class BuyTicket extends Component {
               ];
             }
           });
+
+          seats
+            .sort()
+            .pop();
         }
       });
     });
 
-    this.setAnyState({ rowsWithSeats }, () => {
-      this.setState({
-        rowsList: this.setRowsList(),
-      });
-    });
+    return rowsWithSeats;
   };
 
   checkConcurrentReservation = async () => {
@@ -315,17 +321,51 @@ class BuyTicket extends Component {
       );
 
       // Recalculates seats, after successful reservation
-      const setStateAfterNewReserv = () => {
-        const freeSeats = this.state.rowsWithSeats[this.state.choosenRow - 1]
-          .seats;
+      const setStateAfterNewReserv = (rowsWithSeats) => {
+        const freeSeats = rowsWithSeats[this.state.choosenRow - 1].seats;
+
+        const newState = {
+          freeSeats,
+          choosenSeat: null,
+          rowsWithSeats,
+        }
+
         this.setAnyState(
-          {
-            freeSeats,
-            choosenSeat: null,
-          },
+          newState,
           () => {
-            if (this.state.freeSeats.every((seat) => isEqual(seat, null)))
-              this.handleRowOptionChange();
+            const areAllSeatsInRowTaken = this.state.freeSeats.length === 0
+            const rowsList = this.setRowsList(rowsWithSeats)
+
+            if (areAllSeatsInRowTaken) {
+              this.setAnyState({ freeSeats: [] }, () => {
+                this.setAnyState({
+                  freeSeats,
+                  choosenRow: null,
+                  choosenSeat: null,
+                  afterSubmitInfo: '',
+                  rowsList,
+                });
+              });
+
+              this.selectRowRef.current.value = rowDefaultOptionText
+              setTimeout(() => {
+                this.selectSeatRef.current.value = 'Brak dostępnych terminów'
+              }, 0)
+              
+            }
+
+            if (!rowsList.length) {
+              this.setAnyState({ freeSeats: [] }, () => {
+                this.setAnyState({
+                  ...restartRowAndSeatUI()
+                });
+              });
+
+              this.selectRowRef.current.value = 'Brak dostępnych terminów'
+              this.selectSeatRef.current.value = 'Brak dostępnych terminów'
+            }
+
+            this.selectSeatRef.current.value = seatDefaultOptionText
             this.enableReservation();
           }
         );
@@ -360,15 +400,17 @@ class BuyTicket extends Component {
   };
 
   handleRowOptionChange = () => {
-    let choosenRow = Number(this.selectRowRef.current.value);
+    const selectedRow = Number(this.selectRowRef.current.value)
+    let choosenRow = selectedRow.toString() === 'NaN' ? null : selectedRow;
+
     let freeSeats;
 
     // Validation of a choosen row
-    if (!isEqual(choosenRow.toString(), 'NaN')) {
-      freeSeats = this.state.rowsWithSeats[choosenRow - 1].seats;
-    } else {
+    if (isEqual(choosenRow, null)) {
       choosenRow = null;
       freeSeats = [];
+    } else {
+      freeSeats = this.state.rowsWithSeats[choosenRow - 1].seats;
     }
 
     this.setAnyState({ freeSeats: [] }, () => {
@@ -381,8 +423,9 @@ class BuyTicket extends Component {
     });
   };
 
-  handleSeatOptionChange = (e) => {
-    const choosenSeat = Number(this.selectSeatRef.current.value);
+  handleSeatOptionChange = () => {
+    const selectedSeat = Number(this.selectSeatRef.current.value)
+    const choosenSeat = selectedSeat.toString() === 'NaN' ? null : selectedSeat;
     this.setAnyState({ choosenSeat, afterSubmitInfo: '' });
   };
 
@@ -448,7 +491,7 @@ class BuyTicket extends Component {
             selectNameProp='row'
             classes='row-select'
             labelTextProp='Rząd:'
-            optionTitleProp='Wybierz rząd'
+            optionTitleProp={rowDefaultOptionText}
             dataArr={this.state.rowsList}
             optionContentFunc={(rowNum) => rowNum}
             optionValueFunc={(rowNum) => rowNum}
@@ -460,7 +503,7 @@ class BuyTicket extends Component {
             selectNameProp='seat'
             classes='seat-select'
             labelTextProp='Miejsce:'
-            optionTitleProp='Wybierz miejsce'
+            optionTitleProp={seatDefaultOptionText}
             dataArr={this.state.freeSeats}
             optionContentFunc={(free) => free}
             optionValueFunc={(free) => free}

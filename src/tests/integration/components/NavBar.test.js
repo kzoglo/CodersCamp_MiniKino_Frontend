@@ -2,8 +2,6 @@ import React from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
-import '@testing-library/jest-dom';
 
 import NavBar from '../../../components/NavBar/NavBar';
 
@@ -14,14 +12,15 @@ describe('NavBar', () => {
     window.innerWidth = 1020;
   });
 
-  test('should change background color of a navigation tab, by adding "navBar-activeItem" class, if user click on that tab.', () => {
+  test('should change background color of a navigation tab, by adding "navBar-activeItem" class, if user click on that tab.', async () => {
     const { getByText } = render(
       <Router>
         <NavBar />
       </Router>
     );
     const pricesTab = getByText('Cennik');
-    userEvent.click(pricesTab);
+    
+    await userEvent.click(pricesTab);
 
     expect(pricesTab).toHaveClass('navBar-activeItem');
   });
@@ -71,12 +70,12 @@ describe('NavBar', () => {
     );
     const dropdownIconWrapper = document.body.querySelector('.iconWrapperRef');
 
-    expect(dropdownIconWrapper).toBeEmpty();
+    expect(dropdownIconWrapper).toBeEmptyDOMElement();
 
     window.innerWidth = 650;
     fireEvent(window, new Event('resize'));
 
-    expect(dropdownIconWrapper).not.toBeEmpty();
+    expect(dropdownIconWrapper).not.toBeEmptyDOMElement();
   });
 
   test('should display dropdown navigation and change dropdown icon to cross icon, if user clicks on dropdown icon.', async () => {
@@ -91,7 +90,7 @@ describe('NavBar', () => {
     const icon = document.body.querySelector('.iconWrapperRef svg');
 
     // first click - on rolled-up navigation
-    userEvent.click(icon);
+    await userEvent.click(icon);
 
     expect(navBarWrapper).toHaveClass(
       'visible',
@@ -99,10 +98,10 @@ describe('NavBar', () => {
       'dropdownNav'
     );
     expect(icon).not.toHaveAttribute('data-icon', 'bars');
-    expect(icon).toHaveAttribute('data-icon', 'times');
+    expect(icon).toHaveAttribute('data-icon', 'xmark');
 
     // second click - on expanded navigation
-    userEvent.click(icon);
+    await userEvent.click(icon);
 
     expect(navBarWrapper).not.toHaveClass('visible');
     expect(navBarWrapper).toHaveClass(
@@ -111,7 +110,7 @@ describe('NavBar', () => {
       'navBar-wrapper-animation'
     );
     expect(icon).toHaveAttribute('data-icon', 'bars');
-    expect(icon).not.toHaveAttribute('data-icon', 'times');
+    expect(icon).not.toHaveAttribute('data-icon', 'xmark');
     await waitFor(
       () => expect(navBarWrapper).not.toHaveClass('navBar-wrapper-animation'),
       {
@@ -131,9 +130,9 @@ describe('NavBar', () => {
       .children;
     const navBarWrapperChildrenArr = Array.from(navBarWrapperChildren);
 
-    navBarWrapperChildrenArr.forEach((elem, index) => {
+    navBarWrapperChildrenArr.forEach(async (elem, index) => {
       const hashes = ['#/', '#/prices', '#/mytickets', '#/register', '#/login'];
-      userEvent.click(elem);
+      await userEvent.click(elem);
 
       expect(window.location.hash).toBe(hashes[index]);
     });

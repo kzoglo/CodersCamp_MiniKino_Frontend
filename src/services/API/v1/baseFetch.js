@@ -1,5 +1,3 @@
-export const baseUrl = 'https://mini-kino.herokuapp.com/';
-
 const baseFetch = async ({
   path,
   body = null,
@@ -7,7 +5,7 @@ const baseFetch = async ({
   method = 'GET',
   authToken = '',
 }) => {
-  return await fetch(`${baseUrl}${path}`, {
+  return await fetch(`${process.env.REACT_APP_API_URL}${path}`, {
     method,
     headers: {
       'Access-Control-Allow-Origin': '*',

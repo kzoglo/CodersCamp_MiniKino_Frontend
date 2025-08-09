@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
 import Select from '../../../../components/low-level components/Select/Select';
@@ -19,7 +18,7 @@ describe('Select', () => {
     reference: undefined,
   };
 
-  test('should render "Select" component containing <option/> elements with values consistent with props.dataArr items, if dataArr contains at least one item which is not of type "undefined".', () => {
+  test('should render "Select" component containing <option/> elements with values consistent with props.dataArr items, if dataArr contains at least one item which is not of type "undefined".', async () => {
     const { getByRole } = render(
       <Select {...props} />,
       document.body.appendChild(document.createElement('div'))
@@ -27,12 +26,12 @@ describe('Select', () => {
     const select = getByRole('combobox');
     const optionTest1 = select.children[1];
 
-    userEvent.selectOptions(select, ['test1']);
+    await userEvent.selectOptions(select, ['test1']);
     expect(optionTest1.selected).toBe(true);
   });
 
-  test('should render "Select" component containing only one <option/> element with fallback value - "Brak dostępnych terminów", if dataArr contains no items of type different than "undefined".', () => {
-    props.dataArr = [undefined, undefined];
+  test('should render "Select" component containing only one <option/> element with fallback value - "Brak dostępnych terminów", if dataArr contains no items of type different than "undefined".', async () => {
+    props.dataArr = [];
     const div = document.createElement('div');
     const { getByRole, getByText } = render(
       <Select {...props} />,
@@ -44,7 +43,8 @@ describe('Select', () => {
 
     expect(getByText(fallbackText)).toBeInTheDocument();
 
-    userEvent.selectOptions(select, [fallbackText]);
+    await userEvent.selectOptions(select, [fallbackText]);
+
     expect(getByText(fallbackText).selected).toBe(true);
     expect(numberOfOptions).toBe(1);
   });

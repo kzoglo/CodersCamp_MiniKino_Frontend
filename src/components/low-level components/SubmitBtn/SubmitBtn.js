@@ -1,7 +1,7 @@
 import React from 'react';
 import './SubmitBtn.css';
 
-export const SubmitBtn = ({ classes, btnText, reference, children }) => {
+export const SubmitBtn = ({ classes = '', btnText = 'Wyślij', reference, children }) => {
   return (
     <button 
       className={`submitBtn ${classes}`} 
@@ -14,7 +14,3 @@ export const SubmitBtn = ({ classes, btnText, reference, children }) => {
   );
 };
 
-SubmitBtn.defaultProps = {
-  classes: '',
-  btnText: 'Wyślij',
-};

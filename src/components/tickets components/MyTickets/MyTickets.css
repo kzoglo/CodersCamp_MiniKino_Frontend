@@ -16,7 +16,7 @@
   padding-top: 30px;
   padding-bottom: 50px;
   background-color: rgba(0, 0, 0, 0.753);
-  background-image: url('https://kzoglo.github.io/CodersCamp_MiniKino_Frontend/img/myTickets.jpg');
+  background-image: url('../../../assets/img/myTickets.jpg');
   background-size: cover;
   background-blend-mode: darken;
 }

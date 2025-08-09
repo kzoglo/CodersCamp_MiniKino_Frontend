@@ -15,6 +15,7 @@ import {
   modifyClasses,
 } from '../../assistive functions';
 import linksList from './parts/linksList';
+
 import './NavBar.css';
 
 Link.defaultProps = {
@@ -81,7 +82,6 @@ class NavBar extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowResize);
     this.outerWrapperRef.current.removeEventListener(
       'blur',
       this.hideNavLinksWrapperFunc

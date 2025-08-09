@@ -3,10 +3,10 @@ import React from 'react';
 import './LoadingSpinner.css';
 
 const LoadingSpinner = ({
-  outerWrapper,
-  spinnerWrapper,
-  spinner, 
-  reference,
+  outerWrapper = '',
+  spinnerWrapper = '',
+  spinner = '', 
+  reference = '',
 }) => {
   return (
     <div
@@ -20,13 +20,6 @@ const LoadingSpinner = ({
       </div>
     </div>
   );
-};
-
-LoadingSpinner.defaultProps = {
-  reference: '',
-  outerWrapper: '',
-  spinnerWrapper: '',
-  spinner: '',
 };
 
 export default LoadingSpinner;

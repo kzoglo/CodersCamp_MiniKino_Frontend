@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { baseUrl } from '../../../../services/API/v1/baseFetch';
 import { isLower as doesUserHasTickets } from '../../../../services/predicates';
+import { getImageUrl } from '../../../../services/imageService';
 import MoviePoster from '../../../low-level components/MoviePoster/MoviePoster';
 import MovieInfo from '../../../low-level components/MovieInfo/MovieInfo';
 import ScreeningInfo from '../../../low-level components/ScreeningInfo/ScreeningInfo';
@@ -14,7 +14,7 @@ const renderTickets = (reservations, noTicketsText) => {
 
       return (
         <div className='myTickets-innerWrapper' key={_id}>
-          <MoviePoster src={`${baseUrl}${imageUrl}`} alt={title} />
+          <MoviePoster src={getImageUrl(imageUrl)} alt={title} />
 
           <div className='myTickets-utils'>
             <MovieInfo movie={{ description, title }} />
@@ -28,7 +28,7 @@ const renderTickets = (reservations, noTicketsText) => {
 };
 
 /*** Component ***/
-export const Movies = ({ reservations, noTicketsText }) => {
+export const Movies = ({ reservations, noTicketsText = 'Brak biletów do wyświetlenia' }) => {
   return (
     <div className='myTickets-wrapper'>
       {renderTickets(reservations, noTicketsText)}
@@ -36,6 +36,3 @@ export const Movies = ({ reservations, noTicketsText }) => {
   );
 };
 
-Movies.defaultProps = {
-  noTicketsText: 'Brak biletów do wyświetlenia',
-};

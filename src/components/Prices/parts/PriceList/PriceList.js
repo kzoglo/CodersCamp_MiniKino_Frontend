@@ -32,9 +32,9 @@ const renderTable = (rows, rowClass) => {
 const PriceList = ({
   title,
   prices,
-  titleClass,
-  tableClass,
-  rowClass,
+  titleClass = '',
+  tableClass = '',
+  rowClass = '',
 }) => {
   return (
     <>
@@ -44,12 +44,6 @@ const PriceList = ({
       </table>
     </>
   );
-};
-
-PriceList.defaultProps = {
-  titleClass: '',
-  tableClass: '',
-  rowClass: '',
 };
 
 export default PriceList;
