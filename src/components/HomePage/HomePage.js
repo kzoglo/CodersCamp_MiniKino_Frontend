@@ -13,9 +13,11 @@ import Loading from '../conditional components/Loading/Loading';
 import MoviesGroup from './parts/MoviesGroup/MoviesGroup';
 import './HomePage.css';
 
+import jumanjiImg from '../../assets/img/jumanji.png';
+
 /*** Component ***/
 class HomePage extends Component {
-  ageOfNewFMovie = 2;
+  ageOfNewMovie = new Date().getFullYear() - 2018;
 
   constructor(props) {
     super(props);
@@ -64,7 +66,7 @@ class HomePage extends Component {
     const recommendedMovies = [];
 
     movies.forEach((movie) => {
-      const movieProductionDate = new Date().getFullYear() - this.ageOfNewFMovie;
+      const movieProductionDate = new Date().getFullYear() - this.ageOfNewMovie;
       isHigherEqual(movie.year, movieProductionDate)
         ? newMovies.push(movie)
         : recommendedMovies.push(movie);
@@ -139,7 +141,7 @@ class HomePage extends Component {
 
     return (
       <div className='homepage-wrapper'>
-        <img className='homepage-img' src='img/jumanji.png' alt='Home' />
+        <img className='homepage-img' src={jumanjiImg} alt='Home' />
 
         <MoviesGroup
           title='POLECANE FILMY'

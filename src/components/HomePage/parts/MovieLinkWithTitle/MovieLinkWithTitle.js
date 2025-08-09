@@ -1,9 +1,8 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { baseUrl } from '../../../../services/API/v1/baseFetch';
 import { setItem as setMovieId } from '../../../../services/localStorage';
 import { appName } from '../../../App/routing/routingList';
+import { getImageUrl } from '../../../../services/imageService';
 import MoviePoster from '../../../low-level components/MoviePoster/MoviePoster';
 import './MovieLinkWithTitle.css';
 
@@ -17,7 +16,7 @@ const MovieLinkWithTitle = ({ imageUrl, _id, title, available }) => {
         onClick={() => setMovieId('movieId', _id)}
       >
         <MoviePoster
-          src={`${baseUrl}${imageUrl}`}
+          src={getImageUrl(imageUrl)}
           alt={title}
           available={available}
         />
