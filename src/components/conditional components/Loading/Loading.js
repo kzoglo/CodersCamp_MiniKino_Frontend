@@ -16,6 +16,4 @@ const Loading = ({ loadingText = 'Wczytywanie' }) => {
   );
 };
 
-
-
 export default Loading;

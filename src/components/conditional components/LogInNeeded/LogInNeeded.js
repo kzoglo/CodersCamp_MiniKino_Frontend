@@ -7,5 +7,3 @@ export const LogInNeeded = ({ logInText = 'Musisz się zalogować!' }) => {
   scrollTop();
   return <div className="logInNeeded">{logInText}</div>;
 };
-
-

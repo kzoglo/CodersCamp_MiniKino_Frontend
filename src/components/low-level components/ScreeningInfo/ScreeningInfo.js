@@ -32,6 +32,4 @@ const ScreeningInfo = ({
   else return null;
 };
 
-
-
 export default ScreeningInfo;

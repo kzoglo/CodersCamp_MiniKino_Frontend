@@ -11,6 +11,4 @@ const CinemasList = ({ className = 'item', cinemasList }) => {
   });
 };
 
-
-
 export default CinemasList;

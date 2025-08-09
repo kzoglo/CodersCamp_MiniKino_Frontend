@@ -30,6 +30,4 @@ const MoviePoster = ({ src, alt, available, classes = '' }) => {
   return renderMoviePoster();
 };
 
-
-
 export default MoviePoster;
