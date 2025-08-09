@@ -1,12 +1,6 @@
 import React from 'react';
 
-import { isEqual } from '../../../services/predicates';
 import './Select.css';
-
-/*** Assistive Functions ***/
-const doesDataExist = (dataArr) => {
-  return !dataArr.every((elem) => isEqual(elem, undefined));
-};
 
 const renderOptionTags = (
   optionTitleProp,
@@ -15,7 +9,7 @@ const renderOptionTags = (
   optionValueFunc,
   fallbackValueProp
 ) => {
-  if (doesDataExist(dataArr)) {
+  if (dataArr.length) {
     return (
       <>
         <option>{optionTitleProp}</option>
@@ -34,14 +28,14 @@ const renderOptionTags = (
 /*** Component ***/
 const Select = ({
   selectNameProp,
-  classes,
+  classes = '',
   labelTextProp,
   spinnerComp,
   optionTitleProp,
   dataArr,
   optionContentFunc,
   optionValueFunc,
-  fallbackValueProp,
+  fallbackValueProp = 'Brak dostępnych terminów',
   handlerFunc,
   reference,
 }) => {
@@ -67,9 +61,5 @@ const Select = ({
   );
 };
 
-Select.defaultProps = {
-  classes: '',
-  fallbackValueProp: 'Brak dostępnych terminów',
-};
 
 export default Select;

@@ -3,7 +3,7 @@ import React from 'react';
 import { isEqual } from '../../../services/predicates';
 import './MoviePoster.css';
 
-const MoviePoster = ({ src, alt, available, classes }) => {
+const MoviePoster = ({ src, alt, available, classes = '' }) => {
   const image = (
     <img className={`${classes} moviePoster-poster`} src={src} alt={alt} />
   );
@@ -30,8 +30,6 @@ const MoviePoster = ({ src, alt, available, classes }) => {
   return renderMoviePoster();
 };
 
-MoviePoster.defaultProps = {
-  classes: '',
-};
+
 
 export default MoviePoster;

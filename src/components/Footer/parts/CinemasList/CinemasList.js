@@ -1,7 +1,7 @@
 import React from 'react';
 
 /*** Component ***/
-const CinemasList = ({ className, cinemasList }) => {
+const CinemasList = ({ className = 'item', cinemasList }) => {
   return cinemasList.map(({ content }, index) => {
     return (
       <div className={className} key={index}>
@@ -11,8 +11,6 @@ const CinemasList = ({ className, cinemasList }) => {
   });
 };
 
-CinemasList.defaultProps = {
-  className: 'item',
-};
+
 
 export default CinemasList;

@@ -3,7 +3,7 @@ import React from 'react';
 import './Loading.css';
 
 /*** Component ***/
-const Loading = ({ loadingText }) => {
+const Loading = ({ loadingText = 'Wczytywanie' }) => {
   return (
     <div className="loading-wrapper">
       <div>{loadingText}</div>
@@ -16,8 +16,6 @@ const Loading = ({ loadingText }) => {
   );
 };
 
-Loading.defaultProps = {
-  loadingText: 'Wczytywanie',
-};
+
 
 export default Loading;

@@ -31,10 +31,10 @@ const cutMovieDescription = (fullDescr) => {
 /*** Component ***/
 const MovieInfo = ({
   movie: { description, title },
-  titleClass,
-  descriptionClass,
-  descrSpanClass,
-  tooltipTextClass 
+  titleClass = '',
+  descriptionClass = '',
+  descrSpanClass = '',
+  tooltipTextClass = ''
 }) => {
   let refDescr = React.createRef();
   let refTooltip = React.createRef();
@@ -69,13 +69,6 @@ const MovieInfo = ({
       </p>
     </>
   );
-};
-
-MovieInfo.defaultProps = {
-  titleClass: '',
-  descriptionClass: '',
-  descrSpanClass: '',
-  tooltipTextClass: '',
 };
 
 export default MovieInfo;
