@@ -1,7 +1,7 @@
 /*** Component ***/
 .autoLogoutReminder-wrapper {
-  height: 220px;
-  width: 80%;
+  height: 200px;
+  min-width: 200px;
   padding-top: 1em;
   padding-bottom: 10px;
   grid-template-columns: 95%;
@@ -30,6 +30,12 @@
   right: 0px;
 }
 
+.close-icon {
+  position: absolute;
+  right: 5px;
+  top: -10px;
+}
+
 /*** Reminder ***/
 .autoLogoutReminder-reminder-wrapper {
   position: relative;
@@ -48,7 +54,7 @@
 
 p.autoLogoutReminder-reminder-text {
   font-size: 17px;
-  margin-bottom: 55px;
+  margin-bottom: 60px;
 }
 
 .autoLogoutReminder-btns-wrapper {
@@ -66,22 +72,13 @@ p.autoLogoutReminder-reminder-text {
   position: absolute;
   top: 0;
   right: 0;
+  height: max-content;
 }
 
 /*** MEDIA QUERIES ***/
-@media screen and (min-width: 255px) {
-  .autoLogoutReminder-wrapper {
-    height: 185px;
-  }
-}
-
 @media screen and (min-width: 395px) {
-  .autoLogoutReminder-wrapper {
-    height: 130px;
-  }
-
-  p.autoLogoutReminder-reminder-text {
-    margin-bottom: 20px;
+  p.autoLogoutReminder-reminder-continue-text {
+    margin-bottom: 65px;
   }
 
   .autoLogoutReminder-btns-wrapper {
@@ -92,10 +89,17 @@ p.autoLogoutReminder-reminder-text {
 
 @media screen and (min-width: 550px) {
   .autoLogoutReminder-wrapper {
-    height: 140px;
     width: 300px;
     top: 50px;
     right: 20px;
     font-size: 17px;
+  }
+
+  p.autoLogoutReminder-reminder-continue-text {
+    margin-bottom: 55px;
+  }
+
+  p.autoLogoutReminder-reminder-text {
+    margin-bottom: 55px;
   }
 }

@@ -85,6 +85,7 @@ class AutoLogoutReminder extends Component {
 
   render() {
     const { grid, hide, submitBtn, cursorPointer } = classes;
+
     return (
       <div
         className={`autoLogoutReminder-wrapper ${grid}`}
@@ -95,6 +96,7 @@ class AutoLogoutReminder extends Component {
           ref={this.renewWrapperRef}
         >
           <div className='autoLogoutReminder-reminder-innerWrapper'>
+            <FontAwesomeIcon className='close-icon' icon={faTimes} onClick={this.closeWindow} cursor="pointer" />
             <div className='autoLogoutReminder-reminder-content'>
               <p className='autoLogoutReminder-reminder-text'>{`Za ${this.formatCountdown()} min. ${
                 this.props.renewSessionText
@@ -106,7 +108,6 @@ class AutoLogoutReminder extends Component {
                 {this.props.renewSessionBtn}
               </button>
             </div>
-            <FontAwesomeIcon icon={faTimes} onClick={this.closeWindow} />
           </div>
         </div>
 
@@ -115,7 +116,7 @@ class AutoLogoutReminder extends Component {
           ref={this.redirectWrapperRef}
         >
           <div className='autoLogoutReminder-redirect-innerWrapper'>
-            <p>{this.props.redirectToLoginText}</p>
+            <p className='autoLogoutReminder-reminder-continue-text'>{this.props.redirectToLoginText}</p>
             <div className='autoLogoutReminder-btns-wrapper'>
               <button
                 className={`${submitBtn} ${cursorPointer}`}

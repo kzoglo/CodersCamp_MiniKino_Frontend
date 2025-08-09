@@ -11,7 +11,7 @@ export const dateTitleProp = () => {
 };
 
 export const dateFormat = (time) => {
-  return new Date(time).toLocaleString(undefined, {
+  return new Date(time).toLocaleString('pl-PL', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -60,10 +60,11 @@ export const getAllSeats = async (room_id, history) => {
   }
 };
 
-export const setTakenSeats = (data = []) => {
-  return data.map(({ seat_id: { row, seatNumber } }) => {
+export const setTakenSeats = (existingReservations = []) => {
+  const taken = existingReservations.map(({ seat_id: { row, seatNumber } }) => {
     return { row: row, seats: seatNumber };
   });
+  return taken;
 };
 
 export const restartRowAndSeatUI = () => {
