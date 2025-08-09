@@ -10,7 +10,7 @@ const IMAGE_CONFIG = {
   },
   production: {
     // TODO - change to production URL
-    baseUrl: process.env.REACT_APP_S3_URL || 'https://your-bucket.s3.amazonaws.com',
+    baseUrl: process.env.REACT_APP_S3_URL || 'http://localhost:9000',
     bucketName: process.env.REACT_APP_S3_BUCKET || 'movies'
   }
 };
