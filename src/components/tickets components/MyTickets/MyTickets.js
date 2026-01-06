@@ -32,7 +32,7 @@ export class MyTickets extends Component {
     ) {
       try {
         const resp = await baseFetch({
-          path: `api/reservation/${this.state.user_id}/none`,
+          path: `/api/reservation/${this.state.user_id}/none`,
           authToken: getToken('token'),
         });
 

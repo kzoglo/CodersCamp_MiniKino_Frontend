@@ -143,7 +143,7 @@ class Login extends Component {
 
     try {
       const resp = await baseFetch({
-        path: 'api/login',
+        path: '/api/login',
         body: JSON.stringify(loginData),
         method: 'POST',
       });

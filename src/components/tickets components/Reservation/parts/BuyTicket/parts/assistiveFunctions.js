@@ -23,7 +23,7 @@ export const dateFormat = (time) => {
 export const getAllSeats = async (room_id, history) => {
   try {
     const resp = await baseFetch({
-      path: `api/seat/${room_id}`,
+      path: `/api/seat/${room_id}`,
       authToken: getToken('token'),
     });
 

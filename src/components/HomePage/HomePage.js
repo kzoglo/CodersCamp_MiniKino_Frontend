@@ -35,7 +35,7 @@ class HomePage extends Component {
   async componentDidMount() {
     scrollTop();
     try {
-      const respMovies = await baseFetch({ path: 'api/movie' });
+      const respMovies = await baseFetch({ path: '/api/movie' });
       handleErrors(respMovies.status);
       const movies = await respMovies.json();
       const screenings = await this.getScreenings();
@@ -76,7 +76,7 @@ class HomePage extends Component {
   };
 
   async getScreenings() {
-    const respScreenings = await baseFetch({ path: 'api/screening' });
+    const respScreenings = await baseFetch({ path: '/api/screening' });
     handleErrors(respScreenings.status);
     const screenings = await respScreenings.json();
     return screenings;
@@ -153,7 +153,5 @@ class HomePage extends Component {
     );
   }
 }
-
-console.log();
 
 export default HomePage;
