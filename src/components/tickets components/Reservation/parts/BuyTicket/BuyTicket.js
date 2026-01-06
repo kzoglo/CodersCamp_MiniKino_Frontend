@@ -73,12 +73,14 @@ class BuyTicket extends Component {
 
     try {
       const resp = await baseFetch({
-        path: `api/screening/${this.props.movie_id}/${this.props.screening_id}`,
+        path: '/api/screening',
         authToken: getToken('token'),
       });
 
       handleErrors(resp.status);
-      screenings = await resp.json();
+      const allScreenings = await resp.json();
+      // Filter screenings for this movie
+      screenings = allScreenings.filter(screening => screening.movie_id === this.props.movie_id);
     } catch (err) {
       redirectError(this.props.history, err);
     }
@@ -114,10 +116,15 @@ class BuyTicket extends Component {
   };
 
   checkAvailableSeats = async (cb) => {
+    if (!this.state.screening_id) {
+      cb([]);
+      return;
+    }
+
     let existingReservations;
     try {
       const resp = await baseFetch({
-        path: `api/reservation/none/${this.state.screening_id}`,
+        path: `/api/reservation/none/${this.state.screening_id}`,
         authToken: getToken('token'),
       });
 
@@ -145,7 +152,7 @@ class BuyTicket extends Component {
 
       try {
         const resp = await baseFetch({
-          path: `api/screening/${this.state.movie_id}/${this.state.screening_id}`,
+          path: `/api/screening/${this.state.movie_id}/${this.state.screening_id}`,
           authToken: getToken('token'),
         });
 
@@ -252,11 +259,15 @@ class BuyTicket extends Component {
   };
 
   checkConcurrentReservation = async () => {
+    if (!this.state.screening_id) {
+      return false;
+    }
+
     let existingReservations;
 
     try {
       const resp = await baseFetch({
-        path: `api/reservation/none/${this.state.screening_id}`,
+        path: `/api/reservation/none/${this.state.screening_id}`,
         authToken: getToken('token'),
       });
 
@@ -303,7 +314,7 @@ class BuyTicket extends Component {
       };
 
       const { status: reservStatus } = await baseFetch({
-        path: 'api/reservation/',
+        path: '/api/reservation/',
         authToken: getToken('token'),
         method: 'POST',
         body: JSON.stringify(reservationParams),
@@ -454,7 +465,7 @@ class BuyTicket extends Component {
       try {
         // Fetches seat which is to be booked
         const resp = await baseFetch({
-          path: `api/seat/${this.state.room_id}/${this.state.choosenRow}/${this.state.choosenSeat}`,
+          path: `/api/seat/${this.state.room_id}/${this.state.choosenRow}/${this.state.choosenSeat}`,
           authToken: getToken('token'),
         });
 

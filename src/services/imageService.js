@@ -9,9 +9,8 @@ const IMAGE_CONFIG = {
     bucketName: process.env.REACT_APP_MINIO_BUCKET || 'movies'
   },
   production: {
-    // TODO - change to production URL
-    baseUrl: process.env.REACT_APP_S3_URL || 'http://localhost:9000',
-    bucketName: process.env.REACT_APP_S3_BUCKET || 'movies'
+    baseUrl: process.env.REACT_APP_S3_URL || 'https://example.cloudfront.net',
+    bucketName: process.env.REACT_APP_S3_BUCKET || 'images'
   }
 };
 

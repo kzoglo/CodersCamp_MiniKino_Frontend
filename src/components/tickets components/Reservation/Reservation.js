@@ -41,7 +41,7 @@ class Reservation extends Component {
     ) {
       try {
         const resp = await baseFetch({
-          path: `api/movie/${movie_id}`,
+          path: `/api/movie/${movie_id}`,
           authToken: getToken('token'),
         });
 

@@ -315,7 +315,7 @@ class Register extends Component {
       };
 
       const { status } = await baseFetch({
-        path: 'api/user',
+        path: '/api/user',
         body: JSON.stringify(userData),
         method: 'POST',
       });

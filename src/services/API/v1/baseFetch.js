@@ -5,7 +5,10 @@ const baseFetch = async ({
   method = 'GET',
   authToken = '',
 }) => {
-  return await fetch(`${process.env.REACT_APP_API_URL}${path}`, {
+  // Use relative URL for API calls (proxied through CloudFront)
+  const url = path.startsWith('/api/') ? path : `${process.env.REACT_APP_API_URL}${path}`;
+
+  return await fetch(url, {
     method,
     headers: {
       'Access-Control-Allow-Origin': '*',
