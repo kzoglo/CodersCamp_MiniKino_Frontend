@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to CodersCamp_MiniKino_Frontend 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.2.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.3.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E6.0.0-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D8.1.0-blue.svg" />
   <a href="https://github.com/kzoglo/CodersCamp_MiniKino_Frontend#readme" target="_blank">
@@ -52,6 +52,16 @@ npm run test-unit
 ```sh
 npm run test-with-coverage
 ```
+
+## Recent Updates
+
+Recent updates (v2.3.0) include infrastructure migration to AWS and significant improvements:
+- Migrated image storage from local assets to AWS S3 (production) and MinIO (development)
+- Implemented new image service for dynamic image URL handling
+- Added GitHub Actions workflow for automated PR validation
+- Improved environment variable management with dotenvx
+- Fixed buy ticket logic and various UI adjustments
+- Updated tests and removed deprecated defaultProps from function components
 
 ## Author
 
