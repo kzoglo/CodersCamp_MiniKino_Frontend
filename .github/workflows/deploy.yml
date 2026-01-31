@@ -1,0 +1,96 @@
+name: Deploy Frontend to AWS
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  SSM_PREFIX: ${{ vars.SSM_PREFIX }}
+
+jobs:
+  deploy:
+    name: Build and Deploy Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.14.0"
+          cache: "npm"
+
+      - name: Load deployment params from SSM
+        run: |
+          CLOUDFRONT_URL=$(aws ssm get-parameter \
+            --name "${SSM_PREFIX}/cloudfront-url" \
+            --query "Parameter.Value" \
+            --output text \
+            --region "$AWS_REGION")
+          CLOUDFRONT_DOMAIN=$(aws ssm get-parameter \
+            --name "${SSM_PREFIX}/cloudfront-domain" \
+            --query "Parameter.Value" \
+            --output text \
+            --region "$AWS_REGION")
+          S3_FRONTEND_BUCKET=$(aws ssm get-parameter \
+            --name "${SSM_PREFIX}/s3-frontend-bucket" \
+            --query "Parameter.Value" \
+            --output text \
+            --region "$AWS_REGION")
+          CLOUDFRONT_DISTRIBUTION_ID=$(aws ssm get-parameter \
+            --name "${SSM_PREFIX}/cloudfront-distribution-id" \
+            --query "Parameter.Value" \
+            --output text \
+            --region "$AWS_REGION")
+
+          echo "CLOUDFRONT_URL=$CLOUDFRONT_URL" >> "$GITHUB_ENV"
+          echo "CLOUDFRONT_DOMAIN=$CLOUDFRONT_DOMAIN" >> "$GITHUB_ENV"
+          echo "S3_FRONTEND_BUCKET=$S3_FRONTEND_BUCKET" >> "$GITHUB_ENV"
+          echo "CLOUDFRONT_DISTRIBUTION_ID=$CLOUDFRONT_DISTRIBUTION_ID" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create production environment file
+        run: |
+          cat > .env.production << EOF
+          # API URL - CloudFront proxies /api/* to ALB backend
+          REACT_APP_API_URL=$CLOUDFRONT_URL
+          # Images are served from CloudFront at /images/* path
+          REACT_APP_S3_URL=https://$CLOUDFRONT_DOMAIN
+          REACT_APP_S3_BUCKET=images
+          EOF
+
+      - name: Build React application
+        run: NODE_ENV=production npm run build
+
+      - name: Sync build to S3
+        run: aws s3 sync build/ s3://$S3_FRONTEND_BUCKET --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths "/*"
+
+      - name: Deployment summary
+        run: |
+          echo "### Deployment Summary 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **CloudFront URL:** $CLOUDFRONT_URL" >> $GITHUB_STEP_SUMMARY
+          echo "- **S3 Bucket:** $S3_FRONTEND_BUCKET" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Frontend deployment completed successfully!" >> $GITHUB_STEP_SUMMARY
