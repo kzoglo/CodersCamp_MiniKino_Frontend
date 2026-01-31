@@ -53,7 +53,9 @@ export const getImageUrlFromApi = (imageUrl) => {
   return `${process.env.REACT_APP_API_URL}${imageUrl}`;
 };
 
-export default {
+const imageService = {
   getImageUrl,
   getImageUrlFromApi
 };
+
+export default imageService;
