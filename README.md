@@ -56,6 +56,7 @@ npm run test-with-coverage
 ## Recent Updates
 
 Recent updates (v2.3.0) include infrastructure migration to AWS and significant improvements:
+
 - Migrated image storage from local assets to AWS S3 (production) and MinIO (development)
 - Implemented new image service for dynamic image URL handling
 - Added GitHub Actions workflow for automated PR validation
@@ -79,7 +80,7 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2020 [Kamil Żogło](https://github.com/kzoglo).<br />
+Copyright © 2026 [Kamil Żogło](https://github.com/kzoglo).<br />
 This project is [MIT](https://github.com/kzoglo/CodersCamp_MiniKino_Frontend/blob/master/LICENSE) licensed.
 
 ---
